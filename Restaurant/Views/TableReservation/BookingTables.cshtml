@@ -1,0 +1,190 @@
+﻿
+@model Restaurant.Models.CRU_TableReservationMV
+@{
+    ViewBag.Title = "Table Reservation";
+}
+<!-- Breadcrumb Start -->
+<div class="bread-crumb">
+    <div class="container">
+        <div class="matter">
+            <h2>Table Reservation</h2>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="@Url.Content("~/Home/Index")">HOME</a></li>
+                <li class="list-inline-item"><a href="@Url.Content("~/TableReservation/BookingTables")">Table Reservation</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<div class="contactus">
+    <div class="container">
+        <div class="row">
+            <!-- Title Content Start -->
+            <div class="col-sm-12 commontop text-center">
+                <h4>Table Reservation</h4>
+                <div class="divider style-1 center">
+                    <span class="hr-simple left"></span>
+                    <i class="icofont icofont-ui-press hr-icon"></i>
+                    <span class="hr-simple right"></span>
+                </div>
+            </div>
+            <!-- Title Content End -->
+            @{
+                int userid = 0;
+                int usertypeid = 0;
+                int.TryParse(Convert.ToString(Session["UserID"]), out userid);
+                int.TryParse(Convert.ToString(Session["UserTypeID"]), out usertypeid);
+                if (usertypeid == 1 || usertypeid == 2 || usertypeid == 3)
+                {
+                    if (Model.BookingTableID > 0)
+                    {
+                        <div class="col-md-12 col-12">
+                            <!-- form Start  -->
+                            @using (Html.BeginForm("BookingTables", "TableReservation", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+                            {
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                @Html.HiddenFor(model => model.BookingTableID)
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                Full Name :
+                                                @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", @placeholder = "name" } })
+                                                @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                Mobile No :
+                                                @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "Contact No" } })
+                                                @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                Reservation Date :
+                                                @Html.EditorFor(model => model.ReservationDate, new { htmlAttributes = new { @class = "form-control", @placeholder = "Reservation Date" } })
+                                                @Html.ValidationMessageFor(model => model.ReservationDate, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                Reservation Time
+                                                @Html.EditorFor(model => model.ReservationTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "Reservation Time" } })
+                                                @Html.ValidationMessageFor(model => model.ReservationTime, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                Enter Message :
+                                                @Html.EditorFor(model => model.Description, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Message Here" } })
+                                                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="col-md-12 col-sm-12 col-12">
+                                                Process To :
+                                                @Html.DropDownList("BookingStatusID", null, "--Choose Type--", htmlAttributes: new { @class = "form-control" })
+                                                @Html.ValidationMessageFor(model => model.BookingStatusID, "", new { @class = "text-danger" })
+                                            </div>
+                                        </div>
+
+                                        <div class="buttons">
+                                            <input class="btn btn-theme btn-md btn-wide" style="float:right;" type="submit" value="Process" />
+                                        </div>
+                                    </div>
+                                </div>
+                            }
+                            <!-- form End  -->
+                        </div>
+                    }
+                }
+                <div class="col-md-12 col-12">
+                    <!--  List Start  -->
+                    <div class="table-responsive-md">
+                        <table class="table table-bordered">
+                            <thead>
+                                <tr>
+                                    <th class="text-center">
+                                        Status
+                                    </th>
+                                    <th class="text-center">
+                                        Full Name
+                                    </th>
+                                    <th class="text-center">
+                                        Mobile No
+                                    </th>
+                                    <th class="text-center">
+                                        Booking Date
+                                    </th>
+                                    <th class="text-center">
+                                        Reservation Date Time
+                                    </th>
+                                    <th class="text-center">
+                                        No Of Persons
+                                    </th>
+                                    <th class="text-center">
+                                        Description
+                                    </th>
+                                    <th class="text-center">
+                                        Process By
+                                    </th>
+                                    <th>Action</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model.ReservationList)
+                                {
+                                    <tr>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BookingStatus)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.FullName) (@Html.DisplayFor(modelItem => item.BookingUserName))
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.MobileNo)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.BookingDate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ReservationDateTime)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NoOfPersons)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Description)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.ProcessBy_User)
+                                        </td>
+                                        <td>
+                                            @if (usertypeid == 1 || usertypeid == 2 || usertypeid == 3)
+                                            {
+                                                @Html.ActionLink("Process", "BookingTables", new { id = item.BookingTableID }, new { @class = "btn btn-theme btn-md btn-wide" })
+                                            }
+                                            else
+                                            {
+                                                if (string.IsNullOrEmpty(item.ProcessBy_User))
+                                                {
+                                                    @Html.ActionLink("Cancel", "CancelBooking", new { bookingtableid = item.BookingTableID }, new { @class = "btn btn-theme btn-md btn-wide" })
+                                                }
+                                            }
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <!--  List End  -->
+                </div>
+            }
+        </div>
+    </div>
+</div>
+<!--  Reservation End -->

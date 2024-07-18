@@ -1,0 +1,146 @@
+﻿@model Restaurant.Models.CRU_StockDealDetailMV
+@{
+    ViewBag.Title = "Deal";
+}
+<!-- Breadcrumb Start -->
+<div class="bread-crumb">
+    <div class="container">
+        <div class="matter">
+            <h2>Deal Items</h2>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="@Url.Content("~/Home/Index")">HOME</a></li>
+                <li class="list-inline-item"><a href="@Url.Content("~/Stock/StockDealItem?dealid="+Model.StockDealID+"&stockdealdetailid="+Model.StockDealDetailID+"")">Stock Deal Items</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<div class="contactus">
+    <div class="container">
+        <div class="row">
+            <!-- Title Content Start -->
+            <div class="col-sm-12 commontop text-center">
+                <h4>Deal Items</h4>
+                <div class="divider style-1 center">
+                    <span class="hr-simple left"></span>
+                    <i class="icofont icofont-ui-press hr-icon"></i>
+                    <span class="hr-simple right"></span>
+                </div>
+            </div>
+            <!-- Title Content End -->
+
+            <div class="col-md-12 col-12">
+                <!--  user type form Start  -->
+                @using (Html.BeginForm("StockDealItem", "Stock", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.StockDealID)
+                    @Html.HiddenFor(model => model.StockDealDetailID)
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    Select Item :
+                                    @Html.DropDownList("StockItemID", null, "--Choose Item--", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.StockItemID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    Enter Quantity :
+                                    @Html.EditorFor(model => model.Quantity, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Deal Price" } })
+                                    @Html.ValidationMessageFor(model => model.Quantity, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    Discount :
+                                    @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Discount" } })
+                                    @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    Select Status :
+                                    @Html.DropDownList("VisibleStatusID", null, "--Choose Status--", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.VisibleStatusID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    <div class="buttons">
+                                        @if (Model.StockDealID == 0)
+                                        {
+                                            <input class="btn btn-theme btn-md btn-wide" type="submit" value="Create" />
+                                        }
+                                        else
+                                        {
+                                            <input class="btn btn-theme btn-md btn-wide" type="submit" value="Update" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!--  user type form End  -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="menu">
+    <div class="menu-inner">
+        <div class="container">
+            <div class="row ">
+                <div class="col-sm-12 col-12 commontop text-center">
+                    <h4>Deal Items</h4>
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="icofont icofont-ui-press hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                </div>
+
+                <!--  List Start  -->
+                <div class="col-sm-12 col-12">
+                    <!--  Menu Tabs Content Start  -->
+                    <div class="tab-content">
+                        <!--  Menu Tab Start  -->
+                        <div class="row">
+                            @{
+                                foreach (var item in Model.DealItems)
+                                {
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        <!-- Box Start -->
+                                        <div class="box">
+                                            <div class="image">
+                                                <img src="@Url.Content(item.ItemPhotoPath)" alt="image" title="@item.StockItemTitle" class="img-fluid" style="width:130px; height:200px; max-width: 100%; height: auto;" />
+
+                                            </div>
+                                            <div class="caption">
+                                                <h4>@item.StockItemTitle | Discount: @item.Discount VND | (@item.VisibleStatus)</h4>
+                                                <p class="des">Quantity : (@item.Quantity) | Order Type : (@item.OrderType)</p>
+                                                <span>
+                                                    @Html.ActionLink("Edit", "StockDealItem", new { dealid = item.StockDealID, stockdealdetailid = item.StockDealDetailID }, new { @class = "btn btn-theme btn-md btn-wide" })
+                                                </span>
+                                                <div class="price">@item.ItemSize</div>
+                                            </div>
+                                        </div>
+                                        <!-- Box End -->
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

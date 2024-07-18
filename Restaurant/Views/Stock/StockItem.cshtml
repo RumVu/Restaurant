@@ -1,0 +1,233 @@
+﻿@model Restaurant.Models.CRU_StockItemMV
+@{
+    ViewBag.Title = "Stock";
+}
+<!-- Breadcrumb Start -->
+<div class="bread-crumb">
+    <div class="container">
+        <div class="matter">
+            <h2>Stock</h2>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="@Url.Content("~/Home/Index")">HOME</a></li>
+                <li class="list-inline-item"><a href="@Url.Content("~/Stock/StockItem")">Stock Items</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<div class="contactus">
+    <div class="container">
+        <div class="row">
+            <!-- Title Content Start -->
+            <div class="col-sm-12 commontop text-center">
+                <h4>Stock Items</h4>
+                <div class="divider style-1 center">
+                    <span class="hr-simple left"></span>
+                    <i class="icofont icofont-ui-press hr-icon"></i>
+                    <span class="hr-simple right"></span>
+                </div>
+            </div>
+            <!-- Title Content End -->
+
+            <div class="col-md-12 col-12">
+                <!--  user type form Start  -->
+                @using (Html.BeginForm("StockItem", "Stock", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.StockItemID)
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    @Html.DropDownList("StockItemCategoryID", null, "--Choose Item Category--", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.StockItemCategoryID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    @Html.EditorFor(model => model.StockItemTitle, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Item Title" } })
+                                    @Html.ValidationMessageFor(model => model.StockItemTitle, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    @Html.EditorFor(model => model.ItemSize, new { htmlAttributes = new { @class = "form-control", @placeholder = "Item Size eg, large, small etc" } })
+                                    @Html.ValidationMessageFor(model => model.ItemSize, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    @Html.EditorFor(model => model.UnitPrice, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Item Price" } })
+                                    @Html.ValidationMessageFor(model => model.UnitPrice, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    @Html.DropDownList("OrderTypeID", null, "--Choose Item Type--", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.OrderTypeID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    @Html.DropDownList("VisibleStatusID", null, "--Choose Status--", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.VisibleStatusID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-8 col-sm-8 col-8">
+                                        <label style="margin-left:20px;">Upload Item Picture</label>
+                                        <br />
+                                        <span class="btn btn-default btn-file">
+                                            @Html.TextBoxFor(model => model.PhotoPath, new { @class = "upload-pic form-control-file", @type = "file" })
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4 col-sm-4 col-4">
+                                        <div class="buttons">
+                                            @if (Model.StockItemID == 0)
+                                            {
+                                                <input class="btn btn-theme btn-md btn-wide" type="submit" value="Create" />
+                                            }
+                                            else
+                                            {
+                                                <input class="btn btn-theme btn-md btn-wide" type="submit" value="Update" />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!--  user type form End  -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="menu">
+    <div class="menu-inner">
+        <div class="container">
+            <div class="row ">
+                <div class="col-sm-12 col-12 commontop text-center">
+                    <h4>Stock Categories</h4>
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="icofont icofont-ui-press hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                </div>
+
+                <!--  List Start  -->
+                <div class="col-sm-12 col-12">
+                    <!--  Menu Tabs Start  -->
+                    <ul class="nav nav-tabs list-inline">
+                        @{
+                            bool isfirstcategorychecked = false;
+                            foreach (var categorymenu in Model.Categories)
+                            {
+                                var menucategory = categorymenu.StockCategory.Replace(' ', '_').ToLower();
+
+                                if (isfirstcategorychecked == false)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#@menucategory" data-toggle="tab" aria-expanded="true">@categorymenu.StockCategory</a>
+                                    </li>
+                                    isfirstcategorychecked = true;
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#@menucategory" data-toggle="tab" aria-expanded="false">@categorymenu.StockCategory</a>
+                                    </li>
+                                }
+
+                            }
+                        }
+                    </ul>
+                    <!--  Menu Tabs Start  -->
+                    <!--  Menu Tabs Content Start  -->
+                    <div class="tab-content">
+                        <!--  Menu Tab Start  -->
+                        @{
+                            bool isfirsttabactive = false;
+                            foreach (var category in Model.Categories)
+                            {
+                                var menucategory = category.StockCategory.Replace(' ', '_').ToLower();
+
+                                if (isfirsttabactive == false)
+                                {
+                                    <div class="tab-pane show active" id="@menucategory">
+                                        <div class="row">
+                                            @foreach (var item in category.Lists)
+                                            {
+                                                <div class="col-md-6 col-sm-6 col-12">
+                                                    <!-- Box Start -->
+                                                    <div class="box">
+                                                        <div class="image">
+                                                            <img src="@Url.Content(item.ItemPhotoPath)" alt="image" title="image" class="img-fluid" style="border-radius: 50%;" />
+                                                        </div>
+                                                        <div class="caption">
+                                                            <h4>@item.StockItemTitle - @item.ItemSize | (@item.VisibleStatus)</h4>
+                                                            <p class="des">Order Type : @item.OrderType  | Reg Date :  @item.RegisterDate | Created By : @item.CreatedBy </p>
+                                                            <span>
+                                                                @Html.ActionLink("Edit", "StockItem", new { id = item.StockItemID }, new { @class = "btn btn-theme btn-md btn-wide", @style = "margin-bottom:5px;" })
+                                                                @Html.ActionLink("Ingredients", "StockItemIngredient", new { id = item.StockItemID }, new { @class = "btn btn-theme btn-md btn-wide" })
+                                                            </span>
+                                                            <div class="price">PRICE : @item.UnitPrice PKR</div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Box End -->
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    isfirsttabactive = true;
+                                }
+                                else
+                                {
+                                    <div class="tab-pane" id="@menucategory">
+                                        <div class="row">
+                                            @foreach (var item in category.Lists)
+                                            {
+                                                <div class="col-md-6 col-sm-6 col-12">
+                                                    <!-- Box Start -->
+                                                    <div class="box">
+                                                        <div class="image">
+                                                            <img src="@Url.Content(item.ItemPhotoPath)" alt="image" title="@item.StockItemTitle" class="img-fluid" style="width:130px; height:200px; max-width: 100%; height: auto;" />
+
+                                                        </div>
+                                                        <div class="caption">
+                                                            <h4>@item.StockItemTitle - @item.ItemSize | (@item.VisibleStatus)</h4>
+                                                            <p class="des">Order Type : @item.OrderType  | Reg Date :  @item.RegisterDate | Created By : @item.CreatedBy </p>
+                                                            <span>
+                                                                @Html.ActionLink("Edit", "StockItem", new { id = item.StockItemID }, new { @class = "btn btn-theme btn-md btn-wide" })
+                                                                @Html.ActionLink("Ingredients", "StockItemIngredient", new { id = item.StockItemID }, new { @class = "btn btn-theme btn-md btn-wide" })
+                                                            </span>
+                                                            <div class="price">@item.UnitPrice PKR</div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Box End -->
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

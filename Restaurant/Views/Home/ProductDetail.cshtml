@@ -1,0 +1,296 @@
+﻿
+@model Restaurant.Models.ItemDetailMV
+@{
+    ViewBag.Title = "Product Details";
+}
+
+<!-- Breadcrumb Start -->
+<div class="bread-crumb">
+    <div class="container">
+        <div class="matter">
+            <h2>Product Details</h2>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="@Url.Content("~/Home/Index")">HOME</a></li>
+                <li class="list-inline-item"><a href="@Url.Content("~/Home/ProductDetail?itemid="+Model.Item.StockItemID)">Product Details</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Product Detail Start -->
+<div class="shop">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="row shopdetail">
+                    <div class="col-sm-5 col-12">
+                        <div class="image">
+                            <img src="@Url.Content(Model.Item.ItemPhotoPath)" title="@Model.Item.StockItemTitle" alt="@Model.Item.StockItemTitle" class="img-fluid" />
+                        </div>
+                    </div>
+                    <div class="col-sm-7 col-12">
+                        <h2>@Model.Item.StockItemTitle</h2>
+                        @if (Model.Item.Rating > 0)
+                        {
+                            <div class="rating">
+                                <i class="icofont icofont-star"></i>
+                                <i class="icofont icofont-star"></i>
+                                <i class="icofont icofont-star"></i>
+                                <i class="icofont icofont-star"></i>
+                                <i class="icofont icofont-star"></i>
+                            </div>
+                        }
+                        <div class="price">@Model.Item.UnitPrice VND</div>
+                        <p class="des">Size : @Model.Item.ItemSize / Category : @Model.Item.StockItemCategory</p>
+                        <div class="food">
+                            <h3>Food For</h3>
+                            @if (Model.Item.OrderType == "Delivery")
+                            {
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <label class="check">
+                                            <input type="radio" name="payment" class="checkclass" />
+                                            Delivery
+                                        </label>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <label class="check">
+                                            <input type="radio" name="payment" class="checkclass" checked="checked" />
+                                            Pickup
+                                        </label>
+                                    </li>
+                                </ul>
+                            }
+                            else
+                            {
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <label class="check">
+                                            <input type="radio" name="payment" class="checkclass" checked="checked" />
+                                            Pickup
+                                        </label>
+                                    </li>
+                                </ul>
+                            }
+                        </div>
+                        <div class="common">
+                            <p class="qtypara float-left">
+                                <span id="minus1" class="minus"><i class="icofont icofont-minus"></i></span>
+                                <input type="text" name="quantity" value="1" size="2" id="input-quantity1" class="form-control qty">
+                                <span id="add1" class="add"><i class="icofont icofont-plus"></i></span>
+                                <input type="hidden" name="product_id" value="1">
+                            </p>
+                            <div class="buttons">
+                                <a href="#" class="btn btn-theme-alt btn-md">Order Now</a>
+                                <button  class="btn btn-theme-alt btn-md" onclick="additem(@Model.Item.StockItemID)">Add to cart</button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-sm-12 col-12">
+                        <ul class="nav nav-tabs">
+                            <li class="nav-item"><a class="nav-link active" href="#tab-review" data-toggle="tab">Reviews (@Model.Reviews.Count())</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#tab-add" data-toggle="tab">add Review</a></li>
+                        </ul>
+                        <div class="tab-content">
+
+                            <div class="tab-pane active" id="tab-review">
+                                @foreach (var review in Model.Reviews)
+                                {
+                                    <div class="box" style="display:flex">
+                                        <div class="detail">
+                                            <h2>@review.ReviewBy_User</h2>
+                                            <span>@review.Review_Days days ago</span>
+                                                <div class="rating">
+                                                    @if (review.Rating == 5)
+                                                    {
+                                                        <span class="fa fa-star" style="color:orange;"></span>
+                                                        <span class="fa fa-star" style="color:orange;"></span>
+                                                        <span class="fa fa-star" style="color:orange;"></span>
+                                                        <span class="fa fa-star" style="color:orange;"></span>
+                                                        <span class="fa fa-star" style="color:orange;"></span>
+                                                    }
+                                                    else if (review.Rating == 4)
+                                                    {
+                                                        <span class="fa fa-star" style="color:orange;"></span>
+                                                        <span class="fa fa-star" style="color:orange;"></span>
+                                                        <span class="fa fa-star" style="color:orange;"></span>
+                                                        <span class="fa fa-star" style="color:orange;"></span>
+                                                        <span class="fa fa-star"></span>
+                                                    }
+                                                    else if (review.Rating == 3)
+                                                    {
+                                                        <span class="fa fa-star" style="color:orange;"></span>
+                                                        <span class="fa fa-star" style="color:orange;"></span>
+                                                        <span class="fa fa-star" style="color:orange;"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                    }
+                                                    else if (review.Rating == 2)
+                                                    {
+                                                        <span class="fa fa-star" style="color:orange;"></span>
+                                                        <span class="fa fa-star" style="color:orange;"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                    }
+                                                    else if (review.Rating == 1)
+                                                    {
+                                                        <span class="fa fa-star" style="color:orange;"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                    }
+                                                    else if (review.Rating == 0)
+                                                    {
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                        <span class="fa fa-star"></span>
+                                                    }
+                                                </div>
+                                         </div>
+                                            <p style="font-size:20px;margin-left:20px">@review.ReviewDetails.</p>
+                                        </div>
+                                }
+                            </div>
+                            
+                        </div>
+                    <div class="tab-pane" id="tab-add">
+                        @{
+                            int userid = 0;
+                            int.TryParse(Convert.ToString(Session["UserID"]), out userid);
+
+                            if (userid > 0)
+                            {
+                                using (Html.BeginForm("ProductDetail", "Home", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+                                {
+                                    @Html.AntiForgeryToken()
+                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                    @Html.HiddenFor(model => model.StockItemID)
+                                    <div class="form-group row required">
+                                        <div class="col-md-6 col-sm-12">
+                                            @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", @placeholder = "Name*", @type = "text" } })
+                                            @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                        </div>
+                                        <div class="col-md-6 col-sm-12">
+                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", @placeholder = "Email*", @type = "email" } })
+                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row required">
+                                        <div class="col-sm-12">
+                                            @Html.TextAreaFor(m => m.ReviewDetails,
+                                                               new
+                                                               {
+                                                                 @placeholder = "Your Reviews*",
+                                                                 @class = "form-control",
+                                                                 rows = "5",
+                                                                 @required = "true"
+                                                               })
+                                            @Html.ValidationMessageFor(model => model.ReviewDetails, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-sm-12">
+                                            @*<div class="rating">*@
+                                            <p>Your Rating*</p>
+                                            <ul class="list-inline">
+                                                @{ foreach (var rate in Model.RatingList)
+                                                    {
+                                                        <li class="list-inline-item">
+                                                            @Html.RadioButtonFor(model => model.Rating, rate.ID)
+                                                            @Html.Label("" + rate.ID, rate.Type)
+                                                        </li>
+                                                    }
+                                                }
+                                            </ul>
+                                            @*</div>*@
+                                        </div>
+                                    </div>
+                                    <div class="buttons clearfix">
+                                        <button type="submit" id="button-review" class="btn btn-theme btn-wide">Submit</button>
+                                    </div>
+                                }
+                            }
+                            else
+                            {
+                                <a href="@Url.Content("~/User/Login")">First Login here</a>
+                            }
+                        }
+                    </div>
+
+                    </div>
+                </div>
+
+                <div class="row">
+                    <!-- Title Content Start -->
+                    <div class="col-sm-12 commontop text-center">
+                        <h4>Related Food</h4>
+                        <div class="divider style-1 center">
+                            <span class="hr-simple left"></span>
+                            <i class="icofont icofont-ui-press hr-icon"></i>
+                            <span class="hr-simple right"></span>
+                        </div>
+                        <p>The purpose of a restaurant menu is to provide customers with a variety of options to choose from and to help them decide what they want to eat and drink while dining at the restaurant.</p>
+                    </div>
+                    <!-- Title Content End -->
+                    <!-- Single Product Start -->
+                    <div class="dish owl-carousel">
+                        @foreach (var item in Model.Related_Items)
+                        {
+                            <div class="item">
+                                <!-- Box Start -->
+
+                                <div class="box">
+                                    <a href="@Url.Content("~/Home/ProductDetail?itemid=" + item.StockItemID)"><img src="@Url.Content(item.ItemPhotoPath)" alt="@item.StockItemTitle" title="@item.StockItemTitle" class="img-fluid" /></a>
+                                    <div class="caption">
+                                        <h4>@item.StockItemTitle</h4>
+                                        <span>
+                                            @{ var value = Model.Item.OrderType == "Delivery" ? "Delivery | Pickup" : "Pickup"; }
+                                            Order Type : @value
+                                        </span>
+                                        <p>@item.UnitPrice VND</p>
+                                    </div>
+                                </div>
+
+                                <!-- Box End -->
+                            </div>
+                        }
+                    </div>
+                    <!-- Single Product End -->
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Product Detail End -->
+<script type="text/javascript">
+    function additem(id)
+    {
+        var qty = document.getElementById("input-quantity1").value;
+        var url = "/Order/Cart_AddItem?itemid=" + id + "&qty="+qty+"&itemtype=item&return_url=''";
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+        // we set cache: false because GET requests are often cached by browsers
+        // IE is particularly aggressive in that respect
+            cache: false,
+            data: { },
+            success: function (result)
+            {
+                if (result == true)
+                {
+                    alert("Added Successfully!")
+                    }
+                else
+                {
+                    alert("Plz login and Try-Again!")
+                    }
+            }
+        });
+    }
+</script>

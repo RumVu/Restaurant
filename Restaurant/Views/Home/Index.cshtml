@@ -1,0 +1,279 @@
+﻿@model Restaurant.Models.HomeMV
+@{
+    ViewBag.Title = "Home";
+}
+<!-- Slider Start -->
+<div class="slide">
+    <div class="slideshow owl-carousel">
+        <!-- Slider Backround Image Start -->
+        <div class="item">
+            <img src="~/Content/Template/assets/images/background/banner-1.jpg" alt="banner" title="banner" class="img-fluid" />
+        </div>
+        <div class="item">
+            <img src="~/Content/Template/assets/images/background/banner-2.jpg" alt="banner" title="banner" class="img-fluid" />
+        </div>
+        <div class="item">
+            <img src="~/Content/Template/assets/images/background/banner-3.jpg" alt="banner" title="banner" class="img-fluid" />
+        </div>
+        <div class="item">
+            <img src="~/Content/Template/assets/images/background/banner-4.jpg" alt="banner" title="banner" class="img-fluid" />
+        </div>
+        <!-- Slider Backround Image End -->
+    </div>
+
+    <!-- Slide Detail Start  -->
+    <div class="slide-detail">
+        <div class="container">
+            <img src="~/Content/Template/assets/images/logo/logo-icon.png" alt="logo1" title="logo1" class="img-fluid" />
+            <h4>LOVES HEALTHY FOOD</h4>
+            <p>That's great! Eating a healthy diet is important for maintaining good health and preventing many diseases. A healthy diet includes a variety of fruits, vegetables, whole grains, lean proteins, and healthy fats.</p>
+            <a class="btn-primary btn btn-wide" href="#">Today's menu</a>
+        </div>
+    </div>
+    <!-- Slide Detail End  -->
+</div>
+<!-- Slider End  -->
+<!-- Order Start  -->
+<div class="order">
+    <div class="container">
+        <div class="row justify-content-center">
+            <!-- Title Content Start -->
+            <div class="col-sm-12 commontop text-center">
+                <h4>Order Delivery and take out</h4>
+                <div class="divider style-1 center">
+                    <span class="hr-simple left"></span>
+                    <i class="icofont icofont-ui-press hr-icon"></i>
+                    <span class="hr-simple right"></span>
+                </div>
+                <p>Ordering delivery or takeout is a convenient way to enjoy food from your favorite restaurants without having to leave your home. Here are some steps you can follow to order delivery or takeout.</p>
+            </div>
+            <!-- Title Content End -->
+            <div class="col-lg-7 col-sm-12">
+                <!-- Search Form Start -->
+                <form class="form-horizontal search-icon" method="post">
+                    <fieldset>
+                        <div class="form-group">
+                            <input name="s" value="" placeholder="Search keyword" class="form-control" type="text">
+                        </div>
+                        <button type="submit" value="submit" class="btn btn-theme"><i class="icofont icofont-search"></i>Search</button>
+                    </fieldset>
+                </form>
+                <!-- Search Form End -->
+                <ul class="list-inline text-center">
+                    <li class="list-inline-item">
+                        <i class="icofont icofont-fast-food"></i>
+                        <p>Select Food</p>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="icofont icofont-food-basket"></i>
+                        <p>Order Food</p>
+                    </li>
+                    <li class="list-inline-item">
+                        <i class="icofont icofont-fast-delivery"></i>
+                        <p>Delivery or Take Out</p>
+                    </li>
+                </ul>
+                <img src="~/Content/Template/assets/images/lines.png" alt="line" title="line" class="img-fluid" />
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Order End  -->
+@{
+    if (Model.PopularDishes != null)
+    {
+        <!-- Popular Dishes Start -->
+        <div class="dishes">
+            <div class="container">
+                <div class="row">
+                    <!-- Title Content Start -->
+                    <div class="col-sm-12 commontop text-center">
+                        <h4>Our Popular Dishes</h4>
+                        <div class="divider style-1 center">
+                            <span class="hr-simple left"></span>
+                            <i class="icofont icofont-ui-press hr-icon"></i>
+                            <span class="hr-simple right"></span>
+                        </div>
+                        <p>A dish made with a cut of beef, cooked to preference, and served with vegetables or other side dishes.</p>
+                    </div>
+                    <!-- Title Content End -->
+                    <div class="col-sm-12">
+                        <div class="dish owl-carousel">
+                            @foreach (var item in Model.PopularDishes)
+                            {
+                                <div class="item">
+                                    <!-- Box Start -->
+                                    <a href="@Url.Content("~/Home/ProductDetail?itemid="+item.StockItemID)">
+                                        <div class="box">
+                                            <a href="@Url.Content("~/Home/ProductDetail?itemid="+item.StockItemID)"><img src="@Url.Content(item.ItemPhotoPath)" alt="image" title="image" class="img-fluid" /></a>
+                                            <div class="caption">
+                                                <h4>@item.StockItemTitle</h4>
+                                                <span>Order Type : @item.OrderType</span>
+                                                <p>@item.UnitPrice</p>
+                                            </div>
+                                        </div>
+                                     </a>
+                                     <!-- Box End -->
+                                </div>
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+}
+<!-- Popular Dishes End -->
+<!-- Food Menu Start -->
+<div class="menu">
+    <div class="menu-inner">
+        <div class="container">
+            <div class="row ">
+                <!-- Title Content Start -->
+                <div class="col-sm-12 col-12 commontop text-center">
+                    <h4>Our Menu</h4>
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="icofont icofont-ui-press hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                    <p>The purpose of a restaurant menu is to provide customers with a variety of options to choose from and to help them decide what they want to eat and drink while dining at the restaurant.</p>
+                </div>
+                <!-- Title Content End -->
+                <div class="col-sm-12 col-12">
+                    <!--  Menu Tabs Start  -->
+                    <ul class="nav nav-tabs list-inline">
+                        @{
+                            bool isfirstcategorychecked = false;
+                            foreach (var categorymenu in Model.Menu)
+                            {
+                                var menucategory = categorymenu.MenuCategory.Replace(' ', '_').ToLower();
+
+                                if (isfirstcategorychecked == false)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#@menucategory" data-toggle="tab" aria-expanded="true">@categorymenu.MenuCategory</a>
+                                    </li>
+                                    isfirstcategorychecked = true;
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#@menucategory" data-toggle="tab" aria-expanded="false">@categorymenu.MenuCategory</a>
+                                    </li>
+                                }
+
+                            }
+                        }
+                    </ul>
+                    <!--  Menu Tabs Start  -->
+                    <!--  Menu Tabs Content Start  -->
+                    <div class="tab-content">
+                        <!--  Menu Tab Start  -->
+                        @{
+                            bool isfirsttabactive = false;
+                            foreach (var category in Model.Menu)
+                            {
+                                var menucategory = category.MenuCategory.Replace(' ', '_').ToLower();
+
+                                if (isfirsttabactive == false)
+                                {
+                                    <div class="tab-pane show active" id="@menucategory">
+                                        <div class="row">
+                                            @foreach (var item in category.Lists)
+                                            {
+                                                <div class="col-md-6 col-sm-6 col-12">
+                                                    <!-- Box Start -->
+                                                    <a href="@Url.Content("~/Home/ProductDetail?itemid="+item.StockItemID)">
+                                                        <div class="box">
+                                                            <div class="image">
+                                                                <img src="@Url.Content(item.ItemPhotoPath)" alt="image" title="image" class="img-fluid" style="border-radius: 50%;" />
+                                                            </div>
+                                                            <div class="caption">
+                                                                <h4>@item.StockItemTitle - @item.ItemSize | (@item.VisibleStatus)</h4>
+                                                                <p class="des">Order Type : @item.OrderType  | Reg Date :  @item.RegisterDate | Created By : @item.CreateBy </p>
+                                                                <div class="price">PRICE : @item.UnitPrice VND</div>
+                                                            </div>
+                                                        </div>
+                                                     </a>
+                                                    <!-- Box End -->
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    isfirsttabactive = true;
+                                }
+                                else
+                                {
+                                    <div class="tab-pane" id="@menucategory">
+                                        <div class="row">
+                                            @foreach (var item in category.Lists)
+                                            {
+                                                <div class="col-md-6 col-sm-6 col-12">
+                                                    <!-- Box Start -->
+                                                    <a href="@Url.Content("~/Home/ProductDetail?itemid="+item.StockItemID)">
+                                                        <div class="box">
+                                                            <div class="image">
+                                                                <img src="@Url.Content(item.ItemPhotoPath)" alt="image" title="@item.StockItemTitle" class="img-fluid" style="width:130px; height:200px; max-width: 100%; height: auto;" />
+
+                                                            </div>
+                                                            <div class="caption">
+                                                                <h4>@item.StockItemTitle - @item.ItemSize | (@item.VisibleStatus)</h4>
+                                                                <p class="des">Order Type : @item.OrderType  | Reg Date :  @item.RegisterDate | Created By : @item.CreateBy </p>
+                                                                <div class="price">@item.UnitPrice VND</div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                        <!-- Box End -->
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                    <div class="text-center padbot30">
+                        <a class="btn btn-theme-alt btn-wide" href="@Url.Content("~/Home/OurMenu")">view more <i class="icofont icofont-curved-double-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Food Menu End -->
+<!-- Reservation Start -->
+@{
+    int userid = 0;
+    int usertypeid = 0;
+    int.TryParse(Convert.ToString(Session["UserID"]), out userid);
+    int.TryParse(Convert.ToString(Session["UserTypeID"]), out usertypeid);
+    Html.RenderPartial("~/Views/TableReservation/Partial_TableReservation.cshtml", new Restaurant.Models.CRU_TableReservationMV(usertypeid, userid));
+}
+<!-- Reservation End  -->
+<!-- Newsletter Start -->
+<div id="newsletter">
+    <div class="container">
+        <div id="subscribe">
+            <!-- Subscribe Form -->
+            <form class="form-horizontal" name="subscribe">
+                <div class="row">
+                    <div class="col-sm-6 col-md-7">
+                        <div class="input-group">
+                            <span class="news">newsletter</span>
+                            <p>For upcomming news subscription please enter your email address here.</p>
+                        </div>
+                    </div>
+                    <div class="col-sm-6 col-md-5 form-group">
+                        <div class="input-group">
+                            <input value="" name="subscribe_email" id="subscribe_email" placeholder="Email" type="text">
+                            <button class="btn btn-news" type="submit" value="submit">Send</button>
+                        </div>
+                    </div>
+                </div>
+            </form>
+            <!-- Subscribe Form -->
+        </div>
+    </div>
+</div>
+<!-- Newsletter End -->

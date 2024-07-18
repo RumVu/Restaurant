@@ -1,0 +1,107 @@
+﻿@model Restaurant.Models.CRU_StockItemCategoryMV
+@{
+    ViewBag.Title = "Stock";
+}
+<!-- Breadcrumb Start -->
+<div class="bread-crumb">
+    <div class="container">
+        <div class="matter">
+            <h2>Stock Item Categories</h2>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="@Url.Content("~/Home/Index")">HOME</a></li>
+                <li class="list-inline-item"><a href="@Url.Content("~/Stock/StockItemCategory")">Stock Item Categories</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<div class="contactus">
+    <div class="container">
+        <div class="row">
+            <!-- Title Content Start -->
+            <div class="col-sm-12 commontop text-center">
+                <h4>Stock Item Categories</h4>
+                <div class="divider style-1 center">
+                    <span class="hr-simple left"></span>
+                    <i class="icofont icofont-ui-press hr-icon"></i>
+                    <span class="hr-simple right"></span>
+                </div>
+            </div>
+            <!-- Title Content End -->
+
+            <div class="col-md-5 col-12">
+                <!--  user type form Start  -->
+                @using (Html.BeginForm("StockItemCategory", "Stock", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.StockItemCategoryID)  @*đổi từ khúc này ở part 13 *@
+                    <div class="form-group row">
+                        <div class="col-md-12 col-sm-12 col-12">
+                            @Html.EditorFor(model => model.StockItemCategory, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Stock Category" } })
+                            @Html.ValidationMessageFor(model => model.StockItemCategory, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <div class="col-md-12 col-sm-12 col-12">
+                            @Html.DropDownList("VisibleStatusID", null, "--Choose Status--", htmlAttributes: new { @class = "form-control" })
+                            @Html.ValidationMessageFor(model => model.VisibleStatusID, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    <div class="buttons">
+                        @if (Model.StockItemCategoryID == 0)
+                        {
+                            <input class="btn btn-theme btn-md btn-wide" style="float:right;" type="submit" value="Create" />
+                        }
+                        else
+                        {
+                            <input class="btn btn-theme btn-md btn-wide" style="float:right;" type="submit" value="Update" />
+                        }
+                    </div>
+                }
+                <!--  user type form End  -->
+            </div>
+            <div class="col-md-7 col-12">
+                <!--  List Start  -->
+                <div class="table-responsive-md">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td class="text-center">
+                                    Stock Category
+                                </td>
+                                <td class="text-center">
+                                    Created By
+                                </td>
+                                <td class="text-center">
+                                    Status
+                                </td>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>@*have error somewhere, need to fix at 4:09 / 30:20*@ 
+                            @foreach (var item in Model.List)       
+                            {
+                                <tr>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.StockItemCategory)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.CreatedBy)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.VisibleStatus)
+                                    </td>
+                                    <td>
+                                        @Html.ActionLink("Edit", "StockItemCategory", new { id = item.StockItemCategoryID }, new { @class = "btn btn-theme btn-md btn-wide" })
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+                </div>
+                <!--  List End  -->
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,158 @@
+/*-----------------------------------------------------------------------
+/*  Theme Name  : STEAM Restaurant and Drinks
+/*  Theme URI   : http://www.spheretheme.com/steam
+/*  Description : STEAM - Restaurant, food and Drinks HTML5 website template is Modern, Clean and Professional site template.
+/*  Version     : 2.1
+/*  assets/css/colors/color-3.css
+/* This file is used for #228B22 color preset
+/*-----------------------------------------------------------------------
+*/
+
+/** selection **/
+
+*::-moz-selection {
+    background: #228B22;
+    color: #fff;
+    text-shadow: none;
+}
+::-moz-selection {
+    background: #228B22;
+    color: #fff;
+    text-shadow: none;
+}
+::selection {
+    background: #228B22;
+    color: #fff;
+    text-shadow: none;
+}
+.sort .bootstrap-select .dropdown-menu li > a:hover,
+.top .icon li a:focus, 
+.top .social li a:focus, 
+.top .icon li a:hover, 
+.top .social li a:hover,
+.top .icon li.dropdown ul li a:hover,
+.page-not-found .error-content h2,
+#menu .nav > li > a:hover,
+#menu .navbar-nav > .active > a,
+#menu .navbar-nav > .active > a:hover,
+#menu .navbar-nav > .active > a:focus,
+#menu .dropdown-menu li a:hover, 
+.top .social li a:hover i,
+.divider .hr-icon,
+.menu .box .caption .price,
+.menu .box .caption h4,
+.dish .box .caption p,
+.blog .box .caption h4,
+footer .inner .contact li i,
+footer .inner li a:hover,
+.contactus form .icofont,
+.sidebar-box .search .btn i,
+.sidebar-box h6,
+.fun-factor .single-box:hover span,
+.testimonials span,
+.blog-detail .blogs .link .social li a:hover,
+.blog-detail .blogs .link .icon li a:hover{
+    color: #228B22;
+}
+.header-2 header,
+.header-1 header,
+.divider .hr-simple,
+#menu .nav > li > a::before,
+.menu .nav-tabs > li > a.active,
+.menu .nav-tabs > li > a.active:hover,
+.menu .nav-tabs > li > a.active:focus,
+.menu .nav-tabs > li > a:hover,
+.btn-theme-alt:hover,
+.btn-theme-alt:active:hover,
+.btn-theme-alt:focus,
+#newsletter,
+footer .footer-bottom,
+.bottom-top,
+.address-box .box .icon{
+    background: #228B22;
+}
+.btn-primary:hover,
+.btn-primary:active:hover, 
+.btn-primary:focus,
+.btn-theme,
+.pagination .page-item.active a, 
+.pagination .page-item.active span,
+.pagination .page-item.active > a:hover, 
+.pagination .page-item.active span:hover,
+.pagination .page-item.active a:focus,
+.pagination .page-item.active > span:focus,
+.pagination li a:hover,
+.pagination li span:hover,
+.pagination li a:focus, 
+.pagination li span:focus,
+.sidebar-box .tag li:hover{
+    background: #228B22;
+    border-color: #228B22;
+}
+.btn-theme:hover, 
+.btn-theme:active:hover,
+.btn-theme:focus,
+.btn-theme-alt{
+    border-color: #228B22;
+    color: #228B22;
+}
+.contactus form .form-control:focus,
+.reservation form .form-control:focus,
+.sidebar-box .search input:focus,
+.blog-detail .comment .form-control:focus{
+    border-color: #228B22;    
+}
+.blog-detail .blogs blockquote{
+    border-left-color: #228B22;
+}
+
+#menu .navbar-toggle,
+.btn-theme-alt:hover, 
+.btn-theme-alt:active:hover, 
+.btn-theme-alt:focus,
+.mycart .nav-tabs li .active span,
+.loginnow .form-control:focus,
+.mycart #tab-payment .form-control:focus,
+.mycart #tab-info .form-control:focus,
+.shopdetail #form-review .form-control:focus,
+.shop .left-side .search input:focus{
+    border-color: #228B22;
+}
+.shop .left-side h4,
+.qtypara .icofont:hover,
+.shopdetail .nav-tabs > li:hover a, 
+.shopdetail .nav-tabs > li a.active,
+.mycart .nav-tabs li .active span{
+    background: #228B22;
+}
+.shop .left-side .search .btn i,
+.shop .left-side h3,
+.shopdetail .price,
+.shop .product-thumb .caption .price,
+.mycart #tab-cart h2 span,
+.loginnow label a, 
+.loginnow p a,
+.loginnow .form-group .icofont{
+    color: #228B22;
+}
+
+
+.dashboard .form-control:focus{
+    border-color: #228B22;
+}
+.user-profile .recent-complaint h4:after,
+.user-profile .primary-card span,
+.user-profile .item-entry .order-id,
+.user-profile .notification-entry p i,
+.user-profile .user-profile-tabs .nav-tabs > li a:hover,
+.user-profile .user-profile-tabs .nav-tabs > li > a.active, 
+.user-profile .user-profile-tabs .nav-tabs > li > a.active:focus{
+    background: #228B22;
+}
+.user-profile .recent-complaint .tab-content a:hover,
+.user-profile .user-profile-offer .offer-entry a,
+.user-profile .user-profile-offer .offer-left,
+.user-profile .most-recent-order .field-entry a,
+.user-profile .brief-info p i{
+     color: #228B22;
+}

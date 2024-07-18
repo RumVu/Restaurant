@@ -1,0 +1,198 @@
+﻿@model Restaurant.Models.DashboardMV
+@{
+    ViewBag.Title = "Dashboard";
+}
+
+<!-- Breadcrumb Start -->
+<div class="bread-crumb">
+    <div class="container">
+        <div class="matter">
+            <h2>Dashboard</h2>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="@Url.Content("~/Home/Index")">HOME</a></li>
+                <li class="list-inline-item"><a href="#">Dashboard</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Deshboard Start -->
+<div class="dashboard">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-sm-12 commontop text-center">
+                <h4>User Dashboard</h4>
+                <div class="divider style-1 center">
+                    <span class="hr-simple left"></span>
+                    <i class="icofont icofont-ui-press hr-icon"></i>
+                    <span class="hr-simple right"></span>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 user-profile">
+                <div class="row">
+                    <div class="col-md-3 col-lg-2">
+                        <div class="user-profile-tabs">
+                            <!--  Menu Tabs Start  -->
+                            <ul class="nav nav-tabs flex-column">
+                                <li class="nav-item">
+                                    <a class="nav-link active" data-toggle="tab" href="#overview" aria-expanded="true">
+                                        <i class="icofont icofont-dashboard-web"></i>
+                                        <span>Overview</span>
+                                    </a>
+                                </li>
+                                <li id="navprofile" class="nav-item">
+                                    <a class="nav-link" data-toggle="tab" href="#profile" aria-expanded="true">
+                                        <i class="icofont icofont-ui-user"></i>
+                                        <span>Profile</span>
+                                    </a>
+                                </li>
+                            </ul>
+                            <!--  Menu Tabs Start  -->
+                        </div>
+                    </div>
+                    <div class="col-md-9 col-lg-10">
+                        <div class="tab-content">
+                            <div id="overview" class="tab-pane fade active show">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="brief-info">
+                                            <div class="media">
+                                                <div class="media-body">
+                                                    <h4>@Model.ProfileMV.FullName</h4>
+                                                    <p><i class="icofont icofont-envelope"></i> @Model.ProfileMV.EmailAddress</p>
+                                                    <p><i class="icofont icofont-phone"></i> @Model.ProfileMV.ContactNo</p>
+                                                    @if (Model.ProfileMV.UserStatusID == 1 || Model.ProfileMV.UserStatusID == 6)
+                                                    {
+                                                        <p class="confirmed"><i class="icofont icofont-check"></i>@Model.ProfileMV.UserStatus</p>
+                                                    }
+                                                    else
+                                                    {
+                                                        <p class="failed"><i class="icofont icofont-close"></i>@Model.ProfileMV.UserStatus</p>
+                                                    }
+                                                </div>
+                                            </div>
+                                            <div class="brief-info-footer" style="background-color: #e54c2a">
+                                                <p style="font-size:medium; text-align:center;">  <i class="icofont icofont-ui-user"></i>@Model.ProfileMV.UserType </p>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    @if (Model.UserAddress.Count > 0)
+                                    {
+
+                                        <div class="col-lg-6">
+                                            <div class="user-profile-offer">
+                                                <h5>Registered Addresses <a href="@Url.Content("~/Setting/List_UserAddress?id=0")">More</a></h5>
+                                                <div class="offer-body">
+                                                    @foreach (var address in Model.UserAddress)
+                                                    {
+                                                        <div class="offer-entry">
+                                                            <div class="row">
+                                                                <div class="col-md-4 col-sm-4 align-self-center offer-left text-center">
+                                                                    <p>@address.AddressType</p>
+                                                                </div>
+                                                                <div class="col-md-8 col-sm-8 offer-right">
+                                                                    <p>@address.FullAddress <a href="@Url.Content("~/Setting/List_UserAddress?id="+address.UserAddressID+"")">Edit</a></p>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    }
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    }
+                                </div>
+                            </div>
+
+                            <div id="profile" class="tab-pane fade">
+                                <div class="row">
+                                    <div class="col-lg-6">
+                                        <div class="user-personal-info">
+                                            <h5>Personal Information</h5>
+                                            <div class="user-info-body">
+                                                @using (Html.BeginForm("Dashboard", "User", FormMethod.Post, new { @enctype = "multipart/form-data" }))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                    <div class="form-row">
+                                                        <div class="form-group col-md-6">
+                                                            @Html.EditorFor(model => model.ProfileMV.FirstName, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = "Enter First Name" } })
+                                                            @Html.ValidationMessageFor(model => model.ProfileMV.FirstName, "", new { @class = "text-danger" })
+                                                        </div>
+                                                        <div class="form-group col-md-6">
+                                                            @Html.EditorFor(model => model.ProfileMV.LastName, new { htmlAttributes = new { @class = "form-control", @type = "text", @placeholder = "Enter Last Name" } })
+                                                            @Html.ValidationMessageFor(model => model.ProfileMV.LastName, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-12">
+                                                            @Html.EditorFor(model => model.ProfileMV.EmailAddress, new { htmlAttributes = new { @class = "form-control", @type = "email", @placeholder = "Enter Email Address" } })
+                                                            @Html.ValidationMessageFor(model => model.ProfileMV.EmailAddress, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-12">
+                                                            @Html.EditorFor(model => model.ProfileMV.ContactNo, new { htmlAttributes = new { @class = "form-control", @type = "tel", @placeholder = "Enter Contact Number" } })
+                                                            @Html.ValidationMessageFor(model => model.ProfileMV.ContactNo, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group col-12">
+                                                            @Html.EditorFor(model => model.ProfileMV.FullAddress, new { htmlAttributes = new { @class = "form-control", @placeholder = "Your Current Address",@readonly=true } })
+                                                            @Html.ValidationMessageFor(model => model.ProfileMV.FullAddress, "", new { @class = "text-danger" })
+                                                        </div>
+                                                    </div>
+                                                    <div class="form-row">
+                                                        <div class="form-group mb-0 pt-4 col-12 text-center">
+                                                            <button class="btn btn-theme btn-md" type="submit">SAVE CHANGES</button>
+                                                            <a class="btn btn-theme btn-md btn-wide" href="@Url.Content("~/User/Dashboard")">CANCEL</a>
+                                                        </div>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="col-lg-6">
+                                        <div class="user-change-password">
+                                            <h5>Change Password</h5>
+                                            <div class="change-password-body">
+                                                @using (Html.BeginForm("Dashboard", "User"))
+                                                {
+                                                    @Html.AntiForgeryToken()
+                                                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                                                    <div class="form-group">
+                                                        @Html.EditorFor(model => model.OldPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Old Password" } })
+                                                        @Html.ValidationMessageFor(model => model.OldPassword, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.EditorFor(model => model.NewPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "New Password" } })
+                                                        @Html.ValidationMessageFor(model => model.NewPassword, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group">
+                                                        @Html.EditorFor(model => model.ConfirmPassword, new { htmlAttributes = new { @class = "form-control", @placeholder = "Confirm Password" } })
+                                                        @Html.ValidationMessageFor(model => model.ConfirmPassword, "", new { @class = "text-danger" })
+                                                    </div>
+                                                    <div class="form-group mb-0 pt-4 text-center">
+                                                        <button class="btn btn-theme btn-md" type="submit">CHANGE PASSWORD</button>
+                                                    </div>
+                                                }
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Deshboard End -->

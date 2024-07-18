@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="50e77c851d9847a6b7a4d3a84311aa9e" Name="Diagram1" ZoomLevel="86">
+        <EntityTypeShape EntityType="RemyDbModel.AddressTypeTable" Width="2" PointX="6" PointY="13.5" />
+        <EntityTypeShape EntityType="RemyDbModel.DiscountTable" Width="2" PointX="10.5" PointY="5.25" />
+        <EntityTypeShape EntityType="RemyDbModel.GenderTable" Width="2" PointX="0.75" PointY="10" />
+        <EntityTypeShape EntityType="RemyDbModel.OrderDealDetailTable" Width="2" PointX="15.75" PointY="9.625" />
+        <EntityTypeShape EntityType="RemyDbModel.OrderItemDetailTable" Width="2" PointX="12.75" PointY="9.25" />
+        <EntityTypeShape EntityType="RemyDbModel.OrderStatusTable" Width="2" PointX="8.25" PointY="5.75" />
+        <EntityTypeShape EntityType="RemyDbModel.OrderTable" Width="2" PointX="10.5" PointY="8.75" />
+        <EntityTypeShape EntityType="RemyDbModel.OrderTypeTable" Width="2" PointX="8.25" PointY="3.125" />
+        <EntityTypeShape EntityType="RemyDbModel.ReservationStatusTable" Width="2" PointX="3" PointY="6" />
+        <EntityTypeShape EntityType="RemyDbModel.StockItemCategoryTable" Width="2" PointX="8.25" PointY="15" />
+        <EntityTypeShape EntityType="RemyDbModel.StockItemIngredientTable" Width="2" PointX="13.125" PointY="17.375" />
+        <EntityTypeShape EntityType="RemyDbModel.StockItemTable" Width="2" PointX="10.5" PointY="14" />
+        <EntityTypeShape EntityType="RemyDbModel.StockMenuItemTable" Width="2" PointX="12.75" PointY="13.5" />
+        <EntityTypeShape EntityType="RemyDbModel.TableReservationTable" Width="2" PointX="5.25" PointY="8.875" />
+        <EntityTypeShape EntityType="RemyDbModel.UserAddressTable" Width="2" PointX="8.25" PointY="9.25" />
+        <EntityTypeShape EntityType="RemyDbModel.UserDetailTable" Width="2" PointX="5.25" PointY="22.25" />
+        <EntityTypeShape EntityType="RemyDbModel.UserStatusTable" Width="2" PointX="0.75" PointY="13.125" />
+        <EntityTypeShape EntityType="RemyDbModel.UserTable" Width="2" PointX="3" PointY="8.375" />
+        <EntityTypeShape EntityType="RemyDbModel.UserTypeTable" Width="2" PointX="0.75" PointY="6.75" />
+        <EntityTypeShape EntityType="RemyDbModel.VisibleStatusTable" Width="2" PointX="6" PointY="5.25" />
+        <AssociationConnector Association="RemyDbModel.FK_UserAddressTable_AddressTypeTable" />
+        <AssociationConnector Association="RemyDbModel.FK_OrderItemDetailTable_DiscountTable" />
+        <AssociationConnector Association="RemyDbModel.FK_UserTable_GenderTable" />
+        <AssociationConnector Association="RemyDbModel.FK_OrderDealDetailTable_OrderTable" />
+        <AssociationConnector Association="RemyDbModel.FK_OrderItemDetailTable_OrderTable" />
+        <AssociationConnector Association="RemyDbModel.FK_OrderItemDetailTable_StockItemTable" />
+        <AssociationConnector Association="RemyDbModel.FK_OrderTable_OrderStatusTable" />
+        <AssociationConnector Association="RemyDbModel.FK_OrderTable_OrderTypeTable" />
+        <AssociationConnector Association="RemyDbModel.FK_OrderTable_UserAddressTable" />
+        <AssociationConnector Association="RemyDbModel.FK_OrderTable_UserTable" />
+        <AssociationConnector Association="RemyDbModel.FK_StockItemTable_OrderTypeTable" />
+        <AssociationConnector Association="RemyDbModel.FK_TableReservationTable_ReservationStatusTable" />
+        <AssociationConnector Association="RemyDbModel.FK_StockItemCategoryTable_VisibleStatusTable" />
+        <AssociationConnector Association="RemyDbModel.FK_StockItemTable_StockItemCategoryTable" />
+        <AssociationConnector Association="RemyDbModel.FK_StockItemIngredientTable_StockItemTable" />
+        <AssociationConnector Association="RemyDbModel.FK_StockItemTable_VisibleStatusTable" />
+        <AssociationConnector Association="RemyDbModel.FK_StockMenuItemTable_StockItemTable" />
+        <AssociationConnector Association="RemyDbModel.FK_StockMenuItemTable_VisibleStatusTable" />
+        <AssociationConnector Association="RemyDbModel.FK_TableReservationTable_ProcessUserTable" />
+        <AssociationConnector Association="RemyDbModel.FK_TableReservationTable_UserTable" />
+        <AssociationConnector Association="RemyDbModel.FK_UserAddressTable_UserTable" />
+        <AssociationConnector Association="RemyDbModel.FK_UserAddressTable_VisibleStatusTable" />
+        <AssociationConnector Association="RemyDbModel.FK_UserDetailTable_UserTable" />
+        <AssociationConnector Association="RemyDbModel.FK_UserTable_UserStatusTable" />
+        <AssociationConnector Association="RemyDbModel.FK_UserTable_UserTypeTable" />
+        <EntityTypeShape EntityType="RemyDbModel.StockMenuCategoryTable" Width="2.625" PointX="11.875" PointY="1.75" />
+        <AssociationConnector Association="RemyDbModel.FK_StockMenuItemTable_StockItemCategoryTable" />
+        <AssociationConnector Association="RemyDbModel.FK_StockMenuItemTable_StockMenuCategoryTable" />
+        <EntityTypeShape EntityType="RemyDbModel.BookingStatusTable" Width="1.5" PointX="3.5" PointY="17.125" />
+        <EntityTypeShape EntityType="RemyDbModel.BookingTblTable" Width="1.5" PointX="5.75" PointY="16.75" />
+        <AssociationConnector Association="RemyDbModel.FK_BookingTblTable_BookingStatusTable" />
+        <AssociationConnector Association="RemyDbModel.FK_BookingTblTable_UserTable" />
+        <EntityTypeShape EntityType="RemyDbModel.StockItemReviewTable" Width="1.5" PointX="5.75" PointY="1.75" />
+        <AssociationConnector Association="RemyDbModel.FK_OrderTable_StockItemReviewTable" />
+        <AssociationConnector Association="RemyDbModel.FK_StockItemReviewTable_UserTable" />
+        <EntityTypeShape EntityType="RemyDbModel.CartDealTable" Width="1.5" PointX="16.25" PointY="17.125" />
+        <EntityTypeShape EntityType="RemyDbModel.CartItemDetailTable" Width="1.5" PointX="13.25" PointY="20.5" />
+        <EntityTypeShape EntityType="RemyDbModel.CartTable" Width="1.5" PointX="5.75" PointY="27.125" />
+        <AssociationConnector Association="RemyDbModel.FK_CartDealTable_CartTable" />
+        <AssociationConnector Association="RemyDbModel.FK_CartItemDetailTable_CartTable" />
+        <AssociationConnector Association="RemyDbModel.FK_CartItemDetailTable_StockItemTable" />
+        <AssociationConnector Association="RemyDbModel.FK_CartTable_UserTable" />
+        <EntityTypeShape EntityType="RemyDbModel.StockDealDetailTable" Width="1.5" PointX="16.25" PointY="13.375" />
+        <AssociationConnector Association="RemyDbModel.FK_DealDetailTable_VisibleStatusTable" />
+        <AssociationConnector Association="RemyDbModel.FK_StockDealDetailTable_StockItemTable" />
+        <EntityTypeShape EntityType="RemyDbModel.StockDealTable" Width="1.5" PointX="8.75" PointY="0.75" />
+        <AssociationConnector Association="RemyDbModel.FK_CartDealTable_StockDealTable" />
+        <AssociationConnector Association="RemyDbModel.FK_OrderDealDetailTable_StockDealTable" />
+        <AssociationConnector Association="RemyDbModel.FK_DealDetailTable_StockDealTable" />
+        <AssociationConnector Association="RemyDbModel.FK_StockDealTable_VisibleStatusTable" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

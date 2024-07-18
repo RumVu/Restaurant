@@ -1,0 +1,223 @@
+﻿
+@model Restaurant.Models.ShoppingCartMV
+@{
+    ViewBag.Title = "Shopping Cart";
+    double totalamount = 0;
+}
+
+<!-- Breadcrumb Start -->
+<div class="bread-crumb">
+    <div class="container">
+        <div class="matter">
+            <h2>Shopping Cart</h2>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="@Url.Content("~/Home/Index")">HOME</a></li>
+                <li class="list-inline-item"><a href="@Url.Content("~/Order/ViewCart")">Shopping Cart</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Cart Start  -->
+<div class="mycart">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12">
+                <ul class="nav nav-tabs">
+                    <li class="nav-item"><a class="nav-link active" href="#tab-cart" data-toggle="tab"><span>1</span>shopping cart</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#tab-info" data-toggle="tab"><span>2</span>shopping info</a></li>
+                </ul>
+                <div class="bor"></div>
+                <div class="tab-content">
+                    <div class="tab-pane active" id="tab-cart">
+                        <form method="post" enctype="multipart/form-data">
+                            <h2>You have <span>@(Model != null ? Model.Cart_Items.Count() : 0) items</span> in your order.</h2>
+                            <div class="table-responsive-md">
+                                <table class="table table-bordered">
+                                    <thead>
+                                        <tr>
+                                            <td class="text-center">Name</td>
+                                            <td class="text-center">Price</td>
+                                            <td class="text-center">Qty.</td>
+                                            <td class="text-center">Total</td>
+                                            <td></td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+
+                                        @foreach (var item in Model.Cart_Items)
+                                        {
+                                            totalamount = totalamount + item.ItemCost;
+                                            <tr>
+                                                <td>
+                                                    <a href="#">
+                                                        <img width="100" height="100" src="@Url.Content(item.ItemPhotoPath)" class="img-fluid" alt="thumb" title="thumb" />
+                                                    </a>
+                                                    <div class="name">
+                                                        <h4>@item.StockItemTitle</h4>
+                                                        <p>Curses / Dictum / Risus</p>
+                                                        <div class="rating">
+                                                            <i class="icofont icofont-star"></i>
+                                                            <i class="icofont icofont-star"></i>
+                                                            <i class="icofont icofont-star"></i>
+                                                            <i class="icofont icofont-star"></i>
+                                                            <i class="icofont icofont-star"></i>
+                                                        </div>
+                                                    </div>
+                                                </td>
+                                                <td class="text-center">VND @item.UnitPrice</td>
+                                                <td class="text-center">
+                                                    <p class="qtypara">
+                                                        <span id="minus1" class="minus"><i onclick="minusqty(@item.CartItemID,'@item.ItemType')" class="icofont icofont-minus"></i></span>@*add button*@
+                                                        <input type="text" name="quantity" value="@item.Qty" size="2" id="input-quantity1" class="form-control qty" />
+
+                                                        <span id="add1" class="add"><i onclick="addqty(@item.CartItemID,'@item.ItemType')" class="icofont icofont-plus"></i></span>
+                                                        <input type="hidden" name="product_id" value="1" />
+                                                    </p>
+                                                </td>
+                                                <td class="text-center"> @item.ItemCost VND</td>
+                                                <td class="text-center">
+                                                    <button type="button" onclick="deleteitem(@item.CartItemID,'@item.ItemType')"><i class="icofont icofont-close-line"></i></button>
+                                                </td>
+                                            </tr>
+                                        }
+
+
+                                        <tr>
+                                            <td colspan="5">
+                                                <h3 class="text-right">SUBTOTAL :  @totalamount  VND </h3>
+                                                <div class="buttons float-left">
+                                                    <a href="@Url.Content("~/Home/AllItems")" class="btn btn-theme btn-md btn-wide">Continue Shopping</a>
+                                                </div>
+                                                <div class="buttons float-right">
+                                                    <a href="#tab-info" data-toggle="tab" class="btn btn-theme btn-md btn-wide">Checkout</a>
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </form>
+                    </div>
+
+                </div>
+
+                <div class="tab-pane col-md-12 col-12" id="tab-info">
+                    <div class="row">
+                        <div class="col-lg-5 col-md-6 col-12">
+                            <h6>Shopping Address & Order Type</h6>
+                            <form method="post" enctype="multipart/form-data">
+                                <fieldset>
+                                    <div class="form-group">
+                                        @Html.DropDownList("OrderTypeID", null, "--Order Type--", htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.OrderTypeID, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="form-group">
+                                        @Html.DropDownList("UserAddressID", null, "--Choose Address--", htmlAttributes: new { @class = "form-control" })
+                                        @Html.ValidationMessageFor(model => model.UserAddressID, "", new { @class = "text-danger" })
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+
+                        <div class="col-lg-2 d-none d-lg-block"></div>
+                        <div class="col-lg-5 col-md-6 col-12">
+                            <h6>Contact information</h6>
+                            <form method="post" enctype="multipart/form-data">
+                                <fieldset>
+                                    <div class="form-group">
+                                        <input name="firstname" value="@Model.User_info.FirstName" placeholder="First Name" id="input-firstname" class="form-control" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="lastname" value="@Model.User_info.LastName" placeholder="Last Name" id="input-lastname" class="form-control" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="email" value="@Model.User_info.EmailAddress" placeholder="Email" id="input-email" class="form-control" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <input name="phone" value="@Model.User_info.ContactNo" placeholder="Phone Number" id="input-phone" class="form-control" type="text">
+                                    </div>
+                                </fieldset>
+                            </form>
+                        </div>
+                        <div class="col-md-12 col-12">
+                            <div class="buttons float-left">
+                                <a href="#tab-cart" data-toggle="tab" class="btn btn-theme btn-md btn-wide">Shopping Cart</a>
+                            </div>
+                            <div class="buttons float-right">
+                                <a href="#tab-payment" data-toggle="tab" class="btn btn-theme btn-md btn-wide">Continue</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Cart End  -->
+<script type="text/javascript">
+
+    function addqty(cartitemid, itemtype) {
+        var url = "/Order/Add_Qty?cartitemid=" + cartitemid + "&qty=1&itemtype=" + itemtype;
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            // we set cache: false because GET requests are often cached by browsers
+            // IE is particularly aggressive in that respect
+            cache: false,
+            data: {},
+            success: function (result) {
+                if (result == true) {
+                    location.reload();
+                }
+                else {
+                    alert("Plz login and Try-Again!");
+                }
+            }
+        });
+    }
+
+    function minusqty(cartitemid, itemtype) {
+        var url = "/Order/Minus_Qty?cartitemid=" + cartitemid + "&qty=1&itemtype=" + itemtype;
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            // we set cache: false because GET requests are often cached by browsers
+            // IE is particularly aggressive in that respect
+            cache: false,
+            data: {},
+            success: function (result) {
+                if (result == true) {
+                    location.reload();
+                }
+                else {
+                    alert("Plz login and Try-Again!");
+                }
+            }
+        });
+    }
+
+    function deleteitem(cartitemid, itemtype) {
+        var url = "/Order/Delete_Item?cartitemid=" + cartitemid + "&itemtype=" + itemtype;
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+            // we set cache: false because GET requests are often cached by browsers
+            // IE is particularly aggressive in that respect
+            cache: false,
+            data: {},
+            success: function (result) {
+                if (result == true) {
+                    location.reload();
+                }
+                else {
+                    alert("Plz login and Try-Again!");
+                }
+            }
+        });
+    }
+</script>

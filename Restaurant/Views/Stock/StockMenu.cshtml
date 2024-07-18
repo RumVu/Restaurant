@@ -1,0 +1,194 @@
+﻿@model Restaurant.Models.CRU_StockMenuItemMV
+@{
+    ViewBag.Title = "Menu";
+}
+<!-- Breadcrumb Start -->
+<div class="bread-crumb">
+    <div class="container">
+        <div class="matter">
+            <h2>Stock</h2>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="@Url.Content("~/Home/Index")">HOME</a></li>
+                <li class="list-inline-item"><a href="@Url.Content("~/Stock/StockMenu?id=0")">Stock Menu</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<div class="contactus">
+    <div class="container">
+        <div class="row">
+            <!-- Title Content Start -->
+            <div class="col-sm-12 commontop text-center">
+                <h4>Menu</h4>
+                <div class="divider style-1 center">
+                    <span class="hr-simple left"></span>
+                    <i class="icofont icofont-ui-press hr-icon"></i>
+                    <span class="hr-simple right"></span>
+                </div>
+            </div>
+            <!-- Title Content End -->
+
+            <div class="col-md-12 col-12">
+                <!--  user type form Start  -->
+                @using (Html.BeginForm("StockMenu", "Stock", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.StockMenuItemID)
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    @Html.DropDownList("StockMenuCategoryID", null, "--Choose Menu--", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.StockMenuCategoryID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    @Html.DropDownList("StockItemID", null, "--Choose Item--", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.StockItemID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    @Html.DropDownList("VisibleStatusID", null, "--Choose Status--", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.VisibleStatusID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-4 col-sm-4 col-4">
+                                    <div class="buttons">
+                                        @if (Model.StockItemID == 0)
+                                        {
+                                            <input class="btn btn-theme btn-md btn-wide" type="submit" value="Create" />
+                                        }
+                                        else
+                                        {
+                                            <input class="btn btn-theme btn-md btn-wide" type="submit" value="Update" />
+                                        }
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                }
+                <!--  user type form End  -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="menu">
+    <div class="menu-inner">
+        <div class="container">
+            <div class="row ">
+                <div class="col-sm-12 col-12 commontop text-center">
+                    <h4>Menu</h4>
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="icofont icofont-ui-press hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                </div>
+
+                <!--  List Start  -->
+                <div class="col-sm-12 col-12">
+                    <!--  Menu Tabs Start  -->
+                    <ul class="nav nav-tabs list-inline">
+                        @{
+                            bool isfirstcategorychecked = false;
+                            foreach (var categorymenu in Model.Categories)
+                            {
+                                var menucategory = categorymenu.MenuCategory.Replace(' ', '_').ToLower();
+
+                                if (isfirstcategorychecked == false)
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link active" href="#@menucategory" data-toggle="tab" aria-expanded="true">@categorymenu.MenuCategory</a>
+                                    </li>
+                                    isfirstcategorychecked = true;
+                                }
+                                else
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link" href="#@menucategory" data-toggle="tab" aria-expanded="false">@categorymenu.MenuCategory</a>
+                                    </li>
+                                }
+
+                            }
+                        }
+                    </ul>
+                    <!--  Menu Tabs Start  -->
+                    <!--  Menu Tabs Content Start  -->
+                    <div class="tab-content">
+                        <!--  Menu Tab Start  -->
+                        @{
+                            bool isfirsttabactive = false;
+                            foreach (var category in Model.Categories)
+                            {
+                                var menucategory = category.MenuCategory.Replace(' ', '_').ToLower();
+
+                                if (isfirsttabactive == false)
+                                {
+                                    <div class="tab-pane show active" id="@menucategory">
+                                        <div class="row">
+                                            @foreach (var item in category.Lists)
+                                            {
+                                                <div class="col-md-6 col-sm-6 col-12">
+                                                    <!-- Box Start -->
+                                                    <div class="box">
+                                                        <div class="image">
+                                                            <img src="@Url.Content(item.ItemPhotoPath)" alt="image" title="image" class="img-fluid" style="border-radius: 50%;" />
+                                                        </div>
+                                                        <div class="caption">
+                                                            <h4>@item.StockItemTitle - @item.ItemSize | (@item.VisibleStatus)</h4>
+                                                            <p class="des">Order Type : @item.OrderType  | Reg Date :  @item.RegisterDate | Created By : @item.CreateBy </p>
+                                                            <div class="price">PRICE : @item.UnitPrice VND</div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Box End -->
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                    isfirsttabactive = true;
+                                }
+                                else
+                                {
+                                    <div class="tab-pane" id="@menucategory">
+                                        <div class="row">
+                                            @foreach (var item in category.Lists)
+                                            {
+                                                <div class="col-md-6 col-sm-6 col-12">
+                                                    <!-- Box Start -->
+                                                    <div class="box">
+                                                        <div class="image">
+                                                            <img src="@Url.Content(item.ItemPhotoPath)" alt="image" title="@item.StockItemTitle" class="img-fluid" style="width:130px; height:200px; max-width: 100%; height: auto;" />
+
+                                                        </div>
+                                                        <div class="caption">
+                                                            <h4>@item.StockItemTitle - @item.ItemSize | (@item.VisibleStatus)</h4>
+                                                            <p class="des">Order Type : @item.OrderType  | Reg Date :  @item.RegisterDate | Created By : @item.CreateBy </p>
+                                                            <div class="price">@item.UnitPrice VND</div>
+                                                        </div>
+                                                    </div>
+                                                    <!-- Box End -->
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                }
+                            }
+                        }
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

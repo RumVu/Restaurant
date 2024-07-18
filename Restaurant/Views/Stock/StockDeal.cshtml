@@ -1,0 +1,159 @@
+﻿
+@model Restaurant.Models.CRU_StockDealMV
+@{
+    ViewBag.Title = "Stock";
+}
+<!-- Breadcrumb Start -->
+<div class="bread-crumb">
+    <div class="container">
+        <div class="matter">
+            <h2>Stock Deals</h2>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="@Url.Content("~/Home/Index")">HOME</a></li>
+                <li class="list-inline-item"><a href="@Url.Content("~/Stock/StockDeal")">Stock Deals</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<div class="contactus">
+    <div class="container">
+        <div class="row">
+            <!-- Title Content Start -->
+            <div class="col-sm-12 commontop text-center">
+                <h4>Stock Deals</h4>
+                <div class="divider style-1 center">
+                    <span class="hr-simple left"></span>
+                    <i class="icofont icofont-ui-press hr-icon"></i>
+                    <span class="hr-simple right"></span>
+                </div>
+            </div>
+            <!-- Title Content End -->
+
+            <div class="col-md-12 col-12">
+                <!--  user type form Start  -->
+                @using (Html.BeginForm("StockDeal", "Stock", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.StockDealID)
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    Deal Title :
+                                    @Html.EditorFor(model => model.StockDealTitle, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Deal Title" } })
+                                    @Html.ValidationMessageFor(model => model.StockDealTitle, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    Deal Price :
+                                    @Html.EditorFor(model => model.DealPrice, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Deal Price" } })
+                                    @Html.ValidationMessageFor(model => model.DealPrice, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    Discount :
+                                    @Html.EditorFor(model => model.Discount, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Discount" } })
+                                    @Html.ValidationMessageFor(model => model.Discount, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <div class="col-md-12 col-sm-12 col-12">
+                                    Select Status :
+                                    @Html.DropDownList("VisibleStatusID", null, "--Choose Status--", htmlAttributes: new { @class = "form-control" })
+                                    @Html.ValidationMessageFor(model => model.VisibleStatusID, "", new { @class = "text-danger" })
+                                </div>
+                            </div>
+
+                            <div class="row">
+                                <div class="form-group">
+                                    <div class="col-md-8 col-sm-8 col-8">
+                                        <label style="margin-left:20px;">Upload Deal Photo</label>
+                                        <br />
+                                        <span class="btn btn-default btn-file">
+                                            @Html.TextBoxFor(model => model.PhotoPath, new { @class = "upload-pic form-control-file", @type = "file" })
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <div class="col-md-4 col-sm-4 col-4">
+                                        <div class="buttons">
+                                            @if (Model.StockDealID == 0)
+                                            {
+                                                <input class="btn btn-theme btn-md btn-wide" type="submit" value="Create" />
+                                            }
+                                            else
+                                            {
+                                                <input class="btn btn-theme btn-md btn-wide" type="submit" value="Update" />
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+                <!--  user type form End  -->
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<div class="menu">
+    <div class="menu-inner">
+        <div class="container">
+            <div class="row ">
+                <div class="col-sm-12 col-12 commontop text-center">
+                    <h4>Stock Deals</h4>
+                    <div class="divider style-1 center">
+                        <span class="hr-simple left"></span>
+                        <i class="icofont icofont-ui-press hr-icon"></i>
+                        <span class="hr-simple right"></span>
+                    </div>
+                </div>
+
+                <!--  List Start  -->
+                <div class="col-sm-12 col-12">
+                    <!--  Menu Tabs Content Start  -->
+                    <div class="tab-content">
+                        <!--  Menu Tab Start  -->
+                        <div class="row">
+                            @{
+                                foreach (var deal in Model.Deal)
+                                {
+                                    <div class="col-md-6 col-sm-6 col-12">
+                                        <!-- Box Start -->
+                                        <div class="box">
+                                            <div class="image">
+                                                <img src="@Url.Content(deal.DealPhoto)" alt="image" title="@deal.StockDealTitle" class="img-fluid" style="width:130px; height:200px; max-width: 100%; height: auto;" />
+
+                                            </div>
+                                            <div class="caption">
+                                                <h4>@deal.StockDealTitle | Discount: @deal.Discount PKR | Reg-Date : @deal.StockDealRegisterDate.ToString("dd/MM/yyyy") | Start-Date: @deal.StockDealStartDate.ToString("dd/MM/yyyy") | End-Date: @deal.StockDealEndDate.ToString("dd/MM/yyyy") | (@deal.VisibleStatus)</h4>
+                                                <p class="des">Deal Items : (@deal.DealItems)</p>
+                                                <span>
+                                                    @Html.ActionLink("Edit", "StockDeal", new { id = deal.StockDealID }, new { @class = "btn btn-theme btn-md btn-wide" })
+                                                    @Html.ActionLink("Add Items", "StockDealItem", new { dealid = deal.StockDealID, stockdealdetailid = 0 }, new { @class = "btn btn-theme btn-md btn-wide" })
+                                                </span>
+                                                <div class="price">@deal.DealPrice PKR</div>
+                                            </div>
+                                        </div>
+                                        <!-- Box End -->
+                                    </div>
+                                }
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

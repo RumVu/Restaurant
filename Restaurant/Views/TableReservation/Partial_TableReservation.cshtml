@@ -1,0 +1,76 @@
+﻿@model Restaurant.Models.CRU_TableReservationMV
+<!-- Reservation Start -->
+<div class="reservation" id="reservationtable">
+    <div class="container">
+        <div class="row ">
+            <!-- Title Content Start -->
+            <div class="col-sm-12 commontop white text-center">
+                <h4>Book Your Table</h4>
+                <div class="divider style-1 center">
+                    <span class="hr-simple left"></span>
+                    <i class="icofont icofont-ui-press hr-icon"></i>
+                    <span class="hr-simple right"></span>
+                </div>
+                <p>Decide on a date and time: Choose the date and time you want to visit the restaurant, keeping in mind the restaurant's peak hours and availability.</p>
+            </div>
+            <!-- Title Content End -->
+            <div class="col-md-12 col-12">
+                <!-- Reservation Form Start -->
+                @using (Html.BeginForm("BookTable", "TableReservation", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "row reservation-form", novalidate = "novalidate" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.BookingTableID)
+                    <div class="form-group col-md-4 col-sm-6">
+                        <i class="icofont icofont-ui-user"></i>
+                        @Html.EditorFor(model => model.FullName, new { htmlAttributes = new { @class = "form-control", @placeholder = "name" } })
+                        @Html.ValidationMessageFor(model => model.FullName, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6">
+                        <i class="icofont icofont-ui-message"></i>
+                        @Html.EditorFor(model => model.EmailAddress, new { htmlAttributes = new { @class = "form-control", @placeholder = "email" } })
+                        @Html.ValidationMessageFor(model => model.EmailAddress, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6">
+                        <i class="icofont icofont-phone"></i>
+                        @Html.EditorFor(model => model.MobileNo, new { htmlAttributes = new { @class = "form-control", @placeholder = "mobile number" } })
+                        @Html.ValidationMessageFor(model => model.MobileNo, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6">
+                        <i class="icofont icofont-ui-calendar"></i>
+                        @Html.EditorFor(model => model.ReservationDate, new { htmlAttributes = new { @class = "form-control", @placeholder = "booking date (yyyy/mm/dd)" } })
+                        @Html.ValidationMessageFor(model => model.ReservationDate, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6">
+                        <i class="icofont icofont-clock-time"></i>
+                        @Html.EditorFor(model => model.ReservationTime, new { htmlAttributes = new { @class = "form-control", @placeholder = "booking time (hh:mm AM|PM)" } })
+                        @Html.ValidationMessageFor(model => model.ReservationTime, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-md-4 col-sm-6">
+                        <i class="icofont icofont-users"></i>
+                        @Html.EditorFor(model => model.NoOfPersons, new { htmlAttributes = new { @class = "form-control", @placeholder = "number of persons" } })
+                        @Html.ValidationMessageFor(model => model.NoOfPersons, "", new { @class = "text-danger" })
+                    </div>
+                    <div class="form-group col-12 col-md-12">
+                        <div class="">
+                            <div id="emailSend" class="alert alert-success" role="alert" style="display: none;">
+                                <div class="success-text">Your Message has been successfully sent.</div>
+                            </div>
+                            <div id="emailError" class="alert alert-danger" role="alert" style="display: none;">
+                                <div class="alert-text">Server error <br> Try again later.</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group col-12 col-md-12">
+                        <div class="text-center">
+                            <button type="submit" class="btn btn-theme btn-wide">book now</button>
+                        </div>
+                    </div>
+
+                }
+                <!-- Reservation Form End -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Reservation End  -->

@@ -1,0 +1,170 @@
+﻿@model Restaurant.Models.HomeMV
+@{
+    ViewBag.Title = "Home";
+}
+<!-- Breadcrumb Start -->
+<div class="bread-crumb">
+    <div class="container">
+        <div class="matter">
+            <h2>Food Menu</h2>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="@Url.Content("~/Home/Index")">HOME</a></li>
+                <li class="list-inline-item"><a href="@Url.Content("~/Home/OurMenu")">Food Menu</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Popular Dishes Start -->
+<div class="dishes no-border">
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-12 commontop text-center">
+                <h4>Our Popular Dishes</h4>
+                <div class="divider style-1 center">
+                    <span class="hr-simple left"></span>
+                    <i class="icofont icofont-ui-press hr-icon"></i>
+                    <span class="hr-simple right"></span>
+                </div>
+                <p>The purpose of a restaurant menu is to provide customers with a variety of options to choose from and to help them decide what they want to eat and drink while dining at the restaurant.</p>
+            </div>
+            <!-- Title Content End -->
+            <div class="col-sm-12">
+                <div class="dish owl-carousel">
+                    @foreach (var item in Model.PopularDishes)
+                    {
+                        <div class="item">
+                            <!-- Box Start -->
+                            <div class="box">
+                                <a href="@Url.Content("~/Home/ProductDetail?itemid="+item.StockItemID)"><img src="@Url.Content(item.ItemPhotoPath)" alt="@item.StockItemTitle" title="@item.StockItemTitle" class="img-fluid" /></a>
+                                <div class="caption">
+                                    <h4>@item.StockItemTitle</h4>
+                                    <span>Order Type : @item.OrderType</span>
+                                    <p>@item.UnitPrice</p>
+                                </div>
+                            </div>
+                            <!-- Box End -->
+                        </div>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Popular Dishes End -->
+<!-- Food Menu Start -->
+@{
+    bool is_menu_gray = true;
+    foreach (var category in Model.Menu)
+    {
+        var menucategory = category.MenuCategory.Replace(' ', '_').ToLower();
+
+        if (is_menu_gray == true)
+        {
+            if (category.Lists != null)
+            {
+                if (category.Lists.Count() > 0)
+                {
+                    <div class="menu menu-2 gray-bg">
+                        <div class="menu-inner">
+                            <div class="container">
+                                <div class="row ">
+                                    <!-- Title Content Start -->
+                                    <div class="col-sm-12 col-12 commontop text-center">
+                                        <h4>@menucategory Menu</h4>
+                                        <div class="divider style-1 center">
+                                            <span class="hr-simple left"></span>
+                                            <i class="icofont icofont-ui-press hr-icon"></i>
+                                            <span class="hr-simple right"></span>
+                                        </div>
+                                        <p>The purpose of a restaurant menu is to provide customers with a variety of options to choose from and to help them decide what they want to eat and drink while dining at the restaurant.</p>
+                                    </div>
+                                    <!-- Title Content End -->
+
+                                    <div class="col-sm-12 col-12">
+                                        <div class="row">
+                                            @foreach (var item in category.Lists)
+                                            {
+                                                <div class="col-md-6 col-sm-6 col-12">
+                                                    <!-- Box Start -->
+                                                    <a href="@Url.Content("~/Home/ProductDetail?itemid="+item.StockItemID)">
+                                                        <div class="box">
+                                                            <div class="image">
+                                                                <img src="@Url.Content(item.ItemPhotoPath)" alt="@item.StockItemTitle" title="@item.StockItemTitle" class="img-fluid" style="border-radius: 50%;" />
+                                                            </div>
+                                                            <div class="caption">
+                                                                <h4>@item.StockItemTitle - @item.ItemSize | (@item.VisibleStatus)</h4>
+                                                                <p class="des">Order Type : @item.OrderType  | Reg Date :  @item.RegisterDate | Created By : @item.CreateBy </p>
+                                                                <div class="price">PRICE : @item.UnitPrice VND</div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <!-- Box End -->
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    is_menu_gray = false;
+                }
+            }
+        }
+        else
+        {
+            if (category.Lists != null)
+            {
+                if (category.Lists.Count() > 0)
+                {
+                    <div class="menu menu-2 white-bg">
+                        <div class="menu-inner">
+                            <div class="container">
+                                <div class="row ">
+                                    <!-- Title Content Start -->
+                                    <div class="col-sm-12 col-12 commontop text-center">
+                                        <h4>@menucategory Menu</h4>
+                                        <div class="divider style-1 center">
+                                            <span class="hr-simple left"></span>
+                                            <i class="icofont icofont-ui-press hr-icon"></i>
+                                            <span class="hr-simple right"></span>
+                                        </div>
+                                        <p>The purpose of a restaurant menu is to provide customers with a variety of options to choose from and to help them decide what they want to eat and drink while dining at the restaurant.</p>
+                                    </div>
+                                    <!-- Title Content End -->
+
+                                    <div class="col-sm-12 col-12">
+                                        <div class="row">
+                                            @foreach (var item in category.Lists)
+                                            {
+                                                <div class="col-md-6 col-sm-6 col-12">
+                                                    <!-- Box Start -->
+                                                    <a href="@Url.Content("~/Home/ProductDetail?itemid="+item.StockItemID)">
+                                                        <div class="box">
+                                                            <div class="image">
+                                                                <img src="@Url.Content(item.ItemPhotoPath)" alt="@item.StockItemTitle" title="@item.StockItemTitle" class="img-fluid" style="border-radius: 50%;" />
+                                                            </div>
+                                                            <div class="caption">
+                                                                <h4>@item.StockItemTitle - @item.ItemSize | (@item.VisibleStatus)</h4>
+                                                                <p class="des">Order Type : @item.OrderType  | Reg Date :  @item.RegisterDate | Created By : @item.CreateBy </p>
+                                                                <div class="price">PRICE : @item.UnitPrice VND</div>
+                                                            </div>
+                                                        </div>
+                                                    </a>
+                                                    <!-- Box End -->
+                                                </div>
+                                            }
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    is_menu_gray = true;
+                }
+            }
+        }
+    }
+}
+<!-- Food Menu End -->

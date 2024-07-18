@@ -1,0 +1,97 @@
+﻿@model Restaurant.Models.CRU_StockMenuCategoryMV
+@{
+    ViewBag.Title = "Menu";
+}
+<!-- Breadcrumb Start -->
+<div class="bread-crumb">
+    <div class="container">
+        <div class="matter">
+            <h2>Stock Item Categories</h2>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="@Url.Content("~/Home/Index")">HOME</a></li>
+                <li class="list-inline-item"><a href="@Url.Content("~/Stock/StockMenuCategory")">Menu Item Categories</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<div class="contactus">
+    <div class="container">
+        <div class="row">
+            <!-- Title Content Start -->
+            <div class="col-sm-12 commontop text-center">
+                <h4>Menu Order Types</h4>
+                <div class="divider style-1 center">
+                    <span class="hr-simple left"></span>
+                    <i class="icofont icofont-ui-press hr-icon"></i>
+                    <span class="hr-simple right"></span>
+                </div>
+            </div>
+            <!-- Title Content End -->
+
+            <div class="col-md-5 col-12">
+                <!--  user type form Start  -->
+                @using (Html.BeginForm("StockMenuCategory", "Stock", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+                {
+                    @Html.AntiForgeryToken()
+                    @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                    @Html.HiddenFor(model => model.StockMenuCategoryID) @*đổi từ khúc này ở part 13 *@
+                    <div class="form-group row">
+                        <div class="col-md-12 col-sm-12 col-12">
+                            @Html.EditorFor(model => model.StockMenuCategory, new { htmlAttributes = new { @class = "form-control", @placeholder = "Enter Menu Category" } })
+                            @Html.ValidationMessageFor(model => model.StockMenuCategory, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                    
+                    <div class="buttons">
+                        @if (Model.StockMenuCategoryID == 0)
+                        {
+                            <input class="btn btn-theme btn-md btn-wide" style="float:right;" type="submit" value="Create" />
+                        }
+                        else
+                        {
+                            <input class="btn btn-theme btn-md btn-wide" style="float:right;" type="submit" value="Update" />
+                        }
+                    </div>
+                }
+                <!--  user type form End  -->
+            </div>
+            <div class="col-md-7 col-12">
+                <!--  List Start  -->
+                <div class="table-responsive-md">
+                    <table class="table table-bordered">
+                        <thead>
+                            <tr>
+                                <td class="text-center">
+                                    Stock Menu Category
+                                </td>
+                                <td class="text-center">
+                                    Created By
+                                </td>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @*have error somewhere, need to fix at 4:09 / 30:20*@
+                        @foreach (var item in Model.List)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.StockMenuCategory)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CreatedBy)
+                                </td>
+                                <td>
+                                    @Html.ActionLink("Edit", "StockMenuCategory", new { id = item.StockMenuCategoryID }, new { @class = "btn btn-theme btn-md btn-wide" })
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            <!--  List End  -->
+        </div>
+    </div>
+</div>
+</div>

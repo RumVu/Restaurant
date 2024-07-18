@@ -1,0 +1,304 @@
+﻿@{
+    int userid = 0, usertypeid = 0;
+    if (!string.IsNullOrEmpty(Convert.ToString(Session["UserID"])))
+    {
+        int.TryParse(Convert.ToString(Session["UserID"]), out userid);
+    }
+    if (!string.IsNullOrEmpty(Convert.ToString(Session["UserTypeID"])))
+    {
+        int.TryParse(Convert.ToString(Session["UserTypeID"]), out usertypeid);
+    }
+
+
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <!--Product Star stylesheet-->
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="theme-color" content="#e54c2a">
+        <!-- Favicon -->
+        <link type="image/x-icon" rel="shortcut icon" href="favicon.png" />
+        <title>Remy - Restaurant and Drinks</title>
+        <meta name="description" content="Remy - Restaurant, food and Drinks HTML5 website template is Modern, Clean and Professional site template. Prefect for RESTAURANT, Bakery, Cafe, Bar, Catering, food business and for personal chef portfolio website.">
+
+        <!-- Bootstrap stylesheet -->
+        <link href="~/Content/Template/assets/libs/bootstrap-4.5.0/css/bootstrap.min.css" rel="stylesheet">
+        <!-- icofont -->
+        <link href="~/Content/Template/assets/libs/icofont/css/icofont.css" rel="stylesheet" type="text/css" />
+        <!-- crousel css -->
+        <link href="~/Content/Template/assets/libs/owlcarousel2/assets/owl.carousel.min.css" rel="stylesheet" type="text/css" />
+        <!-- mb.YTPlayer css -->
+        <link href="~/Content/Template/assets/libs/mb.YTPlayer/css/jquery.mb.YTPlayer.min.css" rel="stylesheet" type="text/css" />
+        <!-- Theme Stylesheet -->
+        <link href="~/Content/Template/assets/css/style.css" rel="stylesheet" type="text/css" />
+        <!-- Switch Color Style css -->
+        <link href="~/Content/Template/assets/css/color/skin-default.css" data-style="styles" rel="stylesheet">
+    </head>
+    <body class="">
+        <div class="wrapper">
+            <!-- Loader Start -->
+            <div class="loader">
+                <div class="loader-inner">
+                    <h4>Wait a minutes.....</h4>
+                    <div id="cooking">
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div class="bubble"></div>
+                        <div id="area">
+                            <div id="sides">
+                                <div id="pan"></div>
+                                <div id="handle"></div>
+                            </div>
+                            <div id="pancake">
+                                <div id="pastry"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- Loader End -->
+            <!--  Header Start  -->
+            <header>
+                <!--Top Header Start -->
+                <div class="top">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-sm-12 col-12">
+                                <ul class="list-inline float-left icon">
+                                    <li class="list-inline-item"><a href="#"><i class="icofont icofont-phone"></i> Hotline : +84 0916 320 545</a></li>
+                                </ul>
+                                <!-- Header Social Start -->
+                                <ul class="list-inline float-right icon">
+                                    <li class="list-inline-item"><a href="@Url.Content("~/Order/ViewCart")"><i class="icofont icofont-cart-alt"></i> Cart</a></li>
+                                    <li class="list-inline-item dropdown">
+                                        <a class="dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="icofont icofont-ui-user"></i> My Account</a>
+                                        <ul class="dropdown-menu dropdown-menu-right drophover" aria-labelledby="dropdownMenuLink">
+                                            @if (userid <= 0)
+                                            {
+                                                <li class="dropdown-item"><a href="@Url.Content("~/User/Login")">Login</a></li>
+                                                <li class="dropdown-item"><a href="@Url.Content("~/User/Register")">Register</a></li>
+                                            }
+                                            else
+                                            {
+                                                <li class="dropdown-item"><a href="@Url.Content("~/User/Dashboard")">Dashboard</a></li>
+                                                <li class="dropdown-item"><a href="@Url.Content("~/User/Logout")">Logout</a></li>
+                                            }
+                                        </ul>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <ul class="list-inline social">
+                                            <li class="list-inline-item"><a href="https://www.facebook.com/Ilyasoftcompany/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://www.facebook.com/Ilyasoftcompany/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://www.facebook.com/Ilyasoftcompany/" target="_blank"><i class="icofont icofont-social-google-plus"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://www.facebook.com/Ilyasoftcompany/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://www.facebook.com/Ilyasoftcompany/" target="_blank"><i class="icofont icofont-social-pinterest"></i></a></li>
+                                            <li class="list-inline-item"><a href="https://www.facebook.com/Ilyasoftcompany/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                                <!-- Header Social End -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--Top Header End -->
+
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-3 col-sm-6 col-12">
+                            <!-- Logo Start  -->
+                            <div id="logo">
+                                <a href="@Url.Content("~/Home/Index")"><img id="logo_img" class="img-fluid" src="~/Content/Template/assets/images/logo/logo.png" alt="logo" title="logo" /></a>
+                            </div>
+                            <!-- Logo End  -->
+                        </div>
+
+                        <div class="col-md-7 col-sm-6 col-12 paddleft">
+                            <!-- Main Menu Start  -->
+                            <div id="menu">
+                                <nav class="navbar navbar-expand-md">
+                                    <div class="navbar-header">
+                                        <span class="menutext d-block d-md-none">Menu</span>
+                                        <button data-target=".navbar-ex1-collapse" data-toggle="collapse" class="btn btn-navbar navbar-toggler" type="button"><i class="icofont icofont-navigation-menu"></i></button>
+                                    </div>
+                                    <div class="collapse navbar-collapse navbar-ex1-collapse padd0">
+                                        <ul class="nav navbar-nav">
+                                            <li class="nav-item"><a href="@Url.Content("~/Home/Index")">HOME</a></li>
+                                            <li class="nav-item"><a href="#">about us</a></li>
+                                            <li class="nav-item"><a href="@Url.Content("~/Home/OurMenu")">Our Menu</a></li>
+                                            <li class="nav-item"><a href="@Url.Content("~/Home/AllItems")">Our Shop</a></li>
+                                            @if (userid > 0)
+                                            { 
+                                                <li class="nav-item dropdown">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Setting</a>
+                                                    <div class="dropdown-menu">
+                                                        <div class="dropdown-inner">
+                                                            <ul class="list-unstyled">
+                                                                @if (usertypeid == 1 || usertypeid == 3)//admin or cus
+                                                                {
+                                                                    <li><a href="@Url.Content("~/Setting/List_UserTypes")">User Types</a></li>
+                                                                    <li><a href="@Url.Content("~/Setting/List_Genders")">Genders</a></li>
+                                                                    <li><a href="@Url.Content("~/Setting/List_UserStatus")">Account Status</a></li>
+                                                                    <li><a href="@Url.Content("~/Setting/List_VisibleStatus")">Record Visible Status</a></li>
+                                                                }
+                                                                <li><a href="@Url.Content("~/Setting/List_UserAddress")">User Address</a></li>
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            }
+                                            @if (userid > 0)
+                                            {
+                                                <li class="nav-item dropdown">
+                                                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">Stock</a>
+                                                    <div class="dropdown-menu">
+                                                        <div class="dropdown-inner">
+                                                            <ul class="list-unstyled">
+                                                                @if (usertypeid == 1 || usertypeid == 3)//admin or cus
+                                                                {
+                                                                    <li><a href="@Url.Content("~/Stock/StockItemCategory")">Stock Category</a></li>
+                                                                    <li><a href="@Url.Content("~/Stock/OrderType?id=0")">Order Type</a></li>
+                                                                    <li><a href="@Url.Content("~/Stock/StockMenuCategory?id=0")">Menu Order Types</a></li>
+                                                                    <li><a href="@Url.Content("~/Stock/StockItem?id=0")">Stock Items</a></li>
+                                                                    <li><a href="@Url.Content("~/Stock/StockMenu?id=0")">Stock Menu</a></li>
+                                                                    <li><a href="@Url.Content("~/Stock/StockDeal?id=0")">Stock Deal</a></li>
+                                                                }
+                                                            </ul>
+                                                        </div>
+                                                    </div>
+                                                </li>
+                                            }
+                                            @if (userid > 0)
+                                            {
+                                                <li class="nav-item"><a href="@Url.Content("~/TableReservation/BookingTables?id=0")">Reservation</a></li>
+                                            }
+                                            <li class="nav-item"><a href="blog-2.html">Our Blog</a></li>
+                                            <li class="nav-item"><a href="contact-us.html">contact us</a></li>
+                                        </ul>
+                                    </div>
+                                </nav>
+                            </div>
+                            <!-- Main Menu End -->
+                        </div>
+                        <div class="col-md-2 col-sm-12 col-12 button-top paddleft">
+                            <a class="btn-primary btn" href='@Url.Content("~/Home/Index#reservationtable")'>Book Your Table</a>
+                        </div>
+                    </div>
+                </div>
+            </header>
+            <!-- Header End   -->
+            @RenderBody()
+            <!-- Footer Start -->
+            <footer>
+                <div class="container">
+                    <div class="row inner">
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <!-- Footer Widget Start -->
+                            <h5>Contact Us</h5>
+                            <ul class="list-unstyled contact">
+                                <li><i class="icofont icofont-social-google-map"></i> An Phu Dong, Quan 12, TP HCM</li>
+                                <li><i class="icofont icofont-phone"></i> 03143076781,<br>+84 0916 320 545</li>
+                                <li><a href="#"><i class="icofont icofont-ui-message"></i>remyrestaurant@gmail.com</a></li>
+                            </ul>
+                            <!-- Footer Widget End -->
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <!-- Footer Widget Start -->
+                            <h5>Information</h5>
+                            <ul class="list-unstyled">
+                                <li><a href="#">About us</a></li>
+                                <li><a href="#">Delivery Information</a></li>
+                                <li><a href="#">Contact us</a></li>
+                                <li><a href="#">Terms & Conditions</a></li>
+                                <li><a href="#">Sitemap</a></li>
+                            </ul>
+                            <!-- Footer Widget End -->
+                        </div>
+                        <div class="w-100 d-none d-xs-block"></div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <!-- Footer Widget Start -->
+                            <h5>Open Hours</h5>
+                            <ul class="list-unstyled">
+                                <li>Monday - Friday : 9 am to 12 am.</li>
+                                <li>Saturday - Sunday : 24 Hour Open</li>
+                                <li>Breakfast : 7 am to 12 pm</li>
+                                <li>Lunch : 12 pm to 7 pm</li>
+                                <li>Dinner : 7 am to 12 am</li>
+                            </ul>
+                            <!-- Footer Widget End -->
+                        </div>
+                        <div class="col-sm-6 col-md-6 col-lg-3">
+                            <!-- Footer Widget Start -->
+                            <h5>Instagram</h5>
+                            <ul class="list-unstyled insta">
+                                <li><a href="#"><img src="~/Content/Template/assets/images/instagram/1.jpg" alt="image" /></a></li>
+                                <li><a href="#"><img src="~/Content/Template/assets/images/instagram/2.jpg" alt="image" /></a></li>
+                                <li><a href="#"><img src="~/Content/Template/assets/images/instagram/3.jpg" alt="image" /></a></li>
+                                <li><a href="#"><img src="~/Content/Template/assets/images/instagram/4.jpg" alt="image" /></a></li>
+                                <li><a href="#"><img src="~/Content/Template/assets/images/instagram/5.jpg" alt="image" /></a></li>
+                                <li><a href="#"><img src="~/Content/Template/assets/images/instagram/6.jpg" alt="image" /></a></li>
+                            </ul>
+                            <!-- Footer Widget End -->
+                        </div>
+                    </div>
+
+                </div>
+                <div class="footer-bottom">
+                    <div class="container">
+                        <div class="row powered">
+                            <!--  Copyright Start -->
+                            <div class="col-md-3 col-sm-6 order-md-1">
+                                <img src="~/Content/Template/assets/images/logo/logo-white.png" class="img-fluid" title="logo" alt="logo">
+                            </div>
+                            <div class="col-md-3 col-sm-6 text-right order-md-3">
+                                <!--  Footer Social Start -->
+                                <ul class="list-inline social">
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/Ilyasoftcompany/" target="_blank"><i class="icofont icofont-social-facebook"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/Ilyasoftcompany/" target="_blank"><i class="icofont icofont-social-twitter"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/Ilyasoftcompany/" target="_blank"><i class="icofont icofont-social-google-plus"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/Ilyasoftcompany/" target="_blank"><i class="icofont icofont-social-pinterest"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/Ilyasoftcompany/" target="_blank"><i class="icofont icofont-social-instagram"></i></a></li>
+                                    <li class="list-inline-item"><a href="https://www.facebook.com/Ilyasoftcompany/" target="_blank"><i class="icofont icofont-social-youtube-play"></i></a></li>
+                                </ul>
+                                <!--  Footer Social End -->
+                            </div>
+                            <div class="col-md-6 col-sm-12 text-center order-md-2">
+                                <p>Copyright © <span>Remy Restaurant & Drinks</span> 2020. All Rights Reserved.</p>
+                            </div>
+                            <!--  Copyright End -->
+                        </div>
+                    </div>
+                </div>
+            </footer>
+            <!-- Footer End  -->
+
+        </div>
+
+        <!-- jquery -->
+        <script src="~/Content/Template/assets/libs/jquery/jquery.min.js"></script>
+        <!-- jquery Validate -->
+        <script src="~/Content/Template/assets/libs/jquery-validation/jquery.validate.min.js"></script>
+        <!-- popper js -->
+        <script src="~/Content/Template/assets/libs/popper/popper.min.js"></script>
+        <!-- bootstrap js -->
+        <script src="~/Content/Template/assets/libs/bootstrap-4.5.0/js/bootstrap.min.js"></script>
+        <!-- owlcarousel js -->
+        <script src="~/Content/Template/assets/libs/owlcarousel2/owl.carousel.min.js"></script>
+        <!--inview js code-->
+        <script src="~/Content/Template/assets/libs/jquery.inview/jquery.inview.min.js"></script>
+        <!--CountTo js code-->
+        <script src="~/Content/Template/assets/libs/jquery.countTo/jquery.countTo.js"></script>
+        <!-- mb.YTPlayer js code-->
+        <script src="~/Content/Template/assets/libs/mb.YTPlayer/jquery.mb.YTPlayer.min.js"></script>
+        <!--internal js-->
+        <script src="~/Content/Template/assets/js/internal.js"></script>
+    </body>
+
+</html>
+
+    }

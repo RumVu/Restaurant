@@ -1,0 +1,663 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.props" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" />
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{4BF12422-B6E4-4970-8573-45CC714DD5ED}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Restaurant</RootNamespace>
+    <AssemblyName>Restaurant</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.4.4\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="System.Web.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.9\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Deployment">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Webpages.Razor">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Webpages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Helpers">
+      <HintPath>..\packages\Microsoft.AspNet.Webpages.3.2.9\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Web.Infrastructure">
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.2.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc">
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.9\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\Site.css" />
+    <Content Include="Content\Template\assets\Breakfast\BreadTypes\appam.png" />
+    <Content Include="Content\Template\assets\Breakfast\BreadTypes\bhatoora.png" />
+    <Content Include="Content\Template\assets\Breakfast\BreadTypes\dosa.png" />
+    <Content Include="Content\Template\assets\Breakfast\BreadTypes\indian-roti.png" />
+    <Content Include="Content\Template\assets\Breakfast\BreadTypes\naan.png" />
+    <Content Include="Content\Template\assets\Breakfast\BreadTypes\pancake.png" />
+    <Content Include="Content\Template\assets\Breakfast\BreadTypes\papadum.png" />
+    <Content Include="Content\Template\assets\Breakfast\BreadTypes\paratha.png" />
+    <Content Include="Content\Template\assets\Breakfast\BreadTypes\parotta.png" />
+    <Content Include="Content\Template\assets\Breakfast\BreadTypes\poori.png" />
+    <Content Include="Content\Template\assets\Breakfast\BreadTypes\roti.png" />
+    <Content Include="Content\Template\assets\Breakfast\BreadTypes\thepla.png" />
+    <Content Include="Content\Template\assets\Breakfast\TeaTypes\black-tea.png" />
+    <Content Include="Content\Template\assets\Breakfast\TeaTypes\ginger-tea.png" />
+    <Content Include="Content\Template\assets\Breakfast\TeaTypes\green-tea.png" />
+    <Content Include="Content\Template\assets\Breakfast\TeaTypes\herbal-tea.png" />
+    <Content Include="Content\Template\assets\Breakfast\TeaTypes\lemon-tea.png" />
+    <Content Include="Content\Template\assets\Breakfast\TeaTypes\milk-tea.png" />
+    <Content Include="Content\Template\assets\Breakfast\TeaTypes\oolong-tea.png" />
+    <Content Include="Content\Template\assets\Breakfast\TeaTypes\peppermint-tea.png" />
+    <Content Include="Content\Template\assets\Breakfast\TeaTypes\pu-erh-tea.png" />
+    <Content Include="Content\Template\assets\Breakfast\TeaTypes\red-tea.png" />
+    <Content Include="Content\Template\assets\Breakfast\TeaTypes\white-tea.png" />
+    <Content Include="Content\Template\assets\Breakfast\TeaTypes\yellow-tea.png" />
+    <Content Include="Content\Template\assets\ColdDrinks\7up-1L-Price-110.jpg" />
+    <Content Include="Content\Template\assets\ColdDrinks\7up-300ml-can-Price-70.jpg" />
+    <Content Include="Content\Template\assets\ColdDrinks\7up-500ml-Price-60.jpg" />
+    <Content Include="Content\Template\assets\ColdDrinks\Coca-Cola-1L-Price-120.jpg" />
+    <Content Include="Content\Template\assets\ColdDrinks\Coca-Cola-350ml-Price-60.jpg" />
+    <Content Include="Content\Template\assets\ColdDrinks\Coca-Cola-Drink-250ml-Can-price-200.jpg" />
+    <Content Include="Content\Template\assets\ColdDrinks\Pepsi-1.5-Price-100-L.jpg" />
+    <Content Include="Content\Template\assets\ColdDrinks\Pepsi-345ml-Price-44.jpg" />
+    <Content Include="Content\Template\assets\ColdDrinks\PEPSI-Can-300ml-Price-160.jpg" />
+    <Content Include="Content\Template\assets\ColdDrinks\sting--nergy-drink-can-250ml-price-150.jpg" />
+    <Content Include="Content\Template\assets\ColdDrinks\Sting-Berry-300ml-Price-90.jpg" />
+    <Content Include="Content\Template\assets\css\color\color-1.css" />
+    <Content Include="Content\Template\assets\css\color\color-10.css" />
+    <Content Include="Content\Template\assets\css\color\color-11.css" />
+    <Content Include="Content\Template\assets\css\color\color-2.css" />
+    <Content Include="Content\Template\assets\css\color\color-3.css" />
+    <Content Include="Content\Template\assets\css\color\color-4.css" />
+    <Content Include="Content\Template\assets\css\color\color-5.css" />
+    <Content Include="Content\Template\assets\css\color\color-6.css" />
+    <Content Include="Content\Template\assets\css\color\color-7.css" />
+    <Content Include="Content\Template\assets\css\color\color-8.css" />
+    <Content Include="Content\Template\assets\css\color\color-9.css" />
+    <Content Include="Content\Template\assets\css\color\skin-default.css" />
+    <Content Include="Content\Template\assets\css\style.css" />
+    <Content Include="Content\Template\assets\Deals\Deals\deal-1.png" />
+    <Content Include="Content\Template\assets\Deals\Deals\deal-10.png" />
+    <Content Include="Content\Template\assets\Deals\Deals\deal-2.png" />
+    <Content Include="Content\Template\assets\Deals\Deals\deal-3.png" />
+    <Content Include="Content\Template\assets\Deals\Deals\deal-4.png" />
+    <Content Include="Content\Template\assets\Deals\Deals\deal-5.png" />
+    <Content Include="Content\Template\assets\Deals\Deals\deal-6.png" />
+    <Content Include="Content\Template\assets\Deals\Deals\deal-7.png" />
+    <Content Include="Content\Template\assets\Deals\Deals\deal-8.png" />
+    <Content Include="Content\Template\assets\Deals\Deals\deal-9.png" />
+    <Content Include="Content\Template\assets\images\about\1.png" />
+    <Content Include="Content\Template\assets\images\about\2.png" />
+    <Content Include="Content\Template\assets\images\about\3.jpg" />
+    <Content Include="Content\Template\assets\images\about\about-bg.jpg" />
+    <Content Include="Content\Template\assets\images\background\banner-1.jpg" />
+    <Content Include="Content\Template\assets\images\background\banner-2.jpg" />
+    <Content Include="Content\Template\assets\images\background\banner-3.jpg" />
+    <Content Include="Content\Template\assets\images\background\banner-4.jpg" />
+    <Content Include="Content\Template\assets\images\background\bg-1.png" />
+    <Content Include="Content\Template\assets\images\background\bg-2.png" />
+    <Content Include="Content\Template\assets\images\background\bg-big-left.png" />
+    <Content Include="Content\Template\assets\images\background\bg-big-right.png" />
+    <Content Include="Content\Template\assets\images\background\bg-left.jpg" />
+    <Content Include="Content\Template\assets\images\background\bread-crumb-bg1.jpg" />
+    <Content Include="Content\Template\assets\images\background\cup-coffee-left.png" />
+    <Content Include="Content\Template\assets\images\background\fun-factor.jpg" />
+    <Content Include="Content\Template\assets\images\background\left-bg.jpg" />
+    <Content Include="Content\Template\assets\images\background\menu-bg.jpg" />
+    <Content Include="Content\Template\assets\images\background\order-bg-bottom.jpg" />
+    <Content Include="Content\Template\assets\images\background\reservation_bg.jpg" />
+    <Content Include="Content\Template\assets\images\background\team-right.png" />
+    <Content Include="Content\Template\assets\images\background\tesi-bg.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\01.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\02.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\big.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\galery1.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\galery2.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\galery3.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\galery4.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\galery5.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\galery6.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\galery7.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\galery8.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\galery9.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\img1.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\img2.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\img3.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\img4.jpg" />
+    <Content Include="Content\Template\assets\images\blog-detail\img5.jpg" />
+    <Content Include="Content\Template\assets\images\blog\b1.jpg" />
+    <Content Include="Content\Template\assets\images\blog\b2.jpg" />
+    <Content Include="Content\Template\assets\images\blog\b3.jpg" />
+    <Content Include="Content\Template\assets\images\blog\b4.jpg" />
+    <Content Include="Content\Template\assets\images\blog\b5.jpg" />
+    <Content Include="Content\Template\assets\images\blog\b6.jpg" />
+    <Content Include="Content\Template\assets\images\blog\b7.jpg" />
+    <Content Include="Content\Template\assets\images\blog\b8.jpg" />
+    <Content Include="Content\Template\assets\images\blog\b9.jpg" />
+    <Content Include="Content\Template\assets\images\chefs\chefs-1.jpg" />
+    <Content Include="Content\Template\assets\images\chefs\chefs-2.jpg" />
+    <Content Include="Content\Template\assets\images\chefs\chefs-3.jpg" />
+    <Content Include="Content\Template\assets\images\dishes\01.jpg" />
+    <Content Include="Content\Template\assets\images\dishes\02.jpg" />
+    <Content Include="Content\Template\assets\images\dishes\03.jpg" />
+    <Content Include="Content\Template\assets\images\dishes\04.jpg" />
+    <Content Include="Content\Template\assets\images\dishes\05.jpg" />
+    <Content Include="Content\Template\assets\images\favicon\android-icon-192x192.png" />
+    <Content Include="Content\Template\assets\images\favicon\android-icon-96x96.png" />
+    <Content Include="Content\Template\assets\images\favicon\apple-icon.png" />
+    <Content Include="Content\Template\assets\images\favicon\favicon-16x16.png" />
+    <Content Include="Content\Template\assets\images\favicon\favicon-32x32.png" />
+    <Content Include="Content\Template\assets\images\favicon\favicon-96x96.png" />
+    <Content Include="Content\Template\assets\images\favicon\favicon.ico" />
+    <Content Include="Content\Template\assets\images\instagram\1.jpg" />
+    <Content Include="Content\Template\assets\images\instagram\2.jpg" />
+    <Content Include="Content\Template\assets\images\instagram\3.jpg" />
+    <Content Include="Content\Template\assets\images\instagram\4.jpg" />
+    <Content Include="Content\Template\assets\images\instagram\5.jpg" />
+    <Content Include="Content\Template\assets\images\instagram\6.jpg" />
+    <Content Include="Content\Template\assets\images\instagram\7.jpg" />
+    <Content Include="Content\Template\assets\images\instagram\8.jpg" />
+    <Content Include="Content\Template\assets\images\instagram\9.jpg" />
+    <Content Include="Content\Template\assets\images\lines.png" />
+    <Content Include="Content\Template\assets\images\logo\logo-gray.png" />
+    <Content Include="Content\Template\assets\images\logo\logo-icon.png" />
+    <Content Include="Content\Template\assets\images\logo\logo-white.png" />
+    <Content Include="Content\Template\assets\images\logo\logo.png" />
+    <Content Include="Content\Template\assets\images\logo\Logo_Cook.png" />
+    <Content Include="Content\Template\assets\images\our-menu\01.jpg" />
+    <Content Include="Content\Template\assets\images\our-menu\02.jpg" />
+    <Content Include="Content\Template\assets\images\our-menu\03.jpg" />
+    <Content Include="Content\Template\assets\images\our-menu\04.jpg" />
+    <Content Include="Content\Template\assets\images\our-menu\05.jpg" />
+    <Content Include="Content\Template\assets\images\our-menu\06.jpg" />
+    <Content Include="Content\Template\assets\images\our-menu\07.jpg" />
+    <Content Include="Content\Template\assets\images\our-menu\08.jpg" />
+    <Content Include="Content\Template\assets\images\our-menu\09.jpg" />
+    <Content Include="Content\Template\assets\images\shop\01.jpg" />
+    <Content Include="Content\Template\assets\images\shop\02.jpg" />
+    <Content Include="Content\Template\assets\images\shop\03.jpg" />
+    <Content Include="Content\Template\assets\images\shop\04.jpg" />
+    <Content Include="Content\Template\assets\images\shop\05.jpg" />
+    <Content Include="Content\Template\assets\images\shop\06.jpg" />
+    <Content Include="Content\Template\assets\images\shop\07.jpg" />
+    <Content Include="Content\Template\assets\images\shop\08.jpg" />
+    <Content Include="Content\Template\assets\images\shop\09.jpg" />
+    <Content Include="Content\Template\assets\images\shop\details.jpg" />
+    <Content Include="Content\Template\assets\images\shop\discovers.png" />
+    <Content Include="Content\Template\assets\images\shop\master.png" />
+    <Content Include="Content\Template\assets\images\shop\pay.png" />
+    <Content Include="Content\Template\assets\images\shop\visacard.png" />
+    <Content Include="Content\Template\assets\js\internal.js" />
+    <Content Include="Content\Template\assets\js\onepage.js" />
+    <Content Include="Content\Template\assets\libs\animated-headlines\animated-headlines.css" />
+    <Content Include="Content\Template\assets\libs\animated-headlines\animated-headlines.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\css\bootstrap-grid.css" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\css\bootstrap-grid.min.css" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\css\bootstrap-reboot.css" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\css\bootstrap-reboot.min.css" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\css\bootstrap.css" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\css\bootstrap.min.css" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\bootstrap.bundle.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\bootstrap.bundle.min.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\bootstrap.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\bootstrap.min.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\alert.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\button.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\carousel.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\collapse.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\dropdown.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\index.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\modal.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\popover.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\scrollspy.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\tab.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\toast.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\tooltip.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\util.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\src\alert.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\src\button.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\src\carousel.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\src\collapse.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\src\dropdown.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\src\index.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\src\modal.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\src\popover.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\src\scrollspy.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\src\tab.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\src\toast.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\src\tools\sanitizer.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\src\tooltip.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\src\util.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\browsers.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\index.html" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\integration\bundle.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\integration\index.html" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\integration\rollup.bundle.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\karma.conf.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\unit\alert.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\unit\button.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\unit\carousel.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\unit\collapse.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\unit\dropdown.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\unit\modal.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\unit\popover.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\unit\scrollspy.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\unit\tab.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\unit\toast.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\unit\tooltip.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\unit\util.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\visual\alert.html" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\visual\button.html" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\visual\carousel.html" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\visual\collapse.html" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\visual\dropdown.html" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\visual\modal.html" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\visual\popover.html" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\visual\scrollspy.html" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\visual\tab.html" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\visual\toast.html" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\visual\tooltip.html" />
+    <Content Include="Content\Template\assets\libs\bootstrap-select\bootstrap-select.css" />
+    <Content Include="Content\Template\assets\libs\bootstrap-select\bootstrap-select.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap\css\bootstrap-theme.css" />
+    <Content Include="Content\Template\assets\libs\bootstrap\css\bootstrap-theme.min.css" />
+    <Content Include="Content\Template\assets\libs\bootstrap\css\bootstrap.css" />
+    <Content Include="Content\Template\assets\libs\bootstrap\css\bootstrap.min.css" />
+    <Content Include="Content\Template\assets\libs\bootstrap\fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Content\Template\assets\libs\bootstrap\js\bootstrap.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap\js\bootstrap.min.js" />
+    <Content Include="Content\Template\assets\libs\bootstrap\js\npm.js" />
+    <Content Include="Content\Template\assets\libs\icofont\css\icofont.css" />
+    <Content Include="Content\Template\assets\libs\icofont\fonts\icofont.svg" />
+    <Content Include="Content\Template\assets\libs\jquery-validation\jquery.validate.min.js" />
+    <Content Include="Content\Template\assets\libs\jquery.countTo\jquery.countTo.js" />
+    <Content Include="Content\Template\assets\libs\jquery.inview\jquery.inview.min.js" />
+    <Content Include="Content\Template\assets\libs\jquery\jquery.min.js" />
+    <Content Include="Content\Template\assets\libs\mb.YTPlayer\css\images\raster%402x.png" />
+    <Content Include="Content\Template\assets\libs\mb.YTPlayer\css\images\raster.png" />
+    <Content Include="Content\Template\assets\libs\mb.YTPlayer\css\images\raster_dot%402x.png" />
+    <Content Include="Content\Template\assets\libs\mb.YTPlayer\css\images\raster_dot.png" />
+    <Content Include="Content\Template\assets\libs\mb.YTPlayer\css\jquery.mb.YTPlayer.min.css" />
+    <Content Include="Content\Template\assets\libs\mb.YTPlayer\jquery.mb.YTPlayer.min.js" />
+    <Content Include="Content\Template\assets\libs\owlcarousel2\assets\ajax-loader.gif" />
+    <Content Include="Content\Template\assets\libs\owlcarousel2\assets\owl.carousel.css" />
+    <Content Include="Content\Template\assets\libs\owlcarousel2\assets\owl.carousel.min.css" />
+    <Content Include="Content\Template\assets\libs\owlcarousel2\assets\owl.theme.default.css" />
+    <Content Include="Content\Template\assets\libs\owlcarousel2\assets\owl.theme.default.min.css" />
+    <Content Include="Content\Template\assets\libs\owlcarousel2\assets\owl.theme.green.css" />
+    <Content Include="Content\Template\assets\libs\owlcarousel2\assets\owl.theme.green.min.css" />
+    <Content Include="Content\Template\assets\libs\owlcarousel2\assets\owl.video.play.png" />
+    <Content Include="Content\Template\assets\libs\owlcarousel2\owl.carousel.min.js" />
+    <Content Include="Content\Template\assets\libs\popper\popper.min.js" />
+    <Content Include="Content\Template\assets\lunchdishes\broth.png" />
+    <Content Include="Content\Template\assets\lunchdishes\curry.png" />
+    <Content Include="Content\Template\assets\lunchdishes\fish-and-chips.png" />
+    <Content Include="Content\Template\assets\lunchdishes\green-salad.png" />
+    <Content Include="Content\Template\assets\lunchdishes\kebab.png" />
+    <Content Include="Content\Template\assets\lunchdishes\lancashire-hotpot.png" />
+    <Content Include="Content\Template\assets\lunchdishes\meatballs.png" />
+    <Content Include="Content\Template\assets\lunchdishes\omelet.png" />
+    <Content Include="Content\Template\assets\lunchdishes\pasta.png" />
+    <Content Include="Content\Template\assets\lunchdishes\potpie.png" />
+    <Content Include="Content\Template\assets\lunchdishes\rice.png" />
+    <Content Include="Content\Template\assets\lunchdishes\roast.png" />
+    <Content Include="Content\Template\assets\lunchdishes\soup.png" />
+    <Content Include="Content\Template\assets\lunchdishes\stew.png" />
+    <Content Include="Content\Template\assets\lunchdishes\stir-fry.png" />
+    <Content Include="Content\Template\assets\lunchdishes\tossed-salad.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\1-PizzaMargherita\MAIN INGREDIENTS\Basil.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\1-PizzaMargherita\MAIN INGREDIENTS\Flour.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\1-PizzaMargherita\MAIN INGREDIENTS\Mozzarella.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\1-PizzaMargherita\MAIN INGREDIENTS\Tomato.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\1-PizzaMargherita\Pizza-Margherita.jpg" />
+    <Content Include="Content\Template\assets\PizzaTypes\10-Pizzaquattroformaggi\MAIN INGREDIENTS\Basil.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\10-Pizzaquattroformaggi\MAIN INGREDIENTS\Flour.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\10-Pizzaquattroformaggi\MAIN INGREDIENTS\Fontina.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\10-Pizzaquattroformaggi\MAIN INGREDIENTS\Gorgonzol.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\10-Pizzaquattroformaggi\MAIN INGREDIENTS\Grana Padano.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\10-Pizzaquattroformaggi\MAIN INGREDIENTS\Mozzarella.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\10-Pizzaquattroformaggi\MAIN INGREDIENTS\Olive Oil.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\10-Pizzaquattroformaggi\Pizza-quattro-formaggi.jpg" />
+    <Content Include="Content\Template\assets\PizzaTypes\11-Prosciuttoefunghipizza\MAIN INGREDIENTS\Flour.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\11-Prosciuttoefunghipizza\MAIN INGREDIENTS\Mozzarella.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\11-Prosciuttoefunghipizza\MAIN INGREDIENTS\Mushrooms.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\11-Prosciuttoefunghipizza\MAIN INGREDIENTS\Prosciutto Cotto.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\11-Prosciuttoefunghipizza\MAIN INGREDIENTS\Tomato Sauce.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\11-Prosciuttoefunghipizza\Prosciutto-e-funghi-pizza.jpg" />
+    <Content Include="Content\Template\assets\PizzaTypes\12-SicilianPizza\MAIN INGREDIENTS\Flour.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\12-SicilianPizza\MAIN INGREDIENTS\Mozzarella.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\12-SicilianPizza\MAIN INGREDIENTS\Tomato Sauce.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\12-SicilianPizza\Sicilian-Pizza.jpg" />
+    <Content Include="Content\Template\assets\PizzaTypes\13-PizzaRomana\MAIN INGREDIENTS\Flour.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\13-PizzaRomana\MAIN INGREDIENTS\Olive Oil.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\13-PizzaRomana\MAIN INGREDIENTS\Salt.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\13-PizzaRomana\MAIN INGREDIENTS\Tomatos.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\13-PizzaRomana\Pizza-Romana.jpg" />
+    <Content Include="Content\Template\assets\PizzaTypes\14-Pizzaalladiavola\MAIN INGREDIENTS\Flour.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\14-Pizzaalladiavola\MAIN INGREDIENTS\Hot Peppers.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\14-Pizzaalladiavola\MAIN INGREDIENTS\Mozzarella.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\14-Pizzaalladiavola\MAIN INGREDIENTS\Olives.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\14-Pizzaalladiavola\MAIN INGREDIENTS\Salamino Piccante.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\14-Pizzaalladiavola\MAIN INGREDIENTS\Tomato Sauce.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\14-Pizzaalladiavola\Pizza-alla-diavola.jpg" />
+    <Content Include="Content\Template\assets\PizzaTypes\15-Pizzavegetariana\MAIN INGREDIENTS\Eggplant.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\15-Pizzavegetariana\MAIN INGREDIENTS\Flour.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\15-Pizzavegetariana\MAIN INGREDIENTS\Mozzarella.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\15-Pizzavegetariana\MAIN INGREDIENTS\Peppers.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\15-Pizzavegetariana\MAIN INGREDIENTS\Tomato Sauce.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\15-Pizzavegetariana\MAIN INGREDIENTS\Zucchini.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\15-Pizzavegetariana\Pizza-vegetariana.jpg" />
+    <Content Include="Content\Template\assets\PizzaTypes\2-Greek-StylePizza\Greek-Style-Pizza.jpg" />
+    <Content Include="Content\Template\assets\PizzaTypes\2-Greek-StylePizza\MAIN INGREDIENTS\Artichoke.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\2-Greek-StylePizza\MAIN INGREDIENTS\Elia Kalamatas.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\2-Greek-StylePizza\MAIN INGREDIENTS\Feta.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\2-Greek-StylePizza\MAIN INGREDIENTS\Flour.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\2-Greek-StylePizza\MAIN INGREDIENTS\Oregano.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\2-Greek-StylePizza\MAIN INGREDIENTS\Tomatos.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\3-PepperoniPizza\MAIN INGREDIENTS\Flour.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\3-PepperoniPizza\MAIN INGREDIENTS\Mozzarella.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\3-PepperoniPizza\MAIN INGREDIENTS\Pepperoni.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\3-PepperoniPizza\MAIN INGREDIENTS\Tomato Sauce.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\3-PepperoniPizza\Pepperoni-Pizza.jpg" />
+    <Content Include="Content\Template\assets\PizzaTypes\4-New York-StylePizza\MAIN INGREDIENTS\Basil.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\4-New York-StylePizza\MAIN INGREDIENTS\Flour.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\4-New York-StylePizza\MAIN INGREDIENTS\Mozzarella.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\4-New York-StylePizza\MAIN INGREDIENTS\Olive Oli.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\4-New York-StylePizza\MAIN INGREDIENTS\Tomato Sauce.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\4-New York-StylePizza\New-York-Style-Pizza.jpg" />
+    <Content Include="Content\Template\assets\PizzaTypes\5-Chicago-StyleDeepDishPizza\Chicago-Style-Deep-Dish-Pizza.jpg" />
+    <Content Include="Content\Template\assets\PizzaTypes\5-Chicago-StyleDeepDishPizza\MAIN INGREDIENTS\Flour.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\5-Chicago-StyleDeepDishPizza\MAIN INGREDIENTS\Mozzarella.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\5-Chicago-StyleDeepDishPizza\MAIN INGREDIENTS\Parmigiano Reggiano.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\5-Chicago-StyleDeepDishPizza\MAIN INGREDIENTS\Salsiccia.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\5-Chicago-StyleDeepDishPizza\MAIN INGREDIENTS\Tomato.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\6-CapresePizza\Caprese-Pizza.jpg" />
+    <Content Include="Content\Template\assets\PizzaTypes\6-CapresePizza\MAIN INGREDIENTS\Basil.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\6-CapresePizza\MAIN INGREDIENTS\Cherry Tomato.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\6-CapresePizza\MAIN INGREDIENTS\Flour.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\6-CapresePizza\MAIN INGREDIENTS\Mozzarella.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\6-CapresePizza\MAIN INGREDIENTS\Olive Oil.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\7-CalzonePizza\Calzone-Pizza.jpg" />
+    <Content Include="Content\Template\assets\PizzaTypes\7-CalzonePizza\MAIN INGREDIENTS\Flour.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\7-CalzonePizza\MAIN INGREDIENTS\Lard.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\7-CalzonePizza\MAIN INGREDIENTS\Mozzarella.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\7-CalzonePizza\MAIN INGREDIENTS\Parmigiano Reggiano.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\7-CalzonePizza\MAIN INGREDIENTS\Pork Rinds.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\7-CalzonePizza\MAIN INGREDIENTS\Ricotta.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\7-CalzonePizza\MAIN INGREDIENTS\Salame Napoli.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\7-CalzonePizza\MAIN INGREDIENTS\Tomato.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\8-Pizzamarinara\MAIN INGREDIENTS\Flour.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\8-Pizzamarinara\MAIN INGREDIENTS\Garlic.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\8-Pizzamarinara\MAIN INGREDIENTS\Olive Oli.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\8-Pizzamarinara\MAIN INGREDIENTS\Oregano.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\8-Pizzamarinara\MAIN INGREDIENTS\Tomato.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\8-Pizzamarinara\Pizza-marinara.jpg" />
+    <Content Include="Content\Template\assets\PizzaTypes\9-PizzaNapoletana\MAIN INGREDIENTS\Basil.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\9-PizzaNapoletana\MAIN INGREDIENTS\Flour.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\9-PizzaNapoletana\MAIN INGREDIENTS\Mozzarella.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\9-PizzaNapoletana\MAIN INGREDIENTS\Olive Oil.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\9-PizzaNapoletana\MAIN INGREDIENTS\Oregano.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\9-PizzaNapoletana\MAIN INGREDIENTS\Salt.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\9-PizzaNapoletana\MAIN INGREDIENTS\Tomato Sauce.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\9-PizzaNapoletana\MAIN INGREDIENTS\Yeast.png" />
+    <Content Include="Content\Template\assets\PizzaTypes\9-PizzaNapoletana\Pizza-Napoletana.jpg" />
+    <Content Include="Content\Template\assets\switch-style\demo.css" />
+    <Content Include="Content\Template\assets\switch-style\demo.js" />
+    <Content Include="Global.asax" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\OrderController.cs" />
+    <Compile Include="Controllers\SettingController.cs" />
+    <Compile Include="Controllers\StockController.cs" />
+    <Compile Include="Controllers\TableReservationController.cs" />
+    <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="HelperClass\FileUpload.cs" />
+    <Compile Include="Models\CartMV.cs" />
+    <Compile Include="Models\CRU_GenderMV.cs" />
+    <Compile Include="Models\CRU_OrderTypeMV.cs" />
+    <Compile Include="Models\CRU_StockDealDetailMV.cs" />
+    <Compile Include="Models\CRU_StockDealMV.cs" />
+    <Compile Include="Models\CRU_StockItemCategoryMV.cs" />
+    <Compile Include="Models\CRU_StockItemIngredientMV.cs" />
+    <Compile Include="Models\CRU_StockItemMV.cs" />
+    <Compile Include="Models\CRU_StockMenuCategoryMV.cs" />
+    <Compile Include="Models\CRU_StockMenuItemMV.cs" />
+    <Compile Include="Models\CRU_TableReservationMV.cs" />
+    <Compile Include="Models\CRU_UserAddressMV.cs" />
+    <Compile Include="Models\CRU_UserStatusMV.cs" />
+    <Compile Include="Models\CRU_UserTypeMV.cs" />
+    <Compile Include="Models\CRU_VisibleStatusMV.cs" />
+    <Compile Include="Models\DashboardMV.cs" />
+    <Compile Include="Models\FilterCategoryMV.cs" />
+    <Compile Include="Models\FilterOrderTypeMV.cs" />
+    <Compile Include="Models\GenderMV.cs" />
+    <Compile Include="Models\HomeMV.cs" />
+    <Compile Include="Models\ItemDetailMV.cs" />
+    <Compile Include="Models\ItemMV.cs" />
+    <Compile Include="Models\ItemReviewMV.cs" />
+    <Compile Include="Models\LoginMV.cs" />
+    <Compile Include="Models\MenuCategoryMV.cs" />
+    <Compile Include="Models\OrderTypeMV.cs" />
+    <Compile Include="Models\Reg_UserMV.cs" />
+    <Compile Include="Models\ShoppingCartMV.cs" />
+    <Compile Include="Models\StockCategoryMV.cs" />
+    <Compile Include="Models\StockDealDetailMV.cs" />
+    <Compile Include="Models\StockDealHeaderMV.cs" />
+    <Compile Include="Models\StockItemCategoryMV.cs" />
+    <Compile Include="Models\StockItemIngredientMV.cs" />
+    <Compile Include="Models\StockItemMV.cs" />
+    <Compile Include="Models\StockMenuCategoryMV.cs" />
+    <Compile Include="Models\StockMenuItemMV.cs" />
+    <Compile Include="Models\StockMenuMV.cs" />
+    <Compile Include="Models\TableReservationMV.cs" />
+    <Compile Include="Models\UserAddressMV.cs" />
+    <Compile Include="Models\UserStatusMV.cs" />
+    <Compile Include="Models\UserTypeMV.cs" />
+    <Compile Include="Models\User_ProfileMV.cs" />
+    <Compile Include="Models\VisibleStatusMV.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\web.config" />
+    <Content Include="Content\Template\assets\fonts\segoeui.woff" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\css\bootstrap-grid.css.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\css\bootstrap-grid.min.css.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\css\bootstrap-reboot.css.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\css\bootstrap-reboot.min.css.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\css\bootstrap.css.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\css\bootstrap.min.css.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\bootstrap.bundle.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\bootstrap.bundle.min.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\bootstrap.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\bootstrap.min.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\alert.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\button.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\carousel.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\collapse.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\dropdown.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\index.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\modal.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\popover.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\scrollspy.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\tab.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\toast.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\tooltip.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\dist\util.js.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\README.md" />
+    <Content Include="Content\Template\assets\libs\bootstrap-4.5.0\js\tests\unit\.eslintrc.json" />
+    <Content Include="Content\Template\assets\libs\bootstrap\css\bootstrap-theme.css.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap\css\bootstrap-theme.min.css.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap\css\bootstrap.css.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="Content\Template\assets\libs\bootstrap\fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\Template\assets\libs\bootstrap\fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="Content\Template\assets\libs\bootstrap\fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="Content\Template\assets\libs\bootstrap\fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="Content\Template\assets\libs\icofont\fonts\icofont.eot" />
+    <Content Include="Content\Template\assets\libs\icofont\fonts\icofont.ttf" />
+    <Content Include="Content\Template\assets\libs\icofont\fonts\icofont.woff" />
+    <Content Include="Content\Template\assets\libs\mb.YTPlayer\css\font\ytp-regular.eot" />
+    <Content Include="Content\Template\assets\libs\mb.YTPlayer\css\font\ytp-regular.ttf" />
+    <Content Include="Content\Template\assets\libs\mb.YTPlayer\css\font\ytp-regular.woff" />
+    <None Include="packages.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Setting\List_UserTypes.cshtml" />
+    <Content Include="Views\Setting\List_Genders.cshtml" />
+    <Content Include="Views\Setting\List_UserStatus.cshtml" />
+    <Content Include="Views\Setting\List_VisibleStatus.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\Register.cshtml" />
+    <Content Include="Views\User\Dashboard.cshtml" />
+    <Content Include="Views\Setting\List_UserAddress.cshtml" />
+    <Content Include="Views\Stock\StockItemCategory.cshtml" />
+    <Content Include="Views\Stock\OrderType.cshtml" />
+    <Content Include="Views\Stock\StockMenuCategory.cshtml" />
+    <Content Include="Views\Stock\StockItem.cshtml" />
+    <Content Include="Views\Stock\StockMenu.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\TableReservation\Partial_TableReservation.cshtml" />
+    <Content Include="Views\TableReservation\BookingTables.cshtml" />
+    <Content Include="Views\Home\AllItems.cshtml" />
+    <Content Include="Views\Home\OurMenu.cshtml" />
+    <Content Include="Views\Stock\StockItemIngredient.cshtml" />
+    <Content Include="Views\Home\ProductDetail.cshtml" />
+    <Content Include="Views\Order\ViewCart.cshtml" />
+    <Content Include="Views\Stock\StockDealItem.cshtml" />
+    <Content Include="Views\Stock\StockDeal.cshtml" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Content\Deals\" />
+    <Folder Include="Content\ProfilePhoto\" />
+    <Folder Include="Content\StockIngredientPhoto\" />
+    <Folder Include="Content\StockItemPhoto\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Dblayer\Dblayer.csproj">
+      <Project>{407d8bc6-801d-47f6-b2e0-1ac430d309b3}</Project>
+      <Name>Dblayer</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>53360</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:53360/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.props'))" />
+    <Error Condition="!Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\EntityFramework.6.4.4\build\EntityFramework.targets'))" />
+  </Target>
+  <Import Project="..\packages\EntityFramework.6.4.4\build\EntityFramework.targets" Condition="Exists('..\packages\EntityFramework.6.4.4\build\EntityFramework.targets')" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

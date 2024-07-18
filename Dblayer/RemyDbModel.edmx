@@ -1,0 +1,2423 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="RemyDbModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AddressTypeTable">
+          <Key>
+            <PropertyRef Name="AddressTypeID" />
+          </Key>
+          <Property Name="AddressTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="AddressType" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="CreatedBy_UserID" Type="int" />
+        </EntityType>
+        <EntityType Name="BookingStatusTable">
+          <Key>
+            <PropertyRef Name="BookingStatusID" />
+          </Key>
+          <Property Name="BookingStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookingStatus" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="BookingTblTable">
+          <Key>
+            <PropertyRef Name="BookingTableID" />
+          </Key>
+          <Property Name="BookingTableID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="BookingUserID" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="255" Nullable="false" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="BookingDate" Type="date" Nullable="false" />
+          <Property Name="ReservationDateTime" Type="datetime" Nullable="false" />
+          <Property Name="NoOfPersons" Type="int" Nullable="false" />
+          <Property Name="ProcessBy_UserID" Type="int" Nullable="false" />
+          <Property Name="BookingStatusID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="text" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CartDealTable">
+          <Key>
+            <PropertyRef Name="CartDealID" />
+          </Key>
+          <Property Name="CartDealID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CartID" Type="int" Nullable="false" />
+          <Property Name="StockDealID" Type="int" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CartItemDetailTable">
+          <Key>
+            <PropertyRef Name="CartItemID" />
+          </Key>
+          <Property Name="CartItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CartID" Type="int" Nullable="false" />
+          <Property Name="StockItemID" Type="int" Nullable="false" />
+          <Property Name="Qty" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CartTable">
+          <Key>
+            <PropertyRef Name="CartID" />
+          </Key>
+          <Property Name="CartID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="DiscountTable">
+          <Key>
+            <PropertyRef Name="DiscountID" />
+          </Key>
+          <Property Name="DiscountID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="DiscountCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="DiscountPercentage" Type="float" Nullable="false" />
+          <Property Name="IsUserStatus" Type="bit" Nullable="false" />
+        </EntityType>
+        <EntityType Name="GenderTable">
+          <Key>
+            <PropertyRef Name="GenderID" />
+          </Key>
+          <Property Name="GenderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="GenderTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderDealDetailTable">
+          <Key>
+            <PropertyRef Name="OrderDealDetailID" />
+          </Key>
+          <Property Name="OrderDealDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="StockDealID" Type="int" Nullable="false" />
+          <Property Name="Quality" Type="int" Nullable="false" />
+          <Property Name="DealPrice" Type="float" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderItemDetailTable">
+          <Key>
+            <PropertyRef Name="OrderItemDetailID" />
+          </Key>
+          <Property Name="OrderItemDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderID" Type="int" Nullable="false" />
+          <Property Name="StockItemID" Type="int" Nullable="false" />
+          <Property Name="Quality" Type="int" Nullable="false" />
+          <Property Name="UnitPrice" Type="float" Nullable="false" />
+          <Property Name="DiscountID" Type="int" Nullable="false" />
+          <Property Name="DiscountAmount" Type="nchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderStatusTable">
+          <Key>
+            <PropertyRef Name="OrderStatusID" />
+          </Key>
+          <Property Name="OrderStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderStatus" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderTable">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderBy_UserID" Type="int" Nullable="false" />
+          <Property Name="OrderDateTime" Type="datetime" Nullable="false" />
+          <Property Name="OrderTypeID" Type="int" Nullable="false" />
+          <Property Name="DeliveryAddress_UserAddressID" Type="int" Nullable="false" />
+          <Property Name="DeliveryReceivedBy_ContactNO" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="OrderReceivedBy_FullName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="OrderStatusID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" />
+          <Property Name="ProcessBy_UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="OrderTypeTable">
+          <Key>
+            <PropertyRef Name="OrderTypeID" />
+          </Key>
+          <Property Name="OrderTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="OrderType" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ReservationStatusTable">
+          <Key>
+            <PropertyRef Name="ReservationStatusID" />
+          </Key>
+          <Property Name="ReservationStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ReservationStatus" Type="nvarchar" MaxLength="250" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StockDealDetailTable">
+          <Key>
+            <PropertyRef Name="StockDealDetailID" />
+          </Key>
+          <Property Name="StockDealDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockDealID" Type="int" Nullable="false" />
+          <Property Name="StockItemID" Type="int" Nullable="false" />
+          <Property Name="Discount" Type="float" Nullable="false" />
+          <Property Name="VisibleStatusID" Type="int" Nullable="false" />
+          <Property Name="CreatedBy_UserID" Type="int" Nullable="false" />
+          <Property Name="Quantity" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StockDealTable">
+          <Key>
+            <PropertyRef Name="StockDealID" />
+          </Key>
+          <Property Name="StockDealID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockDealTitle" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="DealPrice" Type="float" Nullable="false" />
+          <Property Name="VisibleStatusID" Type="int" Nullable="false" />
+          <Property Name="StockDealStartDate" Type="date" />
+          <Property Name="Discount" Type="float" />
+          <Property Name="StockDealEndDate" Type="date" />
+          <Property Name="StockDealRegisterDate" Type="date" Nullable="false" />
+          <Property Name="DealPhoto" Type="nvarchar" MaxLength="500" />
+        </EntityType>
+        <EntityType Name="StockItemCategoryTable">
+          <Key>
+            <PropertyRef Name="StockItemCategoryID" />
+          </Key>
+          <Property Name="StockItemCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockItemCategory" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="CreatedBy_UserID" Type="int" Nullable="false" />
+          <Property Name="VisibleStatusID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StockItemIngredientTable">
+          <Key>
+            <PropertyRef Name="StockItemIngredientID" />
+          </Key>
+          <Property Name="StockItemIngredientID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockItemID" Type="int" Nullable="false" />
+          <Property Name="StockItemIngredientPhotoPath" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="StockItemIngredientTitle" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CreatedBy_UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StockItemReviewTable">
+          <Key>
+            <PropertyRef Name="ItemReviewID" />
+          </Key>
+          <Property Name="ItemReviewID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockItemID" Type="int" Nullable="false" />
+          <Property Name="ReviewBy_UserID" Type="int" Nullable="false" />
+          <Property Name="ReviewDateTime" Type="datetime" Nullable="false" />
+          <Property Name="Rating" Type="int" Nullable="false" />
+          <Property Name="ReviewDetails" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StockItemTable">
+          <Key>
+            <PropertyRef Name="StockItemID" />
+          </Key>
+          <Property Name="StockItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockItemCategoryID" Type="int" Nullable="false" />
+          <Property Name="ItemPhotoPath" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="StockItemTitle" Type="nvarchar" MaxLength="350" Nullable="false" />
+          <Property Name="ItemSize" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="UnitPrice" Type="float" Nullable="false" />
+          <Property Name="RegisterDate" Type="date" Nullable="false" />
+          <Property Name="VisibleStatusID" Type="int" Nullable="false" />
+          <Property Name="CreatedBy_UserID" Type="int" Nullable="false" />
+          <Property Name="OrderTypeID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StockMenuCategoryTable">
+          <Key>
+            <PropertyRef Name="StockMenuCategoryID" />
+          </Key>
+          <Property Name="StockMenuCategoryID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockMenuCategory" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CreatedBy_UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="StockMenuItemTable">
+          <Key>
+            <PropertyRef Name="StockMenuItemID" />
+          </Key>
+          <Property Name="StockMenuItemID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StockMenuCategoryID" Type="int" Nullable="false" />
+          <Property Name="StockItemID" Type="int" Nullable="false" />
+          <Property Name="VisibleStatusID" Type="int" Nullable="false" />
+          <Property Name="CreatedBy_UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TableReservationTable">
+          <Key>
+            <PropertyRef Name="TableReservationID" />
+          </Key>
+          <Property Name="TableReservationID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Reservation_UserID" Type="int" Nullable="false" />
+          <Property Name="FullName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="MobileNo" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="ReservationRequestDate" Type="date" Nullable="false" />
+          <Property Name="ReservationDateTime" Type="datetime" Nullable="false" />
+          <Property Name="NoOfPersons" Type="int" Nullable="false" />
+          <Property Name="ProcessBy_UserID" Type="int" Nullable="false" />
+          <Property Name="ReservationStatusID" Type="int" Nullable="false" />
+          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserAddressTable">
+          <Key>
+            <PropertyRef Name="UserAddressID" />
+          </Key>
+          <Property Name="UserAddressID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="AddressTypeID" Type="int" Nullable="false" />
+          <Property Name="FullAddress" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="VisibleStatusID" Type="int" Nullable="false" />
+          <Property Name="CreatedBy_UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserDetailTable">
+          <Key>
+            <PropertyRef Name="UserDetailID" />
+          </Key>
+          <Property Name="UserDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="UserDetailProviderDate" Type="date" Nullable="false" />
+          <Property Name="PhotoPath" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="ExperenceLevel" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="CNIC" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="EducationLevel" Type="nvarchar" MaxLength="500" Nullable="false" />
+          <Property Name="EducationLastDegreeScanPhoto" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="LastExperenceScanPhotoPath" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="CreatedBy_UserID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserStatusTable">
+          <Key>
+            <PropertyRef Name="UserStatusID" />
+          </Key>
+          <Property Name="UserStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserStatus" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserTypeID" Type="int" Nullable="false" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ContactNo" Type="nvarchar" MaxLength="20" Nullable="false" />
+          <Property Name="EmailAddress" Type="varchar" MaxLength="350" Nullable="false" />
+          <Property Name="RegisterationDate" Type="date" Nullable="false" />
+          <Property Name="UserStatusID" Type="int" Nullable="false" />
+          <Property Name="UserStatusChangeDate" Type="date" Nullable="false" />
+          <Property Name="GenderID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserTypeTable">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="UserType" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <EntityType Name="VisibleStatusTable">
+          <Key>
+            <PropertyRef Name="VisibleStatusID" />
+          </Key>
+          <Property Name="VisibleStatusID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="VisibleStatus" Type="nvarchar" MaxLength="150" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_BookingTblTable_BookingStatusTable">
+          <End Role="BookingStatusTable" Type="Self.BookingStatusTable" Multiplicity="1" />
+          <End Role="BookingTblTable" Type="Self.BookingTblTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookingStatusTable">
+              <PropertyRef Name="BookingStatusID" />
+            </Principal>
+            <Dependent Role="BookingTblTable">
+              <PropertyRef Name="BookingStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookingTblTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="BookingTblTable" Type="Self.BookingTblTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="BookingTblTable">
+              <PropertyRef Name="BookingUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CartDealTable_CartTable">
+          <End Role="CartTable" Type="Self.CartTable" Multiplicity="1" />
+          <End Role="CartDealTable" Type="Self.CartDealTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CartTable">
+              <PropertyRef Name="CartID" />
+            </Principal>
+            <Dependent Role="CartDealTable">
+              <PropertyRef Name="CartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CartDealTable_StockDealTable">
+          <End Role="StockDealTable" Type="Self.StockDealTable" Multiplicity="1" />
+          <End Role="CartDealTable" Type="Self.CartDealTable" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="StockDealTable">
+              <PropertyRef Name="StockDealID" />
+            </Principal>
+            <Dependent Role="CartDealTable">
+              <PropertyRef Name="CartDealID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CartItemDetailTable_CartTable">
+          <End Role="CartTable" Type="Self.CartTable" Multiplicity="1" />
+          <End Role="CartItemDetailTable" Type="Self.CartItemDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CartTable">
+              <PropertyRef Name="CartID" />
+            </Principal>
+            <Dependent Role="CartItemDetailTable">
+              <PropertyRef Name="CartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CartItemDetailTable_StockItemTable">
+          <End Role="StockItemTable" Type="Self.StockItemTable" Multiplicity="1" />
+          <End Role="CartItemDetailTable" Type="Self.CartItemDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockItemTable">
+              <PropertyRef Name="StockItemID" />
+            </Principal>
+            <Dependent Role="CartItemDetailTable">
+              <PropertyRef Name="StockItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CartTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="CartTable" Type="Self.CartTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="CartTable">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealDetailTable_StockDealTable">
+          <End Role="StockDealTable" Type="Self.StockDealTable" Multiplicity="1" />
+          <End Role="StockDealDetailTable" Type="Self.StockDealDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockDealTable">
+              <PropertyRef Name="StockDealID" />
+            </Principal>
+            <Dependent Role="StockDealDetailTable">
+              <PropertyRef Name="StockDealID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealDetailTable_VisibleStatusTable">
+          <End Role="VisibleStatusTable" Type="Self.VisibleStatusTable" Multiplicity="1" />
+          <End Role="StockDealDetailTable" Type="Self.StockDealDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisibleStatusTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Principal>
+            <Dependent Role="StockDealDetailTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDealDetailTable_OrderTable">
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="1" />
+          <End Role="OrderDealDetailTable" Type="Self.OrderDealDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderTable">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDealDetailTable">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDealDetailTable_StockDealTable">
+          <End Role="StockDealTable" Type="Self.StockDealTable" Multiplicity="1" />
+          <End Role="OrderDealDetailTable" Type="Self.OrderDealDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockDealTable">
+              <PropertyRef Name="StockDealID" />
+            </Principal>
+            <Dependent Role="OrderDealDetailTable">
+              <PropertyRef Name="StockDealID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItemDetailTable_DiscountTable">
+          <End Role="DiscountTable" Type="Self.DiscountTable" Multiplicity="1" />
+          <End Role="OrderItemDetailTable" Type="Self.OrderItemDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiscountTable">
+              <PropertyRef Name="DiscountID" />
+            </Principal>
+            <Dependent Role="OrderItemDetailTable">
+              <PropertyRef Name="DiscountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItemDetailTable_OrderTable">
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="1" />
+          <End Role="OrderItemDetailTable" Type="Self.OrderItemDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderTable">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderItemDetailTable">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItemDetailTable_StockItemTable">
+          <End Role="StockItemTable" Type="Self.StockItemTable" Multiplicity="1" />
+          <End Role="OrderItemDetailTable" Type="Self.OrderItemDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockItemTable">
+              <PropertyRef Name="StockItemID" />
+            </Principal>
+            <Dependent Role="OrderItemDetailTable">
+              <PropertyRef Name="StockItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTable_OrderStatusTable">
+          <End Role="OrderStatusTable" Type="Self.OrderStatusTable" Multiplicity="1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatusTable">
+              <PropertyRef Name="OrderStatusID" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="OrderStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTable_OrderTypeTable">
+          <End Role="OrderTypeTable" Type="Self.OrderTypeTable" Multiplicity="1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderTypeTable">
+              <PropertyRef Name="OrderTypeID" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="OrderTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTable_StockItemReviewTable">
+          <End Role="StockItemReviewTable" Type="Self.StockItemReviewTable" Multiplicity="1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockItemReviewTable">
+              <PropertyRef Name="ItemReviewID" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="OrderTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTable_UserAddressTable">
+          <End Role="UserAddressTable" Type="Self.UserAddressTable" Multiplicity="1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAddressTable">
+              <PropertyRef Name="UserAddressID" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="DeliveryAddress_UserAddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="OrderTable" Type="Self.OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="OrderBy_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockDealDetailTable_StockItemTable">
+          <End Role="StockItemTable" Type="Self.StockItemTable" Multiplicity="1" />
+          <End Role="StockDealDetailTable" Type="Self.StockDealDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockItemTable">
+              <PropertyRef Name="StockItemID" />
+            </Principal>
+            <Dependent Role="StockDealDetailTable">
+              <PropertyRef Name="StockItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockDealTable_VisibleStatusTable">
+          <End Role="VisibleStatusTable" Type="Self.VisibleStatusTable" Multiplicity="1" />
+          <End Role="StockDealTable" Type="Self.StockDealTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisibleStatusTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Principal>
+            <Dependent Role="StockDealTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockItemCategoryTable_VisibleStatusTable">
+          <End Role="VisibleStatusTable" Type="Self.VisibleStatusTable" Multiplicity="1" />
+          <End Role="StockItemCategoryTable" Type="Self.StockItemCategoryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisibleStatusTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Principal>
+            <Dependent Role="StockItemCategoryTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockItemIngredientTable_StockItemTable">
+          <End Role="StockItemTable" Type="Self.StockItemTable" Multiplicity="1" />
+          <End Role="StockItemIngredientTable" Type="Self.StockItemIngredientTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockItemTable">
+              <PropertyRef Name="StockItemID" />
+            </Principal>
+            <Dependent Role="StockItemIngredientTable">
+              <PropertyRef Name="StockItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockItemReviewTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="StockItemReviewTable" Type="Self.StockItemReviewTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockItemReviewTable">
+              <PropertyRef Name="ReviewBy_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockItemTable_OrderTypeTable">
+          <End Role="OrderTypeTable" Type="Self.OrderTypeTable" Multiplicity="1" />
+          <End Role="StockItemTable" Type="Self.StockItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderTypeTable">
+              <PropertyRef Name="OrderTypeID" />
+            </Principal>
+            <Dependent Role="StockItemTable">
+              <PropertyRef Name="OrderTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockItemTable_StockItemCategoryTable">
+          <End Role="StockItemCategoryTable" Type="Self.StockItemCategoryTable" Multiplicity="1" />
+          <End Role="StockItemTable" Type="Self.StockItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockItemCategoryTable">
+              <PropertyRef Name="StockItemCategoryID" />
+            </Principal>
+            <Dependent Role="StockItemTable">
+              <PropertyRef Name="StockItemCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockItemTable_VisibleStatusTable">
+          <End Role="VisibleStatusTable" Type="Self.VisibleStatusTable" Multiplicity="1" />
+          <End Role="StockItemTable" Type="Self.StockItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisibleStatusTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Principal>
+            <Dependent Role="StockItemTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockMenuItemTable_StockItemCategoryTable">
+          <End Role="StockItemCategoryTable" Type="Self.StockItemCategoryTable" Multiplicity="1" />
+          <End Role="StockMenuItemTable" Type="Self.StockMenuItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockItemCategoryTable">
+              <PropertyRef Name="StockItemCategoryID" />
+            </Principal>
+            <Dependent Role="StockMenuItemTable">
+              <PropertyRef Name="StockMenuCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockMenuItemTable_StockItemTable">
+          <End Role="StockItemTable" Type="Self.StockItemTable" Multiplicity="1" />
+          <End Role="StockMenuItemTable" Type="Self.StockMenuItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockItemTable">
+              <PropertyRef Name="StockItemID" />
+            </Principal>
+            <Dependent Role="StockMenuItemTable">
+              <PropertyRef Name="StockItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockMenuItemTable_StockMenuCategoryTable">
+          <End Role="StockMenuCategoryTable" Type="Self.StockMenuCategoryTable" Multiplicity="1" />
+          <End Role="StockMenuItemTable" Type="Self.StockMenuItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockMenuCategoryTable">
+              <PropertyRef Name="StockMenuCategoryID" />
+            </Principal>
+            <Dependent Role="StockMenuItemTable">
+              <PropertyRef Name="StockMenuCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockMenuItemTable_VisibleStatusTable">
+          <End Role="VisibleStatusTable" Type="Self.VisibleStatusTable" Multiplicity="1" />
+          <End Role="StockMenuItemTable" Type="Self.StockMenuItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisibleStatusTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Principal>
+            <Dependent Role="StockMenuItemTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableReservationTable_ProcessUserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="TableReservationTable" Type="Self.TableReservationTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="TableReservationTable">
+              <PropertyRef Name="ProcessBy_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableReservationTable_ReservationStatusTable">
+          <End Role="ReservationStatusTable" Type="Self.ReservationStatusTable" Multiplicity="1" />
+          <End Role="TableReservationTable" Type="Self.TableReservationTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReservationStatusTable">
+              <PropertyRef Name="ReservationStatusID" />
+            </Principal>
+            <Dependent Role="TableReservationTable">
+              <PropertyRef Name="ReservationStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableReservationTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="TableReservationTable" Type="Self.TableReservationTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="TableReservationTable">
+              <PropertyRef Name="Reservation_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAddressTable_AddressTypeTable">
+          <End Role="AddressTypeTable" Type="Self.AddressTypeTable" Multiplicity="1" />
+          <End Role="UserAddressTable" Type="Self.UserAddressTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AddressTypeTable">
+              <PropertyRef Name="AddressTypeID" />
+            </Principal>
+            <Dependent Role="UserAddressTable">
+              <PropertyRef Name="AddressTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAddressTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="UserAddressTable" Type="Self.UserAddressTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserAddressTable">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAddressTable_VisibleStatusTable">
+          <End Role="VisibleStatusTable" Type="Self.VisibleStatusTable" Multiplicity="1" />
+          <End Role="UserAddressTable" Type="Self.UserAddressTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisibleStatusTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Principal>
+            <Dependent Role="UserAddressTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDetailTable_UserTable">
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="1" />
+          <End Role="UserDetailTable" Type="Self.UserDetailTable" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserDetailTable">
+              <PropertyRef Name="UserDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_GenderTable">
+          <End Role="GenderTable" Type="Self.GenderTable" Multiplicity="1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenderTable">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_UserStatusTable">
+          <End Role="UserStatusTable" Type="Self.UserStatusTable" Multiplicity="1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserStatusTable">
+              <PropertyRef Name="UserStatusID" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="UserStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_UserTypeTable">
+          <End Role="UserTypeTable" Type="Self.UserTypeTable" Multiplicity="1" />
+          <End Role="UserTable" Type="Self.UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTypeTable">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="RemyDbModelStoreContainer">
+          <EntitySet Name="AddressTypeTable" EntityType="Self.AddressTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookingStatusTable" EntityType="Self.BookingStatusTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="BookingTblTable" EntityType="Self.BookingTblTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CartDealTable" EntityType="Self.CartDealTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CartItemDetailTable" EntityType="Self.CartItemDetailTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CartTable" EntityType="Self.CartTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DiscountTable" EntityType="Self.DiscountTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="GenderTable" EntityType="Self.GenderTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderDealDetailTable" EntityType="Self.OrderDealDetailTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderItemDetailTable" EntityType="Self.OrderItemDetailTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderStatusTable" EntityType="Self.OrderStatusTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderTable" EntityType="Self.OrderTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="OrderTypeTable" EntityType="Self.OrderTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="ReservationStatusTable" EntityType="Self.ReservationStatusTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockDealDetailTable" EntityType="Self.StockDealDetailTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockDealTable" EntityType="Self.StockDealTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockItemCategoryTable" EntityType="Self.StockItemCategoryTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockItemIngredientTable" EntityType="Self.StockItemIngredientTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockItemReviewTable" EntityType="Self.StockItemReviewTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockItemTable" EntityType="Self.StockItemTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockMenuCategoryTable" EntityType="Self.StockMenuCategoryTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="StockMenuItemTable" EntityType="Self.StockMenuItemTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="TableReservationTable" EntityType="Self.TableReservationTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserAddressTable" EntityType="Self.UserAddressTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDetailTable" EntityType="Self.UserDetailTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserStatusTable" EntityType="Self.UserStatusTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTable" EntityType="Self.UserTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserTypeTable" EntityType="Self.UserTypeTable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="VisibleStatusTable" EntityType="Self.VisibleStatusTable" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_BookingTblTable_BookingStatusTable" Association="Self.FK_BookingTblTable_BookingStatusTable">
+            <End Role="BookingStatusTable" EntitySet="BookingStatusTable" />
+            <End Role="BookingTblTable" EntitySet="BookingTblTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookingTblTable_UserTable" Association="Self.FK_BookingTblTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="BookingTblTable" EntitySet="BookingTblTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartDealTable_CartTable" Association="Self.FK_CartDealTable_CartTable">
+            <End Role="CartTable" EntitySet="CartTable" />
+            <End Role="CartDealTable" EntitySet="CartDealTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartDealTable_StockDealTable" Association="Self.FK_CartDealTable_StockDealTable">
+            <End Role="StockDealTable" EntitySet="StockDealTable" />
+            <End Role="CartDealTable" EntitySet="CartDealTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartItemDetailTable_CartTable" Association="Self.FK_CartItemDetailTable_CartTable">
+            <End Role="CartTable" EntitySet="CartTable" />
+            <End Role="CartItemDetailTable" EntitySet="CartItemDetailTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartItemDetailTable_StockItemTable" Association="Self.FK_CartItemDetailTable_StockItemTable">
+            <End Role="StockItemTable" EntitySet="StockItemTable" />
+            <End Role="CartItemDetailTable" EntitySet="CartItemDetailTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartTable_UserTable" Association="Self.FK_CartTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="CartTable" EntitySet="CartTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealDetailTable_StockDealTable" Association="Self.FK_DealDetailTable_StockDealTable">
+            <End Role="StockDealTable" EntitySet="StockDealTable" />
+            <End Role="StockDealDetailTable" EntitySet="StockDealDetailTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealDetailTable_VisibleStatusTable" Association="Self.FK_DealDetailTable_VisibleStatusTable">
+            <End Role="VisibleStatusTable" EntitySet="VisibleStatusTable" />
+            <End Role="StockDealDetailTable" EntitySet="StockDealDetailTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDealDetailTable_OrderTable" Association="Self.FK_OrderDealDetailTable_OrderTable">
+            <End Role="OrderTable" EntitySet="OrderTable" />
+            <End Role="OrderDealDetailTable" EntitySet="OrderDealDetailTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDealDetailTable_StockDealTable" Association="Self.FK_OrderDealDetailTable_StockDealTable">
+            <End Role="StockDealTable" EntitySet="StockDealTable" />
+            <End Role="OrderDealDetailTable" EntitySet="OrderDealDetailTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItemDetailTable_DiscountTable" Association="Self.FK_OrderItemDetailTable_DiscountTable">
+            <End Role="DiscountTable" EntitySet="DiscountTable" />
+            <End Role="OrderItemDetailTable" EntitySet="OrderItemDetailTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItemDetailTable_OrderTable" Association="Self.FK_OrderItemDetailTable_OrderTable">
+            <End Role="OrderTable" EntitySet="OrderTable" />
+            <End Role="OrderItemDetailTable" EntitySet="OrderItemDetailTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItemDetailTable_StockItemTable" Association="Self.FK_OrderItemDetailTable_StockItemTable">
+            <End Role="StockItemTable" EntitySet="StockItemTable" />
+            <End Role="OrderItemDetailTable" EntitySet="OrderItemDetailTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTable_OrderStatusTable" Association="Self.FK_OrderTable_OrderStatusTable">
+            <End Role="OrderStatusTable" EntitySet="OrderStatusTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTable_OrderTypeTable" Association="Self.FK_OrderTable_OrderTypeTable">
+            <End Role="OrderTypeTable" EntitySet="OrderTypeTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTable_StockItemReviewTable" Association="Self.FK_OrderTable_StockItemReviewTable">
+            <End Role="StockItemReviewTable" EntitySet="StockItemReviewTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTable_UserAddressTable" Association="Self.FK_OrderTable_UserAddressTable">
+            <End Role="UserAddressTable" EntitySet="UserAddressTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTable_UserTable" Association="Self.FK_OrderTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="OrderTable" EntitySet="OrderTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockDealDetailTable_StockItemTable" Association="Self.FK_StockDealDetailTable_StockItemTable">
+            <End Role="StockItemTable" EntitySet="StockItemTable" />
+            <End Role="StockDealDetailTable" EntitySet="StockDealDetailTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockDealTable_VisibleStatusTable" Association="Self.FK_StockDealTable_VisibleStatusTable">
+            <End Role="VisibleStatusTable" EntitySet="VisibleStatusTable" />
+            <End Role="StockDealTable" EntitySet="StockDealTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockItemCategoryTable_VisibleStatusTable" Association="Self.FK_StockItemCategoryTable_VisibleStatusTable">
+            <End Role="VisibleStatusTable" EntitySet="VisibleStatusTable" />
+            <End Role="StockItemCategoryTable" EntitySet="StockItemCategoryTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockItemIngredientTable_StockItemTable" Association="Self.FK_StockItemIngredientTable_StockItemTable">
+            <End Role="StockItemTable" EntitySet="StockItemTable" />
+            <End Role="StockItemIngredientTable" EntitySet="StockItemIngredientTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockItemReviewTable_UserTable" Association="Self.FK_StockItemReviewTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="StockItemReviewTable" EntitySet="StockItemReviewTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockItemTable_OrderTypeTable" Association="Self.FK_StockItemTable_OrderTypeTable">
+            <End Role="OrderTypeTable" EntitySet="OrderTypeTable" />
+            <End Role="StockItemTable" EntitySet="StockItemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockItemTable_StockItemCategoryTable" Association="Self.FK_StockItemTable_StockItemCategoryTable">
+            <End Role="StockItemCategoryTable" EntitySet="StockItemCategoryTable" />
+            <End Role="StockItemTable" EntitySet="StockItemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockItemTable_VisibleStatusTable" Association="Self.FK_StockItemTable_VisibleStatusTable">
+            <End Role="VisibleStatusTable" EntitySet="VisibleStatusTable" />
+            <End Role="StockItemTable" EntitySet="StockItemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockMenuItemTable_StockItemCategoryTable" Association="Self.FK_StockMenuItemTable_StockItemCategoryTable">
+            <End Role="StockItemCategoryTable" EntitySet="StockItemCategoryTable" />
+            <End Role="StockMenuItemTable" EntitySet="StockMenuItemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockMenuItemTable_StockItemTable" Association="Self.FK_StockMenuItemTable_StockItemTable">
+            <End Role="StockItemTable" EntitySet="StockItemTable" />
+            <End Role="StockMenuItemTable" EntitySet="StockMenuItemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockMenuItemTable_StockMenuCategoryTable" Association="Self.FK_StockMenuItemTable_StockMenuCategoryTable">
+            <End Role="StockMenuCategoryTable" EntitySet="StockMenuCategoryTable" />
+            <End Role="StockMenuItemTable" EntitySet="StockMenuItemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockMenuItemTable_VisibleStatusTable" Association="Self.FK_StockMenuItemTable_VisibleStatusTable">
+            <End Role="VisibleStatusTable" EntitySet="VisibleStatusTable" />
+            <End Role="StockMenuItemTable" EntitySet="StockMenuItemTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableReservationTable_ProcessUserTable" Association="Self.FK_TableReservationTable_ProcessUserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="TableReservationTable" EntitySet="TableReservationTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableReservationTable_ReservationStatusTable" Association="Self.FK_TableReservationTable_ReservationStatusTable">
+            <End Role="ReservationStatusTable" EntitySet="ReservationStatusTable" />
+            <End Role="TableReservationTable" EntitySet="TableReservationTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableReservationTable_UserTable" Association="Self.FK_TableReservationTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="TableReservationTable" EntitySet="TableReservationTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAddressTable_AddressTypeTable" Association="Self.FK_UserAddressTable_AddressTypeTable">
+            <End Role="AddressTypeTable" EntitySet="AddressTypeTable" />
+            <End Role="UserAddressTable" EntitySet="UserAddressTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAddressTable_UserTable" Association="Self.FK_UserAddressTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="UserAddressTable" EntitySet="UserAddressTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAddressTable_VisibleStatusTable" Association="Self.FK_UserAddressTable_VisibleStatusTable">
+            <End Role="VisibleStatusTable" EntitySet="VisibleStatusTable" />
+            <End Role="UserAddressTable" EntitySet="UserAddressTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDetailTable_UserTable" Association="Self.FK_UserDetailTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTable" />
+            <End Role="UserDetailTable" EntitySet="UserDetailTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_GenderTable" Association="Self.FK_UserTable_GenderTable">
+            <End Role="GenderTable" EntitySet="GenderTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_UserStatusTable" Association="Self.FK_UserTable_UserStatusTable">
+            <End Role="UserStatusTable" EntitySet="UserStatusTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_UserTypeTable" Association="Self.FK_UserTable_UserTypeTable">
+            <End Role="UserTypeTable" EntitySet="UserTypeTable" />
+            <End Role="UserTable" EntitySet="UserTable" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="RemyDbModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="RemyDbEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="AddressTypeTables" EntityType="RemyDbModel.AddressTypeTable" />
+          <EntitySet Name="DiscountTables" EntityType="RemyDbModel.DiscountTable" />
+          <EntitySet Name="GenderTables" EntityType="RemyDbModel.GenderTable" />
+          <EntitySet Name="OrderDealDetailTables" EntityType="RemyDbModel.OrderDealDetailTable" />
+          <EntitySet Name="OrderItemDetailTables" EntityType="RemyDbModel.OrderItemDetailTable" />
+          <EntitySet Name="OrderStatusTables" EntityType="RemyDbModel.OrderStatusTable" />
+          <EntitySet Name="OrderTables" EntityType="RemyDbModel.OrderTable" />
+          <EntitySet Name="OrderTypeTables" EntityType="RemyDbModel.OrderTypeTable" />
+          <EntitySet Name="ReservationStatusTables" EntityType="RemyDbModel.ReservationStatusTable" />
+          <EntitySet Name="StockItemCategoryTables" EntityType="RemyDbModel.StockItemCategoryTable" />
+          <EntitySet Name="StockItemIngredientTables" EntityType="RemyDbModel.StockItemIngredientTable" />
+          <EntitySet Name="StockItemTables" EntityType="RemyDbModel.StockItemTable" />
+          <EntitySet Name="StockMenuItemTables" EntityType="RemyDbModel.StockMenuItemTable" />
+          <EntitySet Name="TableReservationTables" EntityType="RemyDbModel.TableReservationTable" />
+          <EntitySet Name="UserAddressTables" EntityType="RemyDbModel.UserAddressTable" />
+          <EntitySet Name="UserDetailTables" EntityType="RemyDbModel.UserDetailTable" />
+          <EntitySet Name="UserStatusTables" EntityType="RemyDbModel.UserStatusTable" />
+          <EntitySet Name="UserTables" EntityType="RemyDbModel.UserTable" />
+          <EntitySet Name="UserTypeTables" EntityType="RemyDbModel.UserTypeTable" />
+          <EntitySet Name="VisibleStatusTables" EntityType="RemyDbModel.VisibleStatusTable" />
+          <AssociationSet Name="FK_UserAddressTable_AddressTypeTable" Association="RemyDbModel.FK_UserAddressTable_AddressTypeTable">
+            <End Role="AddressTypeTable" EntitySet="AddressTypeTables" />
+            <End Role="UserAddressTable" EntitySet="UserAddressTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItemDetailTable_DiscountTable" Association="RemyDbModel.FK_OrderItemDetailTable_DiscountTable">
+            <End Role="DiscountTable" EntitySet="DiscountTables" />
+            <End Role="OrderItemDetailTable" EntitySet="OrderItemDetailTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_GenderTable" Association="RemyDbModel.FK_UserTable_GenderTable">
+            <End Role="GenderTable" EntitySet="GenderTables" />
+            <End Role="UserTable" EntitySet="UserTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDealDetailTable_OrderTable" Association="RemyDbModel.FK_OrderDealDetailTable_OrderTable">
+            <End Role="OrderTable" EntitySet="OrderTables" />
+            <End Role="OrderDealDetailTable" EntitySet="OrderDealDetailTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItemDetailTable_OrderTable" Association="RemyDbModel.FK_OrderItemDetailTable_OrderTable">
+            <End Role="OrderTable" EntitySet="OrderTables" />
+            <End Role="OrderItemDetailTable" EntitySet="OrderItemDetailTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderItemDetailTable_StockItemTable" Association="RemyDbModel.FK_OrderItemDetailTable_StockItemTable">
+            <End Role="StockItemTable" EntitySet="StockItemTables" />
+            <End Role="OrderItemDetailTable" EntitySet="OrderItemDetailTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTable_OrderStatusTable" Association="RemyDbModel.FK_OrderTable_OrderStatusTable">
+            <End Role="OrderStatusTable" EntitySet="OrderStatusTables" />
+            <End Role="OrderTable" EntitySet="OrderTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTable_OrderTypeTable" Association="RemyDbModel.FK_OrderTable_OrderTypeTable">
+            <End Role="OrderTypeTable" EntitySet="OrderTypeTables" />
+            <End Role="OrderTable" EntitySet="OrderTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTable_UserAddressTable" Association="RemyDbModel.FK_OrderTable_UserAddressTable">
+            <End Role="UserAddressTable" EntitySet="UserAddressTables" />
+            <End Role="OrderTable" EntitySet="OrderTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderTable_UserTable" Association="RemyDbModel.FK_OrderTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="OrderTable" EntitySet="OrderTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockItemTable_OrderTypeTable" Association="RemyDbModel.FK_StockItemTable_OrderTypeTable">
+            <End Role="OrderTypeTable" EntitySet="OrderTypeTables" />
+            <End Role="StockItemTable" EntitySet="StockItemTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableReservationTable_ReservationStatusTable" Association="RemyDbModel.FK_TableReservationTable_ReservationStatusTable">
+            <End Role="ReservationStatusTable" EntitySet="ReservationStatusTables" />
+            <End Role="TableReservationTable" EntitySet="TableReservationTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockItemCategoryTable_VisibleStatusTable" Association="RemyDbModel.FK_StockItemCategoryTable_VisibleStatusTable">
+            <End Role="VisibleStatusTable" EntitySet="VisibleStatusTables" />
+            <End Role="StockItemCategoryTable" EntitySet="StockItemCategoryTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockItemTable_StockItemCategoryTable" Association="RemyDbModel.FK_StockItemTable_StockItemCategoryTable">
+            <End Role="StockItemCategoryTable" EntitySet="StockItemCategoryTables" />
+            <End Role="StockItemTable" EntitySet="StockItemTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockItemIngredientTable_StockItemTable" Association="RemyDbModel.FK_StockItemIngredientTable_StockItemTable">
+            <End Role="StockItemTable" EntitySet="StockItemTables" />
+            <End Role="StockItemIngredientTable" EntitySet="StockItemIngredientTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockItemTable_VisibleStatusTable" Association="RemyDbModel.FK_StockItemTable_VisibleStatusTable">
+            <End Role="VisibleStatusTable" EntitySet="VisibleStatusTables" />
+            <End Role="StockItemTable" EntitySet="StockItemTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockMenuItemTable_StockItemTable" Association="RemyDbModel.FK_StockMenuItemTable_StockItemTable">
+            <End Role="StockItemTable" EntitySet="StockItemTables" />
+            <End Role="StockMenuItemTable" EntitySet="StockMenuItemTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockMenuItemTable_VisibleStatusTable" Association="RemyDbModel.FK_StockMenuItemTable_VisibleStatusTable">
+            <End Role="VisibleStatusTable" EntitySet="VisibleStatusTables" />
+            <End Role="StockMenuItemTable" EntitySet="StockMenuItemTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableReservationTable_ProcessUserTable" Association="RemyDbModel.FK_TableReservationTable_ProcessUserTable">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="TableReservationTable" EntitySet="TableReservationTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TableReservationTable_UserTable" Association="RemyDbModel.FK_TableReservationTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="TableReservationTable" EntitySet="TableReservationTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAddressTable_UserTable" Association="RemyDbModel.FK_UserAddressTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="UserAddressTable" EntitySet="UserAddressTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserAddressTable_VisibleStatusTable" Association="RemyDbModel.FK_UserAddressTable_VisibleStatusTable">
+            <End Role="VisibleStatusTable" EntitySet="VisibleStatusTables" />
+            <End Role="UserAddressTable" EntitySet="UserAddressTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserDetailTable_UserTable" Association="RemyDbModel.FK_UserDetailTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="UserDetailTable" EntitySet="UserDetailTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_UserStatusTable" Association="RemyDbModel.FK_UserTable_UserStatusTable">
+            <End Role="UserStatusTable" EntitySet="UserStatusTables" />
+            <End Role="UserTable" EntitySet="UserTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_UserTable_UserTypeTable" Association="RemyDbModel.FK_UserTable_UserTypeTable">
+            <End Role="UserTypeTable" EntitySet="UserTypeTables" />
+            <End Role="UserTable" EntitySet="UserTables" />
+          </AssociationSet>
+          <EntitySet Name="StockMenuCategoryTables" EntityType="RemyDbModel.StockMenuCategoryTable" />
+          <AssociationSet Name="FK_StockMenuItemTable_StockItemCategoryTable" Association="RemyDbModel.FK_StockMenuItemTable_StockItemCategoryTable">
+            <End Role="StockItemCategoryTable" EntitySet="StockItemCategoryTables" />
+            <End Role="StockMenuItemTable" EntitySet="StockMenuItemTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockMenuItemTable_StockMenuCategoryTable" Association="RemyDbModel.FK_StockMenuItemTable_StockMenuCategoryTable">
+            <End Role="StockMenuCategoryTable" EntitySet="StockMenuCategoryTables" />
+            <End Role="StockMenuItemTable" EntitySet="StockMenuItemTables" />
+          </AssociationSet>
+          <EntitySet Name="BookingStatusTables" EntityType="RemyDbModel.BookingStatusTable" />
+          <EntitySet Name="BookingTblTables" EntityType="RemyDbModel.BookingTblTable" />
+          <AssociationSet Name="FK_BookingTblTable_BookingStatusTable" Association="RemyDbModel.FK_BookingTblTable_BookingStatusTable">
+            <End Role="BookingStatusTable" EntitySet="BookingStatusTables" />
+            <End Role="BookingTblTable" EntitySet="BookingTblTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_BookingTblTable_UserTable" Association="RemyDbModel.FK_BookingTblTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="BookingTblTable" EntitySet="BookingTblTables" />
+          </AssociationSet>
+          <EntitySet Name="StockItemReviewTables" EntityType="RemyDbModel.StockItemReviewTable" />
+          <AssociationSet Name="FK_OrderTable_StockItemReviewTable" Association="RemyDbModel.FK_OrderTable_StockItemReviewTable">
+            <End Role="StockItemReviewTable" EntitySet="StockItemReviewTables" />
+            <End Role="OrderTable" EntitySet="OrderTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockItemReviewTable_UserTable" Association="RemyDbModel.FK_StockItemReviewTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="StockItemReviewTable" EntitySet="StockItemReviewTables" />
+          </AssociationSet>
+          <EntitySet Name="CartDealTables" EntityType="RemyDbModel.CartDealTable" />
+          <EntitySet Name="CartItemDetailTables" EntityType="RemyDbModel.CartItemDetailTable" />
+          <EntitySet Name="CartTables" EntityType="RemyDbModel.CartTable" />
+          <AssociationSet Name="FK_CartDealTable_CartTable" Association="RemyDbModel.FK_CartDealTable_CartTable">
+            <End Role="CartTable" EntitySet="CartTables" />
+            <End Role="CartDealTable" EntitySet="CartDealTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartItemDetailTable_CartTable" Association="RemyDbModel.FK_CartItemDetailTable_CartTable">
+            <End Role="CartTable" EntitySet="CartTables" />
+            <End Role="CartItemDetailTable" EntitySet="CartItemDetailTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartItemDetailTable_StockItemTable" Association="RemyDbModel.FK_CartItemDetailTable_StockItemTable">
+            <End Role="StockItemTable" EntitySet="StockItemTables" />
+            <End Role="CartItemDetailTable" EntitySet="CartItemDetailTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_CartTable_UserTable" Association="RemyDbModel.FK_CartTable_UserTable">
+            <End Role="UserTable" EntitySet="UserTables" />
+            <End Role="CartTable" EntitySet="CartTables" />
+          </AssociationSet>
+          <EntitySet Name="StockDealDetailTables" EntityType="RemyDbModel.StockDealDetailTable" />
+          <AssociationSet Name="FK_DealDetailTable_VisibleStatusTable" Association="RemyDbModel.FK_DealDetailTable_VisibleStatusTable">
+            <End Role="VisibleStatusTable" EntitySet="VisibleStatusTables" />
+            <End Role="StockDealDetailTable" EntitySet="StockDealDetailTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockDealDetailTable_StockItemTable" Association="RemyDbModel.FK_StockDealDetailTable_StockItemTable">
+            <End Role="StockItemTable" EntitySet="StockItemTables" />
+            <End Role="StockDealDetailTable" EntitySet="StockDealDetailTables" />
+          </AssociationSet>
+          <EntitySet Name="StockDealTables" EntityType="RemyDbModel.StockDealTable" />
+          <AssociationSet Name="FK_CartDealTable_StockDealTable" Association="RemyDbModel.FK_CartDealTable_StockDealTable">
+            <End Role="StockDealTable" EntitySet="StockDealTables" />
+            <End Role="CartDealTable" EntitySet="CartDealTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_OrderDealDetailTable_StockDealTable" Association="RemyDbModel.FK_OrderDealDetailTable_StockDealTable">
+            <End Role="StockDealTable" EntitySet="StockDealTables" />
+            <End Role="OrderDealDetailTable" EntitySet="OrderDealDetailTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_DealDetailTable_StockDealTable" Association="RemyDbModel.FK_DealDetailTable_StockDealTable">
+            <End Role="StockDealTable" EntitySet="StockDealTables" />
+            <End Role="StockDealDetailTable" EntitySet="StockDealDetailTables" />
+          </AssociationSet>
+          <AssociationSet Name="FK_StockDealTable_VisibleStatusTable" Association="RemyDbModel.FK_StockDealTable_VisibleStatusTable">
+            <End Role="VisibleStatusTable" EntitySet="VisibleStatusTables" />
+            <End Role="StockDealTable" EntitySet="StockDealTables" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="AddressTypeTable">
+          <Key>
+            <PropertyRef Name="AddressTypeID" />
+          </Key>
+          <Property Name="AddressTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="AddressType" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy_UserID" Type="Int32" />
+          <NavigationProperty Name="UserAddressTables" Relationship="RemyDbModel.FK_UserAddressTable_AddressTypeTable" FromRole="AddressTypeTable" ToRole="UserAddressTable" />
+        </EntityType>
+        <EntityType Name="DiscountTable">
+          <Key>
+            <PropertyRef Name="DiscountID" />
+          </Key>
+          <Property Name="DiscountID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="DiscountCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="DiscountPercentage" Type="Double" Nullable="false" />
+          <Property Name="IsUserStatus" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="OrderItemDetailTables" Relationship="RemyDbModel.FK_OrderItemDetailTable_DiscountTable" FromRole="DiscountTable" ToRole="OrderItemDetailTable" />
+        </EntityType>
+        <EntityType Name="GenderTable">
+          <Key>
+            <PropertyRef Name="GenderID" />
+          </Key>
+          <Property Name="GenderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="GenderTitle" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserTables" Relationship="RemyDbModel.FK_UserTable_GenderTable" FromRole="GenderTable" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="OrderDealDetailTable">
+          <Key>
+            <PropertyRef Name="OrderDealDetailID" />
+          </Key>
+          <Property Name="OrderDealDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="StockDealID" Type="Int32" Nullable="false" />
+          <Property Name="Quality" Type="Int32" Nullable="false" />
+          <Property Name="DealPrice" Type="Double" Nullable="false" />
+          <NavigationProperty Name="OrderTable" Relationship="RemyDbModel.FK_OrderDealDetailTable_OrderTable" FromRole="OrderDealDetailTable" ToRole="OrderTable" />
+          <NavigationProperty Name="StockDealTable" Relationship="RemyDbModel.FK_OrderDealDetailTable_StockDealTable" FromRole="OrderDealDetailTable" ToRole="StockDealTable" />
+        </EntityType>
+        <EntityType Name="OrderItemDetailTable">
+          <Key>
+            <PropertyRef Name="OrderItemDetailID" />
+          </Key>
+          <Property Name="OrderItemDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderID" Type="Int32" Nullable="false" />
+          <Property Name="StockItemID" Type="Int32" Nullable="false" />
+          <Property Name="Quality" Type="Int32" Nullable="false" />
+          <Property Name="UnitPrice" Type="Double" Nullable="false" />
+          <Property Name="DiscountID" Type="Int32" Nullable="false" />
+          <Property Name="DiscountAmount" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="DiscountTable" Relationship="RemyDbModel.FK_OrderItemDetailTable_DiscountTable" FromRole="OrderItemDetailTable" ToRole="DiscountTable" />
+          <NavigationProperty Name="OrderTable" Relationship="RemyDbModel.FK_OrderItemDetailTable_OrderTable" FromRole="OrderItemDetailTable" ToRole="OrderTable" />
+          <NavigationProperty Name="StockItemTable" Relationship="RemyDbModel.FK_OrderItemDetailTable_StockItemTable" FromRole="OrderItemDetailTable" ToRole="StockItemTable" />
+        </EntityType>
+        <EntityType Name="OrderStatusTable">
+          <Key>
+            <PropertyRef Name="OrderStatusID" />
+          </Key>
+          <Property Name="OrderStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderStatus" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderTables" Relationship="RemyDbModel.FK_OrderTable_OrderStatusTable" FromRole="OrderStatusTable" ToRole="OrderTable" />
+        </EntityType>
+        <EntityType Name="OrderTable">
+          <Key>
+            <PropertyRef Name="OrderID" />
+          </Key>
+          <Property Name="OrderID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderBy_UserID" Type="Int32" Nullable="false" />
+          <Property Name="OrderDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="OrderTypeID" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryAddress_UserAddressID" Type="Int32" Nullable="false" />
+          <Property Name="DeliveryReceivedBy_ContactNO" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="OrderReceivedBy_FullName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="OrderStatusID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="ProcessBy_UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderDealDetailTables" Relationship="RemyDbModel.FK_OrderDealDetailTable_OrderTable" FromRole="OrderTable" ToRole="OrderDealDetailTable" />
+          <NavigationProperty Name="OrderItemDetailTables" Relationship="RemyDbModel.FK_OrderItemDetailTable_OrderTable" FromRole="OrderTable" ToRole="OrderItemDetailTable" />
+          <NavigationProperty Name="OrderStatusTable" Relationship="RemyDbModel.FK_OrderTable_OrderStatusTable" FromRole="OrderTable" ToRole="OrderStatusTable" />
+          <NavigationProperty Name="OrderTypeTable" Relationship="RemyDbModel.FK_OrderTable_OrderTypeTable" FromRole="OrderTable" ToRole="OrderTypeTable" />
+          <NavigationProperty Name="UserAddressTable" Relationship="RemyDbModel.FK_OrderTable_UserAddressTable" FromRole="OrderTable" ToRole="UserAddressTable" />
+          <NavigationProperty Name="UserTable" Relationship="RemyDbModel.FK_OrderTable_UserTable" FromRole="OrderTable" ToRole="UserTable" />
+          <NavigationProperty Name="StockItemReviewTable" Relationship="RemyDbModel.FK_OrderTable_StockItemReviewTable" FromRole="OrderTable" ToRole="StockItemReviewTable" />
+        </EntityType>
+        <EntityType Name="OrderTypeTable">
+          <Key>
+            <PropertyRef Name="OrderTypeID" />
+          </Key>
+          <Property Name="OrderTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="OrderType" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderTables" Relationship="RemyDbModel.FK_OrderTable_OrderTypeTable" FromRole="OrderTypeTable" ToRole="OrderTable" />
+          <NavigationProperty Name="StockItemTables" Relationship="RemyDbModel.FK_StockItemTable_OrderTypeTable" FromRole="OrderTypeTable" ToRole="StockItemTable" />
+        </EntityType>
+        <EntityType Name="ReservationStatusTable">
+          <Key>
+            <PropertyRef Name="ReservationStatusID" />
+          </Key>
+          <Property Name="ReservationStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ReservationStatus" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="TableReservationTables" Relationship="RemyDbModel.FK_TableReservationTable_ReservationStatusTable" FromRole="ReservationStatusTable" ToRole="TableReservationTable" />
+        </EntityType>
+        <EntityType Name="StockItemCategoryTable">
+          <Key>
+            <PropertyRef Name="StockItemCategoryID" />
+          </Key>
+          <Property Name="StockItemCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockItemCategory" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy_UserID" Type="Int32" Nullable="false" />
+          <Property Name="VisibleStatusID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="VisibleStatusTable" Relationship="RemyDbModel.FK_StockItemCategoryTable_VisibleStatusTable" FromRole="StockItemCategoryTable" ToRole="VisibleStatusTable" />
+          <NavigationProperty Name="StockItemTables" Relationship="RemyDbModel.FK_StockItemTable_StockItemCategoryTable" FromRole="StockItemCategoryTable" ToRole="StockItemTable" />
+          <NavigationProperty Name="StockMenuItemTables" Relationship="RemyDbModel.FK_StockMenuItemTable_StockItemCategoryTable" FromRole="StockItemCategoryTable" ToRole="StockMenuItemTable" />
+        </EntityType>
+        <EntityType Name="StockItemIngredientTable">
+          <Key>
+            <PropertyRef Name="StockItemIngredientID" />
+          </Key>
+          <Property Name="StockItemIngredientID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockItemID" Type="Int32" Nullable="false" />
+          <Property Name="StockItemIngredientPhotoPath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="StockItemIngredientTitle" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy_UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="StockItemTable" Relationship="RemyDbModel.FK_StockItemIngredientTable_StockItemTable" FromRole="StockItemIngredientTable" ToRole="StockItemTable" />
+        </EntityType>
+        <EntityType Name="StockItemTable">
+          <Key>
+            <PropertyRef Name="StockItemID" />
+          </Key>
+          <Property Name="StockItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockItemCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="ItemPhotoPath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="StockItemTitle" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="true" />
+          <Property Name="ItemSize" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="UnitPrice" Type="Double" Nullable="false" />
+          <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="VisibleStatusID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy_UserID" Type="Int32" Nullable="false" />
+          <Property Name="OrderTypeID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="OrderItemDetailTables" Relationship="RemyDbModel.FK_OrderItemDetailTable_StockItemTable" FromRole="StockItemTable" ToRole="OrderItemDetailTable" />
+          <NavigationProperty Name="OrderTypeTable" Relationship="RemyDbModel.FK_StockItemTable_OrderTypeTable" FromRole="StockItemTable" ToRole="OrderTypeTable" />
+          <NavigationProperty Name="StockItemCategoryTable" Relationship="RemyDbModel.FK_StockItemTable_StockItemCategoryTable" FromRole="StockItemTable" ToRole="StockItemCategoryTable" />
+          <NavigationProperty Name="StockItemIngredientTables" Relationship="RemyDbModel.FK_StockItemIngredientTable_StockItemTable" FromRole="StockItemTable" ToRole="StockItemIngredientTable" />
+          <NavigationProperty Name="VisibleStatusTable" Relationship="RemyDbModel.FK_StockItemTable_VisibleStatusTable" FromRole="StockItemTable" ToRole="VisibleStatusTable" />
+          <NavigationProperty Name="StockMenuItemTables" Relationship="RemyDbModel.FK_StockMenuItemTable_StockItemTable" FromRole="StockItemTable" ToRole="StockMenuItemTable" />
+          <NavigationProperty Name="CartItemDetailTables" Relationship="RemyDbModel.FK_CartItemDetailTable_StockItemTable" FromRole="StockItemTable" ToRole="CartItemDetailTable" />
+          <NavigationProperty Name="StockDealDetailTables" Relationship="RemyDbModel.FK_StockDealDetailTable_StockItemTable" FromRole="StockItemTable" ToRole="StockDealDetailTable" />
+        </EntityType>
+        <EntityType Name="StockMenuItemTable">
+          <Key>
+            <PropertyRef Name="StockMenuItemID" />
+          </Key>
+          <Property Name="StockMenuItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockMenuCategoryID" Type="Int32" Nullable="false" />
+          <Property Name="StockItemID" Type="Int32" Nullable="false" />
+          <Property Name="VisibleStatusID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy_UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="StockItemTable" Relationship="RemyDbModel.FK_StockMenuItemTable_StockItemTable" FromRole="StockMenuItemTable" ToRole="StockItemTable" />
+          <NavigationProperty Name="VisibleStatusTable" Relationship="RemyDbModel.FK_StockMenuItemTable_VisibleStatusTable" FromRole="StockMenuItemTable" ToRole="VisibleStatusTable" />
+          <NavigationProperty Name="StockItemCategoryTable" Relationship="RemyDbModel.FK_StockMenuItemTable_StockItemCategoryTable" FromRole="StockMenuItemTable" ToRole="StockItemCategoryTable" />
+          <NavigationProperty Name="StockMenuCategoryTable" Relationship="RemyDbModel.FK_StockMenuItemTable_StockMenuCategoryTable" FromRole="StockMenuItemTable" ToRole="StockMenuCategoryTable" />
+        </EntityType>
+        <EntityType Name="TableReservationTable">
+          <Key>
+            <PropertyRef Name="TableReservationID" />
+          </Key>
+          <Property Name="TableReservationID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Reservation_UserID" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="ReservationRequestDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ReservationDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NoOfPersons" Type="Int32" Nullable="false" />
+          <Property Name="ProcessBy_UserID" Type="Int32" Nullable="false" />
+          <Property Name="ReservationStatusID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ReservationStatusTable" Relationship="RemyDbModel.FK_TableReservationTable_ReservationStatusTable" FromRole="TableReservationTable" ToRole="ReservationStatusTable" />
+          <NavigationProperty Name="UserTable" Relationship="RemyDbModel.FK_TableReservationTable_ProcessUserTable" FromRole="TableReservationTable" ToRole="UserTable" />
+          <NavigationProperty Name="UserTable1" Relationship="RemyDbModel.FK_TableReservationTable_UserTable" FromRole="TableReservationTable" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="UserAddressTable">
+          <Key>
+            <PropertyRef Name="UserAddressID" />
+          </Key>
+          <Property Name="UserAddressID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="AddressTypeID" Type="Int32" Nullable="false" />
+          <Property Name="FullAddress" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VisibleStatusID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy_UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="AddressTypeTable" Relationship="RemyDbModel.FK_UserAddressTable_AddressTypeTable" FromRole="UserAddressTable" ToRole="AddressTypeTable" />
+          <NavigationProperty Name="OrderTables" Relationship="RemyDbModel.FK_OrderTable_UserAddressTable" FromRole="UserAddressTable" ToRole="OrderTable" />
+          <NavigationProperty Name="UserTable" Relationship="RemyDbModel.FK_UserAddressTable_UserTable" FromRole="UserAddressTable" ToRole="UserTable" />
+          <NavigationProperty Name="VisibleStatusTable" Relationship="RemyDbModel.FK_UserAddressTable_VisibleStatusTable" FromRole="UserAddressTable" ToRole="VisibleStatusTable" />
+        </EntityType>
+        <EntityType Name="UserDetailTable">
+          <Key>
+            <PropertyRef Name="UserDetailID" />
+          </Key>
+          <Property Name="UserDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <Property Name="UserDetailProviderDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="PhotoPath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="ExperenceLevel" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CNIC" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="EducationLevel" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="EducationLastDegreeScanPhoto" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="LastExperenceScanPhotoPath" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="CreatedBy_UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="UserTable" Relationship="RemyDbModel.FK_UserDetailTable_UserTable" FromRole="UserDetailTable" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="UserStatusTable">
+          <Key>
+            <PropertyRef Name="UserStatusID" />
+          </Key>
+          <Property Name="UserStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserStatus" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserTables" Relationship="RemyDbModel.FK_UserTable_UserStatusTable" FromRole="UserStatusTable" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="UserTable">
+          <Key>
+            <PropertyRef Name="UserID" />
+          </Key>
+          <Property Name="UserID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" />
+          <Property Name="UserName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="250" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ContactNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="false" />
+          <Property Name="RegisterationDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="UserStatusID" Type="Int32" Nullable="false" />
+          <Property Name="UserStatusChangeDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="GenderID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="GenderTable" Relationship="RemyDbModel.FK_UserTable_GenderTable" FromRole="UserTable" ToRole="GenderTable" />
+          <NavigationProperty Name="OrderTables" Relationship="RemyDbModel.FK_OrderTable_UserTable" FromRole="UserTable" ToRole="OrderTable" />
+          <NavigationProperty Name="TableReservationTables" Relationship="RemyDbModel.FK_TableReservationTable_ProcessUserTable" FromRole="UserTable" ToRole="TableReservationTable" />
+          <NavigationProperty Name="TableReservationTables1" Relationship="RemyDbModel.FK_TableReservationTable_UserTable" FromRole="UserTable" ToRole="TableReservationTable" />
+          <NavigationProperty Name="UserAddressTables" Relationship="RemyDbModel.FK_UserAddressTable_UserTable" FromRole="UserTable" ToRole="UserAddressTable" />
+          <NavigationProperty Name="UserDetailTable" Relationship="RemyDbModel.FK_UserDetailTable_UserTable" FromRole="UserTable" ToRole="UserDetailTable" />
+          <NavigationProperty Name="UserStatusTable" Relationship="RemyDbModel.FK_UserTable_UserStatusTable" FromRole="UserTable" ToRole="UserStatusTable" />
+          <NavigationProperty Name="UserTypeTable" Relationship="RemyDbModel.FK_UserTable_UserTypeTable" FromRole="UserTable" ToRole="UserTypeTable" />
+          <NavigationProperty Name="BookingTblTables" Relationship="RemyDbModel.FK_BookingTblTable_UserTable" FromRole="UserTable" ToRole="BookingTblTable" />
+          <NavigationProperty Name="StockItemReviewTables" Relationship="RemyDbModel.FK_StockItemReviewTable_UserTable" FromRole="UserTable" ToRole="StockItemReviewTable" />
+          <NavigationProperty Name="CartTables" Relationship="RemyDbModel.FK_CartTable_UserTable" FromRole="UserTable" ToRole="CartTable" />
+        </EntityType>
+        <EntityType Name="UserTypeTable">
+          <Key>
+            <PropertyRef Name="UserTypeID" />
+          </Key>
+          <Property Name="UserTypeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserType" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="UserTables" Relationship="RemyDbModel.FK_UserTable_UserTypeTable" FromRole="UserTypeTable" ToRole="UserTable" />
+        </EntityType>
+        <EntityType Name="VisibleStatusTable">
+          <Key>
+            <PropertyRef Name="VisibleStatusID" />
+          </Key>
+          <Property Name="VisibleStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="VisibleStatus" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="StockItemCategoryTables" Relationship="RemyDbModel.FK_StockItemCategoryTable_VisibleStatusTable" FromRole="VisibleStatusTable" ToRole="StockItemCategoryTable" />
+          <NavigationProperty Name="StockItemTables" Relationship="RemyDbModel.FK_StockItemTable_VisibleStatusTable" FromRole="VisibleStatusTable" ToRole="StockItemTable" />
+          <NavigationProperty Name="StockMenuItemTables" Relationship="RemyDbModel.FK_StockMenuItemTable_VisibleStatusTable" FromRole="VisibleStatusTable" ToRole="StockMenuItemTable" />
+          <NavigationProperty Name="UserAddressTables" Relationship="RemyDbModel.FK_UserAddressTable_VisibleStatusTable" FromRole="VisibleStatusTable" ToRole="UserAddressTable" />
+          <NavigationProperty Name="StockDealDetailTables" Relationship="RemyDbModel.FK_DealDetailTable_VisibleStatusTable" FromRole="VisibleStatusTable" ToRole="StockDealDetailTable" />
+          <NavigationProperty Name="StockDealTables" Relationship="RemyDbModel.FK_StockDealTable_VisibleStatusTable" FromRole="VisibleStatusTable" ToRole="StockDealTable" />
+        </EntityType>
+        <Association Name="FK_UserAddressTable_AddressTypeTable">
+          <End Type="RemyDbModel.AddressTypeTable" Role="AddressTypeTable" Multiplicity="1" />
+          <End Type="RemyDbModel.UserAddressTable" Role="UserAddressTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="AddressTypeTable">
+              <PropertyRef Name="AddressTypeID" />
+            </Principal>
+            <Dependent Role="UserAddressTable">
+              <PropertyRef Name="AddressTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItemDetailTable_DiscountTable">
+          <End Type="RemyDbModel.DiscountTable" Role="DiscountTable" Multiplicity="1" />
+          <End Type="RemyDbModel.OrderItemDetailTable" Role="OrderItemDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="DiscountTable">
+              <PropertyRef Name="DiscountID" />
+            </Principal>
+            <Dependent Role="OrderItemDetailTable">
+              <PropertyRef Name="DiscountID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_GenderTable">
+          <End Type="RemyDbModel.GenderTable" Role="GenderTable" Multiplicity="1" />
+          <End Type="RemyDbModel.UserTable" Role="UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="GenderTable">
+              <PropertyRef Name="GenderID" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="GenderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDealDetailTable_OrderTable">
+          <End Type="RemyDbModel.OrderTable" Role="OrderTable" Multiplicity="1" />
+          <End Type="RemyDbModel.OrderDealDetailTable" Role="OrderDealDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderTable">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderDealDetailTable">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItemDetailTable_OrderTable">
+          <End Type="RemyDbModel.OrderTable" Role="OrderTable" Multiplicity="1" />
+          <End Type="RemyDbModel.OrderItemDetailTable" Role="OrderItemDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderTable">
+              <PropertyRef Name="OrderID" />
+            </Principal>
+            <Dependent Role="OrderItemDetailTable">
+              <PropertyRef Name="OrderID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderItemDetailTable_StockItemTable">
+          <End Type="RemyDbModel.StockItemTable" Role="StockItemTable" Multiplicity="1" />
+          <End Type="RemyDbModel.OrderItemDetailTable" Role="OrderItemDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockItemTable">
+              <PropertyRef Name="StockItemID" />
+            </Principal>
+            <Dependent Role="OrderItemDetailTable">
+              <PropertyRef Name="StockItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTable_OrderStatusTable">
+          <End Type="RemyDbModel.OrderStatusTable" Role="OrderStatusTable" Multiplicity="1" />
+          <End Type="RemyDbModel.OrderTable" Role="OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderStatusTable">
+              <PropertyRef Name="OrderStatusID" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="OrderStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTable_OrderTypeTable">
+          <End Type="RemyDbModel.OrderTypeTable" Role="OrderTypeTable" Multiplicity="1" />
+          <End Type="RemyDbModel.OrderTable" Role="OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderTypeTable">
+              <PropertyRef Name="OrderTypeID" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="OrderTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTable_UserAddressTable">
+          <End Type="RemyDbModel.UserAddressTable" Role="UserAddressTable" Multiplicity="1" />
+          <End Type="RemyDbModel.OrderTable" Role="OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserAddressTable">
+              <PropertyRef Name="UserAddressID" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="DeliveryAddress_UserAddressID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderTable_UserTable">
+          <End Type="RemyDbModel.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="RemyDbModel.OrderTable" Role="OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="OrderBy_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockItemTable_OrderTypeTable">
+          <End Type="RemyDbModel.OrderTypeTable" Role="OrderTypeTable" Multiplicity="1" />
+          <End Type="RemyDbModel.StockItemTable" Role="StockItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="OrderTypeTable">
+              <PropertyRef Name="OrderTypeID" />
+            </Principal>
+            <Dependent Role="StockItemTable">
+              <PropertyRef Name="OrderTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableReservationTable_ReservationStatusTable">
+          <End Type="RemyDbModel.ReservationStatusTable" Role="ReservationStatusTable" Multiplicity="1" />
+          <End Type="RemyDbModel.TableReservationTable" Role="TableReservationTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ReservationStatusTable">
+              <PropertyRef Name="ReservationStatusID" />
+            </Principal>
+            <Dependent Role="TableReservationTable">
+              <PropertyRef Name="ReservationStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockItemCategoryTable_VisibleStatusTable">
+          <End Type="RemyDbModel.VisibleStatusTable" Role="VisibleStatusTable" Multiplicity="1" />
+          <End Type="RemyDbModel.StockItemCategoryTable" Role="StockItemCategoryTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisibleStatusTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Principal>
+            <Dependent Role="StockItemCategoryTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockItemTable_StockItemCategoryTable">
+          <End Type="RemyDbModel.StockItemCategoryTable" Role="StockItemCategoryTable" Multiplicity="1" />
+          <End Type="RemyDbModel.StockItemTable" Role="StockItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockItemCategoryTable">
+              <PropertyRef Name="StockItemCategoryID" />
+            </Principal>
+            <Dependent Role="StockItemTable">
+              <PropertyRef Name="StockItemCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockItemIngredientTable_StockItemTable">
+          <End Type="RemyDbModel.StockItemTable" Role="StockItemTable" Multiplicity="1" />
+          <End Type="RemyDbModel.StockItemIngredientTable" Role="StockItemIngredientTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockItemTable">
+              <PropertyRef Name="StockItemID" />
+            </Principal>
+            <Dependent Role="StockItemIngredientTable">
+              <PropertyRef Name="StockItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockItemTable_VisibleStatusTable">
+          <End Type="RemyDbModel.VisibleStatusTable" Role="VisibleStatusTable" Multiplicity="1" />
+          <End Type="RemyDbModel.StockItemTable" Role="StockItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisibleStatusTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Principal>
+            <Dependent Role="StockItemTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockMenuItemTable_StockItemTable">
+          <End Type="RemyDbModel.StockItemTable" Role="StockItemTable" Multiplicity="1" />
+          <End Type="RemyDbModel.StockMenuItemTable" Role="StockMenuItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockItemTable">
+              <PropertyRef Name="StockItemID" />
+            </Principal>
+            <Dependent Role="StockMenuItemTable">
+              <PropertyRef Name="StockItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockMenuItemTable_VisibleStatusTable">
+          <End Type="RemyDbModel.VisibleStatusTable" Role="VisibleStatusTable" Multiplicity="1" />
+          <End Type="RemyDbModel.StockMenuItemTable" Role="StockMenuItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisibleStatusTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Principal>
+            <Dependent Role="StockMenuItemTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableReservationTable_ProcessUserTable">
+          <End Type="RemyDbModel.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="RemyDbModel.TableReservationTable" Role="TableReservationTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="TableReservationTable">
+              <PropertyRef Name="ProcessBy_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TableReservationTable_UserTable">
+          <End Type="RemyDbModel.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="RemyDbModel.TableReservationTable" Role="TableReservationTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="TableReservationTable">
+              <PropertyRef Name="Reservation_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAddressTable_UserTable">
+          <End Type="RemyDbModel.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="RemyDbModel.UserAddressTable" Role="UserAddressTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserAddressTable">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserAddressTable_VisibleStatusTable">
+          <End Type="RemyDbModel.VisibleStatusTable" Role="VisibleStatusTable" Multiplicity="1" />
+          <End Type="RemyDbModel.UserAddressTable" Role="UserAddressTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisibleStatusTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Principal>
+            <Dependent Role="UserAddressTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserDetailTable_UserTable">
+          <End Type="RemyDbModel.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="RemyDbModel.UserDetailTable" Role="UserDetailTable" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="UserDetailTable">
+              <PropertyRef Name="UserDetailID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_UserStatusTable">
+          <End Type="RemyDbModel.UserStatusTable" Role="UserStatusTable" Multiplicity="1" />
+          <End Type="RemyDbModel.UserTable" Role="UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserStatusTable">
+              <PropertyRef Name="UserStatusID" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="UserStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserTable_UserTypeTable">
+          <End Type="RemyDbModel.UserTypeTable" Role="UserTypeTable" Multiplicity="1" />
+          <End Type="RemyDbModel.UserTable" Role="UserTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTypeTable">
+              <PropertyRef Name="UserTypeID" />
+            </Principal>
+            <Dependent Role="UserTable">
+              <PropertyRef Name="UserTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StockMenuCategoryTable">
+          <Key>
+            <PropertyRef Name="StockMenuCategoryID" />
+          </Key>
+          <Property Name="StockMenuCategoryID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockMenuCategory" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="CreatedBy_UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="StockMenuItemTables" Relationship="RemyDbModel.FK_StockMenuItemTable_StockMenuCategoryTable" FromRole="StockMenuCategoryTable" ToRole="StockMenuItemTable" />
+        </EntityType>
+        <Association Name="FK_StockMenuItemTable_StockItemCategoryTable">
+          <End Type="RemyDbModel.StockItemCategoryTable" Role="StockItemCategoryTable" Multiplicity="1" />
+          <End Type="RemyDbModel.StockMenuItemTable" Role="StockMenuItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockItemCategoryTable">
+              <PropertyRef Name="StockItemCategoryID" />
+            </Principal>
+            <Dependent Role="StockMenuItemTable">
+              <PropertyRef Name="StockMenuCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockMenuItemTable_StockMenuCategoryTable">
+          <End Type="RemyDbModel.StockMenuCategoryTable" Role="StockMenuCategoryTable" Multiplicity="1" />
+          <End Type="RemyDbModel.StockMenuItemTable" Role="StockMenuItemTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockMenuCategoryTable">
+              <PropertyRef Name="StockMenuCategoryID" />
+            </Principal>
+            <Dependent Role="StockMenuItemTable">
+              <PropertyRef Name="StockMenuCategoryID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="BookingStatusTable">
+          <Key>
+            <PropertyRef Name="BookingStatusID" />
+          </Key>
+          <Property Name="BookingStatusID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookingStatus" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="BookingTblTables" Relationship="RemyDbModel.FK_BookingTblTable_BookingStatusTable" FromRole="BookingStatusTable" ToRole="BookingTblTable" />
+        </EntityType>
+        <EntityType Name="BookingTblTable">
+          <Key>
+            <PropertyRef Name="BookingTableID" />
+          </Key>
+          <Property Name="BookingTableID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="BookingUserID" Type="Int32" Nullable="false" />
+          <Property Name="FullName" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="EmailAddress" Type="String" Nullable="false" MaxLength="255" FixedLength="false" Unicode="false" />
+          <Property Name="MobileNo" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="BookingDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="ReservationDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="NoOfPersons" Type="Int32" Nullable="false" />
+          <Property Name="ProcessBy_UserID" Type="Int32" Nullable="false" />
+          <Property Name="BookingStatusID" Type="Int32" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="BookingStatusTable" Relationship="RemyDbModel.FK_BookingTblTable_BookingStatusTable" FromRole="BookingTblTable" ToRole="BookingStatusTable" />
+          <NavigationProperty Name="UserTable" Relationship="RemyDbModel.FK_BookingTblTable_UserTable" FromRole="BookingTblTable" ToRole="UserTable" />
+        </EntityType>
+        <Association Name="FK_BookingTblTable_BookingStatusTable">
+          <End Type="RemyDbModel.BookingStatusTable" Role="BookingStatusTable" Multiplicity="1" />
+          <End Type="RemyDbModel.BookingTblTable" Role="BookingTblTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="BookingStatusTable">
+              <PropertyRef Name="BookingStatusID" />
+            </Principal>
+            <Dependent Role="BookingTblTable">
+              <PropertyRef Name="BookingStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_BookingTblTable_UserTable">
+          <End Type="RemyDbModel.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="RemyDbModel.BookingTblTable" Role="BookingTblTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="BookingTblTable">
+              <PropertyRef Name="BookingUserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StockItemReviewTable">
+          <Key>
+            <PropertyRef Name="ItemReviewID" />
+          </Key>
+          <Property Name="ItemReviewID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockItemID" Type="Int32" Nullable="false" />
+          <Property Name="ReviewBy_UserID" Type="Int32" Nullable="false" />
+          <Property Name="ReviewDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Rating" Type="Int32" Nullable="false" />
+          <Property Name="ReviewDetails" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="OrderTables" Relationship="RemyDbModel.FK_OrderTable_StockItemReviewTable" FromRole="StockItemReviewTable" ToRole="OrderTable" />
+          <NavigationProperty Name="UserTable" Relationship="RemyDbModel.FK_StockItemReviewTable_UserTable" FromRole="StockItemReviewTable" ToRole="UserTable" />
+        </EntityType>
+        <Association Name="FK_OrderTable_StockItemReviewTable">
+          <End Type="RemyDbModel.StockItemReviewTable" Role="StockItemReviewTable" Multiplicity="1" />
+          <End Type="RemyDbModel.OrderTable" Role="OrderTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockItemReviewTable">
+              <PropertyRef Name="ItemReviewID" />
+            </Principal>
+            <Dependent Role="OrderTable">
+              <PropertyRef Name="OrderTypeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockItemReviewTable_UserTable">
+          <End Type="RemyDbModel.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="RemyDbModel.StockItemReviewTable" Role="StockItemReviewTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="StockItemReviewTable">
+              <PropertyRef Name="ReviewBy_UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="CartDealTable">
+          <Key>
+            <PropertyRef Name="CartDealID" />
+          </Key>
+          <Property Name="CartDealID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CartID" Type="Int32" Nullable="false" />
+          <Property Name="StockDealID" Type="Int32" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CartTable" Relationship="RemyDbModel.FK_CartDealTable_CartTable" FromRole="CartDealTable" ToRole="CartTable" />
+          <NavigationProperty Name="StockDealTable" Relationship="RemyDbModel.FK_CartDealTable_StockDealTable" FromRole="CartDealTable" ToRole="StockDealTable" />
+        </EntityType>
+        <EntityType Name="CartItemDetailTable">
+          <Key>
+            <PropertyRef Name="CartItemID" />
+          </Key>
+          <Property Name="CartItemID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CartID" Type="Int32" Nullable="false" />
+          <Property Name="StockItemID" Type="Int32" Nullable="false" />
+          <Property Name="Qty" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CartTable" Relationship="RemyDbModel.FK_CartItemDetailTable_CartTable" FromRole="CartItemDetailTable" ToRole="CartTable" />
+          <NavigationProperty Name="StockItemTable" Relationship="RemyDbModel.FK_CartItemDetailTable_StockItemTable" FromRole="CartItemDetailTable" ToRole="StockItemTable" />
+        </EntityType>
+        <EntityType Name="CartTable">
+          <Key>
+            <PropertyRef Name="CartID" />
+          </Key>
+          <Property Name="CartID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="UserID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="CartDealTables" Relationship="RemyDbModel.FK_CartDealTable_CartTable" FromRole="CartTable" ToRole="CartDealTable" />
+          <NavigationProperty Name="CartItemDetailTables" Relationship="RemyDbModel.FK_CartItemDetailTable_CartTable" FromRole="CartTable" ToRole="CartItemDetailTable" />
+          <NavigationProperty Name="UserTable" Relationship="RemyDbModel.FK_CartTable_UserTable" FromRole="CartTable" ToRole="UserTable" />
+        </EntityType>
+        <Association Name="FK_CartDealTable_CartTable">
+          <End Type="RemyDbModel.CartTable" Role="CartTable" Multiplicity="1" />
+          <End Type="RemyDbModel.CartDealTable" Role="CartDealTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CartTable">
+              <PropertyRef Name="CartID" />
+            </Principal>
+            <Dependent Role="CartDealTable">
+              <PropertyRef Name="CartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CartItemDetailTable_CartTable">
+          <End Type="RemyDbModel.CartTable" Role="CartTable" Multiplicity="1" />
+          <End Type="RemyDbModel.CartItemDetailTable" Role="CartItemDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="CartTable">
+              <PropertyRef Name="CartID" />
+            </Principal>
+            <Dependent Role="CartItemDetailTable">
+              <PropertyRef Name="CartID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CartItemDetailTable_StockItemTable">
+          <End Type="RemyDbModel.StockItemTable" Role="StockItemTable" Multiplicity="1" />
+          <End Type="RemyDbModel.CartItemDetailTable" Role="CartItemDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockItemTable">
+              <PropertyRef Name="StockItemID" />
+            </Principal>
+            <Dependent Role="CartItemDetailTable">
+              <PropertyRef Name="StockItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_CartTable_UserTable">
+          <End Type="RemyDbModel.UserTable" Role="UserTable" Multiplicity="1" />
+          <End Type="RemyDbModel.CartTable" Role="CartTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="UserTable">
+              <PropertyRef Name="UserID" />
+            </Principal>
+            <Dependent Role="CartTable">
+              <PropertyRef Name="UserID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StockDealDetailTable">
+          <Key>
+            <PropertyRef Name="StockDealDetailID" />
+          </Key>
+          <Property Name="StockDealDetailID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockDealID" Type="Int32" Nullable="false" />
+          <Property Name="StockItemID" Type="Int32" Nullable="false" />
+          <Property Name="Discount" Type="Double" Nullable="false" />
+          <Property Name="VisibleStatusID" Type="Int32" Nullable="false" />
+          <Property Name="CreatedBy_UserID" Type="Int32" Nullable="false" />
+          <Property Name="Quantity" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="VisibleStatusTable" Relationship="RemyDbModel.FK_DealDetailTable_VisibleStatusTable" FromRole="StockDealDetailTable" ToRole="VisibleStatusTable" />
+          <NavigationProperty Name="StockItemTable" Relationship="RemyDbModel.FK_StockDealDetailTable_StockItemTable" FromRole="StockDealDetailTable" ToRole="StockItemTable" />
+          <NavigationProperty Name="StockDealTable" Relationship="RemyDbModel.FK_DealDetailTable_StockDealTable" FromRole="StockDealDetailTable" ToRole="StockDealTable" />
+        </EntityType>
+        <Association Name="FK_DealDetailTable_VisibleStatusTable">
+          <End Type="RemyDbModel.VisibleStatusTable" Role="VisibleStatusTable" Multiplicity="1" />
+          <End Type="RemyDbModel.StockDealDetailTable" Role="StockDealDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisibleStatusTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Principal>
+            <Dependent Role="StockDealDetailTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockDealDetailTable_StockItemTable">
+          <End Type="RemyDbModel.StockItemTable" Role="StockItemTable" Multiplicity="1" />
+          <End Type="RemyDbModel.StockDealDetailTable" Role="StockDealDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockItemTable">
+              <PropertyRef Name="StockItemID" />
+            </Principal>
+            <Dependent Role="StockDealDetailTable">
+              <PropertyRef Name="StockItemID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="StockDealTable">
+          <Key>
+            <PropertyRef Name="StockDealID" />
+          </Key>
+          <Property Name="StockDealID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StockDealTitle" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="true" />
+          <Property Name="DealPrice" Type="Double" Nullable="false" />
+          <Property Name="VisibleStatusID" Type="Int32" Nullable="false" />
+          <Property Name="StockDealStartDate" Type="DateTime" Precision="0" />
+          <Property Name="Discount" Type="Double" />
+          <Property Name="StockDealEndDate" Type="DateTime" Precision="0" />
+          <Property Name="StockDealRegisterDate" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="DealPhoto" Type="String" MaxLength="500" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="CartDealTable" Relationship="RemyDbModel.FK_CartDealTable_StockDealTable" FromRole="StockDealTable" ToRole="CartDealTable" />
+          <NavigationProperty Name="OrderDealDetailTables" Relationship="RemyDbModel.FK_OrderDealDetailTable_StockDealTable" FromRole="StockDealTable" ToRole="OrderDealDetailTable" />
+          <NavigationProperty Name="StockDealDetailTables" Relationship="RemyDbModel.FK_DealDetailTable_StockDealTable" FromRole="StockDealTable" ToRole="StockDealDetailTable" />
+          <NavigationProperty Name="VisibleStatusTable" Relationship="RemyDbModel.FK_StockDealTable_VisibleStatusTable" FromRole="StockDealTable" ToRole="VisibleStatusTable" />
+        </EntityType>
+        <Association Name="FK_CartDealTable_StockDealTable">
+          <End Type="RemyDbModel.StockDealTable" Role="StockDealTable" Multiplicity="1" />
+          <End Type="RemyDbModel.CartDealTable" Role="CartDealTable" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="StockDealTable">
+              <PropertyRef Name="StockDealID" />
+            </Principal>
+            <Dependent Role="CartDealTable">
+              <PropertyRef Name="CartDealID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_OrderDealDetailTable_StockDealTable">
+          <End Type="RemyDbModel.StockDealTable" Role="StockDealTable" Multiplicity="1" />
+          <End Type="RemyDbModel.OrderDealDetailTable" Role="OrderDealDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockDealTable">
+              <PropertyRef Name="StockDealID" />
+            </Principal>
+            <Dependent Role="OrderDealDetailTable">
+              <PropertyRef Name="StockDealID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_DealDetailTable_StockDealTable">
+          <End Type="RemyDbModel.StockDealTable" Role="StockDealTable" Multiplicity="1" />
+          <End Type="RemyDbModel.StockDealDetailTable" Role="StockDealDetailTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="StockDealTable">
+              <PropertyRef Name="StockDealID" />
+            </Principal>
+            <Dependent Role="StockDealDetailTable">
+              <PropertyRef Name="StockDealID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_StockDealTable_VisibleStatusTable">
+          <End Type="RemyDbModel.VisibleStatusTable" Role="VisibleStatusTable" Multiplicity="1" />
+          <End Type="RemyDbModel.StockDealTable" Role="StockDealTable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="VisibleStatusTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Principal>
+            <Dependent Role="StockDealTable">
+              <PropertyRef Name="VisibleStatusID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="RemyDbModelStoreContainer" CdmEntityContainer="RemyDbEntities">
+          <EntitySetMapping Name="AddressTypeTables">
+            <EntityTypeMapping TypeName="RemyDbModel.AddressTypeTable">
+              <MappingFragment StoreEntitySet="AddressTypeTable">
+                <ScalarProperty Name="CreatedBy_UserID" ColumnName="CreatedBy_UserID" />
+                <ScalarProperty Name="AddressType" ColumnName="AddressType" />
+                <ScalarProperty Name="AddressTypeID" ColumnName="AddressTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DiscountTables">
+            <EntityTypeMapping TypeName="RemyDbModel.DiscountTable">
+              <MappingFragment StoreEntitySet="DiscountTable">
+                <ScalarProperty Name="IsUserStatus" ColumnName="IsUserStatus" />
+                <ScalarProperty Name="DiscountPercentage" ColumnName="DiscountPercentage" />
+                <ScalarProperty Name="DiscountCode" ColumnName="DiscountCode" />
+                <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="GenderTables">
+            <EntityTypeMapping TypeName="RemyDbModel.GenderTable">
+              <MappingFragment StoreEntitySet="GenderTable">
+                <ScalarProperty Name="GenderTitle" ColumnName="GenderTitle" />
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderDealDetailTables">
+            <EntityTypeMapping TypeName="RemyDbModel.OrderDealDetailTable">
+              <MappingFragment StoreEntitySet="OrderDealDetailTable">
+                <ScalarProperty Name="DealPrice" ColumnName="DealPrice" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+                <ScalarProperty Name="StockDealID" ColumnName="StockDealID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderDealDetailID" ColumnName="OrderDealDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderItemDetailTables">
+            <EntityTypeMapping TypeName="RemyDbModel.OrderItemDetailTable">
+              <MappingFragment StoreEntitySet="OrderItemDetailTable">
+                <ScalarProperty Name="DiscountAmount" ColumnName="DiscountAmount" />
+                <ScalarProperty Name="DiscountID" ColumnName="DiscountID" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="Quality" ColumnName="Quality" />
+                <ScalarProperty Name="StockItemID" ColumnName="StockItemID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+                <ScalarProperty Name="OrderItemDetailID" ColumnName="OrderItemDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderStatusTables">
+            <EntityTypeMapping TypeName="RemyDbModel.OrderStatusTable">
+              <MappingFragment StoreEntitySet="OrderStatusTable">
+                <ScalarProperty Name="OrderStatus" ColumnName="OrderStatus" />
+                <ScalarProperty Name="OrderStatusID" ColumnName="OrderStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderTables">
+            <EntityTypeMapping TypeName="RemyDbModel.OrderTable">
+              <MappingFragment StoreEntitySet="OrderTable">
+                <ScalarProperty Name="ProcessBy_UserID" ColumnName="ProcessBy_UserID" />
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="OrderStatusID" ColumnName="OrderStatusID" />
+                <ScalarProperty Name="OrderReceivedBy_FullName" ColumnName="OrderReceivedBy_FullName" />
+                <ScalarProperty Name="DeliveryReceivedBy_ContactNO" ColumnName="DeliveryReceivedBy_ContactNO" />
+                <ScalarProperty Name="DeliveryAddress_UserAddressID" ColumnName="DeliveryAddress_UserAddressID" />
+                <ScalarProperty Name="OrderTypeID" ColumnName="OrderTypeID" />
+                <ScalarProperty Name="OrderDateTime" ColumnName="OrderDateTime" />
+                <ScalarProperty Name="OrderBy_UserID" ColumnName="OrderBy_UserID" />
+                <ScalarProperty Name="OrderID" ColumnName="OrderID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="OrderTypeTables">
+            <EntityTypeMapping TypeName="RemyDbModel.OrderTypeTable">
+              <MappingFragment StoreEntitySet="OrderTypeTable">
+                <ScalarProperty Name="OrderType" ColumnName="OrderType" />
+                <ScalarProperty Name="OrderTypeID" ColumnName="OrderTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ReservationStatusTables">
+            <EntityTypeMapping TypeName="RemyDbModel.ReservationStatusTable">
+              <MappingFragment StoreEntitySet="ReservationStatusTable">
+                <ScalarProperty Name="ReservationStatus" ColumnName="ReservationStatus" />
+                <ScalarProperty Name="ReservationStatusID" ColumnName="ReservationStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockItemCategoryTables">
+            <EntityTypeMapping TypeName="RemyDbModel.StockItemCategoryTable">
+              <MappingFragment StoreEntitySet="StockItemCategoryTable">
+                <ScalarProperty Name="VisibleStatusID" ColumnName="VisibleStatusID" />
+                <ScalarProperty Name="CreatedBy_UserID" ColumnName="CreatedBy_UserID" />
+                <ScalarProperty Name="StockItemCategory" ColumnName="StockItemCategory" />
+                <ScalarProperty Name="StockItemCategoryID" ColumnName="StockItemCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockItemIngredientTables">
+            <EntityTypeMapping TypeName="RemyDbModel.StockItemIngredientTable">
+              <MappingFragment StoreEntitySet="StockItemIngredientTable">
+                <ScalarProperty Name="CreatedBy_UserID" ColumnName="CreatedBy_UserID" />
+                <ScalarProperty Name="StockItemIngredientTitle" ColumnName="StockItemIngredientTitle" />
+                <ScalarProperty Name="StockItemIngredientPhotoPath" ColumnName="StockItemIngredientPhotoPath" />
+                <ScalarProperty Name="StockItemID" ColumnName="StockItemID" />
+                <ScalarProperty Name="StockItemIngredientID" ColumnName="StockItemIngredientID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockItemTables">
+            <EntityTypeMapping TypeName="RemyDbModel.StockItemTable">
+              <MappingFragment StoreEntitySet="StockItemTable">
+                <ScalarProperty Name="OrderTypeID" ColumnName="OrderTypeID" />
+                <ScalarProperty Name="CreatedBy_UserID" ColumnName="CreatedBy_UserID" />
+                <ScalarProperty Name="VisibleStatusID" ColumnName="VisibleStatusID" />
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="UnitPrice" ColumnName="UnitPrice" />
+                <ScalarProperty Name="ItemSize" ColumnName="ItemSize" />
+                <ScalarProperty Name="StockItemTitle" ColumnName="StockItemTitle" />
+                <ScalarProperty Name="ItemPhotoPath" ColumnName="ItemPhotoPath" />
+                <ScalarProperty Name="StockItemCategoryID" ColumnName="StockItemCategoryID" />
+                <ScalarProperty Name="StockItemID" ColumnName="StockItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockMenuItemTables">
+            <EntityTypeMapping TypeName="RemyDbModel.StockMenuItemTable">
+              <MappingFragment StoreEntitySet="StockMenuItemTable">
+                <ScalarProperty Name="CreatedBy_UserID" ColumnName="CreatedBy_UserID" />
+                <ScalarProperty Name="VisibleStatusID" ColumnName="VisibleStatusID" />
+                <ScalarProperty Name="StockItemID" ColumnName="StockItemID" />
+                <ScalarProperty Name="StockMenuCategoryID" ColumnName="StockMenuCategoryID" />
+                <ScalarProperty Name="StockMenuItemID" ColumnName="StockMenuItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TableReservationTables">
+            <EntityTypeMapping TypeName="RemyDbModel.TableReservationTable">
+              <MappingFragment StoreEntitySet="TableReservationTable">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="ReservationStatusID" ColumnName="ReservationStatusID" />
+                <ScalarProperty Name="ProcessBy_UserID" ColumnName="ProcessBy_UserID" />
+                <ScalarProperty Name="NoOfPersons" ColumnName="NoOfPersons" />
+                <ScalarProperty Name="ReservationDateTime" ColumnName="ReservationDateTime" />
+                <ScalarProperty Name="ReservationRequestDate" ColumnName="ReservationRequestDate" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="Reservation_UserID" ColumnName="Reservation_UserID" />
+                <ScalarProperty Name="TableReservationID" ColumnName="TableReservationID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserAddressTables">
+            <EntityTypeMapping TypeName="RemyDbModel.UserAddressTable">
+              <MappingFragment StoreEntitySet="UserAddressTable">
+                <ScalarProperty Name="CreatedBy_UserID" ColumnName="CreatedBy_UserID" />
+                <ScalarProperty Name="VisibleStatusID" ColumnName="VisibleStatusID" />
+                <ScalarProperty Name="FullAddress" ColumnName="FullAddress" />
+                <ScalarProperty Name="AddressTypeID" ColumnName="AddressTypeID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserAddressID" ColumnName="UserAddressID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserDetailTables">
+            <EntityTypeMapping TypeName="RemyDbModel.UserDetailTable">
+              <MappingFragment StoreEntitySet="UserDetailTable">
+                <ScalarProperty Name="CreatedBy_UserID" ColumnName="CreatedBy_UserID" />
+                <ScalarProperty Name="LastExperenceScanPhotoPath" ColumnName="LastExperenceScanPhotoPath" />
+                <ScalarProperty Name="EducationLastDegreeScanPhoto" ColumnName="EducationLastDegreeScanPhoto" />
+                <ScalarProperty Name="EducationLevel" ColumnName="EducationLevel" />
+                <ScalarProperty Name="CNIC" ColumnName="CNIC" />
+                <ScalarProperty Name="ExperenceLevel" ColumnName="ExperenceLevel" />
+                <ScalarProperty Name="PhotoPath" ColumnName="PhotoPath" />
+                <ScalarProperty Name="UserDetailProviderDate" ColumnName="UserDetailProviderDate" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="UserDetailID" ColumnName="UserDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserStatusTables">
+            <EntityTypeMapping TypeName="RemyDbModel.UserStatusTable">
+              <MappingFragment StoreEntitySet="UserStatusTable">
+                <ScalarProperty Name="UserStatus" ColumnName="UserStatus" />
+                <ScalarProperty Name="UserStatusID" ColumnName="UserStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTables">
+            <EntityTypeMapping TypeName="RemyDbModel.UserTable">
+              <MappingFragment StoreEntitySet="UserTable">
+                <ScalarProperty Name="GenderID" ColumnName="GenderID" />
+                <ScalarProperty Name="UserStatusChangeDate" ColumnName="UserStatusChangeDate" />
+                <ScalarProperty Name="UserStatusID" ColumnName="UserStatusID" />
+                <ScalarProperty Name="RegisterationDate" ColumnName="RegisterationDate" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="ContactNo" ColumnName="ContactNo" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="UserTypeTables">
+            <EntityTypeMapping TypeName="RemyDbModel.UserTypeTable">
+              <MappingFragment StoreEntitySet="UserTypeTable">
+                <ScalarProperty Name="UserType" ColumnName="UserType" />
+                <ScalarProperty Name="UserTypeID" ColumnName="UserTypeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="VisibleStatusTables">
+            <EntityTypeMapping TypeName="RemyDbModel.VisibleStatusTable">
+              <MappingFragment StoreEntitySet="VisibleStatusTable">
+                <ScalarProperty Name="VisibleStatus" ColumnName="VisibleStatus" />
+                <ScalarProperty Name="VisibleStatusID" ColumnName="VisibleStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockMenuCategoryTables">
+            <EntityTypeMapping TypeName="RemyDbModel.StockMenuCategoryTable">
+              <MappingFragment StoreEntitySet="StockMenuCategoryTable">
+                <ScalarProperty Name="CreatedBy_UserID" ColumnName="CreatedBy_UserID" />
+                <ScalarProperty Name="StockMenuCategory" ColumnName="StockMenuCategory" />
+                <ScalarProperty Name="StockMenuCategoryID" ColumnName="StockMenuCategoryID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookingStatusTables">
+            <EntityTypeMapping TypeName="RemyDbModel.BookingStatusTable">
+              <MappingFragment StoreEntitySet="BookingStatusTable">
+                <ScalarProperty Name="BookingStatus" ColumnName="BookingStatus" />
+                <ScalarProperty Name="BookingStatusID" ColumnName="BookingStatusID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="BookingTblTables">
+            <EntityTypeMapping TypeName="RemyDbModel.BookingTblTable">
+              <MappingFragment StoreEntitySet="BookingTblTable">
+                <ScalarProperty Name="Description" ColumnName="Description" />
+                <ScalarProperty Name="BookingStatusID" ColumnName="BookingStatusID" />
+                <ScalarProperty Name="ProcessBy_UserID" ColumnName="ProcessBy_UserID" />
+                <ScalarProperty Name="NoOfPersons" ColumnName="NoOfPersons" />
+                <ScalarProperty Name="ReservationDateTime" ColumnName="ReservationDateTime" />
+                <ScalarProperty Name="BookingDate" ColumnName="BookingDate" />
+                <ScalarProperty Name="MobileNo" ColumnName="MobileNo" />
+                <ScalarProperty Name="EmailAddress" ColumnName="EmailAddress" />
+                <ScalarProperty Name="FullName" ColumnName="FullName" />
+                <ScalarProperty Name="BookingUserID" ColumnName="BookingUserID" />
+                <ScalarProperty Name="BookingTableID" ColumnName="BookingTableID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockItemReviewTables">
+            <EntityTypeMapping TypeName="RemyDbModel.StockItemReviewTable">
+              <MappingFragment StoreEntitySet="StockItemReviewTable">
+                <ScalarProperty Name="ReviewDetails" ColumnName="ReviewDetails" />
+                <ScalarProperty Name="Rating" ColumnName="Rating" />
+                <ScalarProperty Name="ReviewDateTime" ColumnName="ReviewDateTime" />
+                <ScalarProperty Name="ReviewBy_UserID" ColumnName="ReviewBy_UserID" />
+                <ScalarProperty Name="StockItemID" ColumnName="StockItemID" />
+                <ScalarProperty Name="ItemReviewID" ColumnName="ItemReviewID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CartDealTables">
+            <EntityTypeMapping TypeName="RemyDbModel.CartDealTable">
+              <MappingFragment StoreEntitySet="CartDealTable">
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="StockDealID" ColumnName="StockDealID" />
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
+                <ScalarProperty Name="CartDealID" ColumnName="CartDealID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CartItemDetailTables">
+            <EntityTypeMapping TypeName="RemyDbModel.CartItemDetailTable">
+              <MappingFragment StoreEntitySet="CartItemDetailTable">
+                <ScalarProperty Name="Qty" ColumnName="Qty" />
+                <ScalarProperty Name="StockItemID" ColumnName="StockItemID" />
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
+                <ScalarProperty Name="CartItemID" ColumnName="CartItemID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CartTables">
+            <EntityTypeMapping TypeName="RemyDbModel.CartTable">
+              <MappingFragment StoreEntitySet="CartTable">
+                <ScalarProperty Name="UserID" ColumnName="UserID" />
+                <ScalarProperty Name="CartID" ColumnName="CartID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockDealDetailTables">
+            <EntityTypeMapping TypeName="RemyDbModel.StockDealDetailTable">
+              <MappingFragment StoreEntitySet="StockDealDetailTable">
+                <ScalarProperty Name="Quantity" ColumnName="Quantity" />
+                <ScalarProperty Name="CreatedBy_UserID" ColumnName="CreatedBy_UserID" />
+                <ScalarProperty Name="VisibleStatusID" ColumnName="VisibleStatusID" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="StockItemID" ColumnName="StockItemID" />
+                <ScalarProperty Name="StockDealID" ColumnName="StockDealID" />
+                <ScalarProperty Name="StockDealDetailID" ColumnName="StockDealDetailID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StockDealTables">
+            <EntityTypeMapping TypeName="RemyDbModel.StockDealTable">
+              <MappingFragment StoreEntitySet="StockDealTable">
+                <ScalarProperty Name="DealPhoto" ColumnName="DealPhoto" />
+                <ScalarProperty Name="StockDealRegisterDate" ColumnName="StockDealRegisterDate" />
+                <ScalarProperty Name="StockDealEndDate" ColumnName="StockDealEndDate" />
+                <ScalarProperty Name="Discount" ColumnName="Discount" />
+                <ScalarProperty Name="StockDealStartDate" ColumnName="StockDealStartDate" />
+                <ScalarProperty Name="VisibleStatusID" ColumnName="VisibleStatusID" />
+                <ScalarProperty Name="DealPrice" ColumnName="DealPrice" />
+                <ScalarProperty Name="StockDealTitle" ColumnName="StockDealTitle" />
+                <ScalarProperty Name="StockDealID" ColumnName="StockDealID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

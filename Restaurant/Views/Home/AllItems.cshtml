@@ -1,0 +1,236 @@
+﻿@model Restaurant.Models.StockMenuMV
+@{
+    ViewBag.Title = "AllItems";
+}
+
+<!-- Breadcrumb Start -->
+<div class="bread-crumb">
+    <div class="container">
+        <div class="matter">
+            <h2>Our Shop</h2>
+            <ul class="list-inline">
+                <li class="list-inline-item"><a href="@Url.Content("~/Home/Index")">HOME</a></li>
+                <li class="list-inline-item"><a href="@Url.Content("~/Home/AllItems")">Our Shop</a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+<!-- Breadcrumb End -->
+<!-- Shop Start -->
+<div class="shop">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-3">
+                <!-- Left Filter Start -->
+                <div class="left-side">
+                    <h4>SEARCH FILTERS</h4>
+                    @using (Html.BeginForm("AllItems", "Home", FormMethod.Post, new { @enctype = "multipart/form-data", @class = "form-horizontal" }))
+                    {
+                        <div class="search">
+                            <!-- Search Filter Start -->
+                            <fieldset>
+
+                                @Html.AntiForgeryToken()
+                                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+                                <div class="form-group">
+                                    @Html.EditorFor(model => model.SearchKey, new { htmlAttributes = new { @class = "form-control", @placeholder = "Search Food", @type = "text" } })
+                                    <button type="submit" value="submit" class="btn"><i class="icofont icofont-search"></i></button>
+                                </div>
+
+                                <ul class="list-unstyled">
+                                    @for (int i = 0; i < Model.categorylist.Count; i++)
+                                    {
+                                        <li>
+                                            <label class="check">
+                                                @Html.CheckBoxFor(c => Model.categorylist[i].CategoryStatus, new { @class = "checkclass" })
+                                                @Model.categorylist[i].StockMenuCategory
+                                                @Html.HiddenFor(c => Model.categorylist[i].StockMenuCategoryID)
+                                                @Html.HiddenFor(c => Model.categorylist[i].StockMenuCategory)
+                                            </label>
+                                        </li>
+                                    }
+
+                                </ul>
+
+                            </fieldset>
+                            <!-- Search Filter End -->
+                        </div>
+                        <div class="food">
+                            <h3>Food For</h3>
+                            <ul class="list-inline">
+                                @for (int i = 0; i < Model.ordertypelist.Count; i++)
+                                {
+                                    <li class="list-inline-item">
+                                        <label class="check">
+                                            @Html.CheckBoxFor(c => Model.ordertypelist[i].OrderTypeStatus, new { @class = "checkclass" })
+                                            @Model.ordertypelist[i].OrderType
+                                            @Html.HiddenFor(c => Model.ordertypelist[i].OrderTypeID)
+                                            @Html.HiddenFor(c => Model.ordertypelist[i].OrderType)
+                                        </label>
+                                    </li>
+                                }
+                            </ul>
+                        </div>
+                        <div class="rating">
+                            <!-- Rating Filter Start -->
+                            <h3>Rating</h3>
+                            <ul class="list-unstyled">
+                                <li>
+                                    <label class="check">
+                                        <input type="radio" name="payment" class="checkclass" />
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="check">
+                                        <input type="radio" name="payment" class="checkclass" />
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="check">
+                                        <input type="radio" name="payment" class="checkclass" />
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="check">
+                                        <input type="radio" name="payment" class="checkclass" />
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                    </label>
+                                </li>
+                                <li>
+                                    <label class="check">
+                                        <input type="radio" name="payment" class="checkclass" />
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                    </label>
+                                </li>
+                            </ul>
+                            <!-- Rating Filter End -->
+                        </div>
+                    }
+                </div>
+                <!-- Left Filter End -->
+            </div>
+            <div class="col-md-9 mainpage">
+                <!-- Product View Start -->
+
+                <div class="form-row">
+                    <!-- Product List Start -->
+                    <!-- Single Product Start -->
+                    @foreach (var item in Model.AllItems)
+                    {
+                        <div class="product-layout product-grid col-lg-4 col-md-4 col-sm-6 col-12">
+                            <div class="product-thumb">
+                                <div class="image">
+                                    <a class="link" href="shop-details.html"><img src="@Url.Content(item.ItemPhotoPath)" alt="Food image" title="Food image" class="img-fluid" /></a>
+                                    <div class="hoverbox">
+                                        <button class="btn btn-theme btn-md" onclick="additem(@item.StockItemID)">Add To Cart</button>
+                                    </div>
+                                </div>
+                                <div class="caption">
+                                    <h4>@item.StockItemTitle (@item.ItemSize)</h4>
+                                    <div class="rating">
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                        <i class="icofont icofont-star"></i>
+                                    </div>
+                                    <div class="price">Price : @item.UnitPrice</div>
+                                    <p class="des">Category : @item.StockItemCategory | Order Type : @item.OrderType</p>
+                                    <p><a class="btn btn-theme btn-md" href="shopping-cart.html">Add To Cart</a></p>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Single Product End -->
+                    }
+
+
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12 col-12 text-center">
+                        <!-- Pagination Start -->
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Previous"><i class="icofont icofont-double-left"></i></a>
+                            </li>
+                            <li class="page-item active">
+                                <a class="page-link" href="#">01</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">02</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">03</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">04</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">...</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">18</a>
+                            </li>
+                            <li class="page-item">
+                                <a class="page-link" href="#" aria-label="Next"><i class="icofont icofont-double-right"></i></a>
+                            </li>
+                        </ul>
+                        <!-- Pagination End -->
+                    </div>
+                </div>
+                <!-- Product View End -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Shop End -->
+<script type="text/javascript">
+    function additem(id)
+    {
+        var url = "/Order/Cart_AddItem?itemid=" + id + "&qty=1&itemtype=item&return_url=''";
+        $.ajax({
+            url: url,
+            type: 'GET',
+            dataType: 'json',
+        // we set cache: false because GET requests are often cached by browsers
+        // IE is particularly aggressive in that respect
+            cache: false,
+            data: { },
+            success: function (result)
+            {
+                if (result == true)
+                {
+                    alert("Added Successfully!")
+                    }
+                else
+                {
+                    alert("Plz login and Try-Again!")
+                    }
+            }
+        });
+    }
+</script>
